@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-404-js","path":"/404.html","webpackCompilationHash":"eb990bd3a55996dc8e2b","result":{"pageContext":{"isCreatedByStatefulCreatePages":true}}}
+{
+    "componentChunkName": "component---src-pages-404-js",
+    "path": "/404.html",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Gatsby Starter Blog"}}},"pageContext":{}},
+    "staticQueryHashes": ["2841359383"]}
