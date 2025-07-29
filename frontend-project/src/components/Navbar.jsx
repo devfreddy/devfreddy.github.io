@@ -1,8 +1,7 @@
-import { Box, Flex, HStack, Link, useColorMode, IconButton } from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Flex, HStack, Link } from '@chakra-ui/react'
+import { ColorModeButton } from './ui/color-mode'
 
-const Navbar = ({ scrollToSection }) => {
-  const { colorMode, toggleColorMode } = useColorMode()
+const Navbar = ({ scrollToSection, showBanner }) => {
 
   const navItems = [
     { name: 'Home', id: 'home' },
@@ -14,7 +13,7 @@ const Navbar = ({ scrollToSection }) => {
   return (
     <Box 
       position="fixed" 
-      top={0} 
+      top={showBanner ? "44px" : "0"}
       left={0} 
       right={0} 
       bg="white" 
@@ -23,6 +22,7 @@ const Navbar = ({ scrollToSection }) => {
       zIndex={1000}
       px={4}
       py={3}
+      transition="top 0.3s ease"
     >
       <Flex maxW="1200px" mx="auto" justify="space-between" align="center">
         <Link 
@@ -33,7 +33,7 @@ const Navbar = ({ scrollToSection }) => {
           cursor="pointer"
           _hover={{ textDecoration: 'none', color: 'blue.600' }}
         >
-          Your Name
+          Dev Freddy
         </Link>
         
         <HStack spacing={8}>
@@ -51,13 +51,7 @@ const Navbar = ({ scrollToSection }) => {
             </Link>
           ))}
           
-          <IconButton
-            aria-label="Toggle color mode"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            onClick={toggleColorMode}
-            variant="ghost"
-            size="sm"
-          />
+          <ColorModeButton />
         </HStack>
       </Flex>
     </Box>

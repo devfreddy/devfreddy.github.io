@@ -1,75 +1,159 @@
 import { Box, VStack, Heading, Text, Button, HStack } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+import ParticleBackground from './ParticleBackground'
+import FloatingTechIcons from './FloatingTechIcons'
 
-const HeroSection = ({ scrollToSection }) => {
+const MotionBox = motion.create(Box)
+const MotionVStack = motion.create(VStack)
+const MotionHeading = motion.create(Heading)
+const MotionText = motion.create(Text)
+const MotionButton = motion.create(Button)
+
+const HeroSection = ({ scrollToSection, showBanner }) => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const nameVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  }
+
   return (
-    <Box
+    <MotionBox
       id="home"
       minH="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      bg="gradient-to-br from-blue.50 to-purple.50"
-      pt="80px"
+      bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      pt={showBanner ? "140px" : "80px"}
+      transition="padding-top 0.3s ease"
+      position="relative"
+      overflow="hidden"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
     >
-      <VStack spacing={6} textAlign="center" maxW="800px" px={4}>
-        <Heading
+      <ParticleBackground />
+      <FloatingTechIcons />
+      <MotionVStack spacing={6} textAlign="center" maxW="800px" px={4} zIndex={2}>
+        <MotionHeading
           as="h1"
           size="2xl"
-          bgGradient="linear(to-r, blue.500, purple.500)"
-          bgClip="text"
+          color="white"
           fontWeight="extrabold"
+          textShadow="2px 2px 4px rgba(0,0,0,0.3)"
+          variants={nameVariants}
         >
-          Hi, I'm Your Name
-        </Heading>
+          Hi, I'm Michael Frederick aka Devfreddy
+        </MotionHeading>
         
-        <Heading as="h2" size="lg" color="gray.600" fontWeight="medium">
-          Full Stack Developer & Problem Solver
-        </Heading>
+        <MotionHeading as="h2" size="lg" color="whiteAlpha.900" fontWeight="semibold" variants={itemVariants}>
+          Product-Minded Technical Lead & Solutions Engineer
+        </MotionHeading>
         
-        <Text fontSize="lg" color="gray.500" maxW="600px" lineHeight="1.6">
-          I create modern, responsive web applications using cutting-edge technologies. 
-          Passionate about clean code, user experience, and turning ideas into reality.
-        </Text>
+        <MotionText fontSize="lg" color="whiteAlpha.800" maxW="600px" lineHeight="1.6" variants={itemVariants}>
+          15+ years of experience delivering innovative solutions across multiple industries. 
+          Passionate about building scalable applications and leading teams to success.
+        </MotionText>
         
-        <HStack spacing={4} pt={4}>
-          <Button
-            colorScheme="blue"
-            size="lg"
-            onClick={() => scrollToSection('projects')}
-            _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
-            transition="all 0.2s"
-          >
-            View My Work
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => scrollToSection('about')}
-            _hover={{ transform: 'translateY(-2px)' }}
-            transition="all 0.2s"
-          >
-            About Me
-          </Button>
-        </HStack>
+        <motion.div variants={itemVariants}>
+          <HStack spacing={4} pt={4}>
+            <MotionButton
+              bg="rgba(255, 255, 255, 0.2)"
+              color="white"
+              size="lg"
+              onClick={() => scrollToSection('projects')}
+              _hover={{ 
+                transform: 'translateY(-2px)', 
+                boxShadow: 'xl',
+                bg: "rgba(255, 255, 255, 0.3)"
+              }}
+              transition="all 0.2s"
+              fontWeight="semibold"
+              backdropFilter="blur(10px)"
+              border="1px solid rgba(255, 255, 255, 0.3)"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View My Work
+            </MotionButton>
+            
+            <MotionButton
+              variant="outline"
+              borderColor="whiteAlpha.500"
+              color="white"
+              size="lg"
+              onClick={() => scrollToSection('about')}
+              _hover={{ 
+                transform: 'translateY(-2px)',
+                bg: "rgba(255, 255, 255, 0.1)",
+                borderColor: "whiteAlpha.700"
+              }}
+              transition="all 0.2s"
+              fontWeight="semibold"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              About Me
+            </MotionButton>
+          </HStack>
+        </motion.div>
         
-        <Box
-          position="absolute"
-          bottom="30px"
-          left="50%"
-          transform="translateX(-50%)"
-          cursor="pointer"
+        <motion.div
+          style={{
+            position: "absolute",
+            bottom: "30px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            cursor: "pointer"
+          }}
           onClick={() => scrollToSection('about')}
-          _hover={{ transform: 'translateX(-50%) translateY(-5px)' }}
-          transition="transform 0.2s"
+          whileHover={{ y: -5 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 2,
+            ease: "easeInOut"
+          }}
+          variants={itemVariants}
         >
           <VStack spacing={2}>
-            <Text fontSize="sm" color="gray.400">Scroll down</Text>
-            <Text fontSize="2xl" color="gray.400">↓</Text>
+            <Text fontSize="sm" color="whiteAlpha.700">Scroll down</Text>
+            <Text fontSize="2xl" color="whiteAlpha.700">↓</Text>
           </VStack>
-        </Box>
-      </VStack>
-    </Box>
+        </motion.div>
+      </MotionVStack>
+    </MotionBox>
   )
 }
 

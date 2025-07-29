@@ -6,13 +6,29 @@ import {
   Heading, 
   Text, 
   SimpleGrid, 
-  Card, 
-  CardBody, 
   Button, 
   Badge, 
-  Link,
-  Image
+  Link
 } from '@chakra-ui/react'
+
+// Custom Card components for Chakra UI v3
+const Card = ({ children, ...props }) => (
+  <Box 
+    bg="white" 
+    borderRadius="lg" 
+    overflow="hidden" 
+    boxShadow="md" 
+    {...props}
+  >
+    {children}
+  </Box>
+)
+
+const CardBody = ({ children, ...props }) => (
+  <Box p={6} {...props}>
+    {children}
+  </Box>
+)
 
 const ProjectsSection = () => {
   const projects = [
@@ -66,7 +82,12 @@ const ProjectsSection = () => {
             </Text>
           </VStack>
 
-          <SimpleGrid columns={[1, null, 2]} spacing={8} w="full">
+          <Box 
+            display="grid" 
+            gridTemplateColumns={["1fr", null, "1fr 1fr"]} 
+            gap={8}
+            w="full"
+          >
             {projects.map((project, index) => (
               <Card 
                 key={index}
@@ -75,33 +96,21 @@ const ProjectsSection = () => {
                 transition="all 0.3s"
                 bg="white"
                 borderRadius="lg"
+                position="relative"
+                h="fit-content"
               >
-                <Box position="relative">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    h="200px"
-                    w="full"
-                    objectFit="cover"
-                    bg="gray.200"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    color="gray.500"
-                    fontSize="sm"
-                  />
-                  {project.featured && (
-                    <Badge
-                      position="absolute"
-                      top={3}
-                      right={3}
-                      colorScheme="blue"
-                      variant="solid"
-                    >
-                      Featured
-                    </Badge>
-                  )}
-                </Box>
+                {project.featured && (
+                  <Badge
+                    position="absolute"
+                    top={3}
+                    right={3}
+                    colorScheme="blue"
+                    variant="solid"
+                    zIndex={1}
+                  >
+                    Featured
+                  </Badge>
+                )}
                 
                 <CardBody>
                   <VStack align="start" spacing={4}>
@@ -114,11 +123,22 @@ const ProjectsSection = () => {
                     </Text>
                     
                     <HStack wrap="wrap" spacing={2}>
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" colorScheme="blue">
-                          {tech}
-                        </Badge>
-                      ))}
+                      {project.technologies.map((tech, techIndex) => {
+                        const colors = ['blue', 'purple', 'green', 'orange', 'teal', 'pink'];
+                        const colorScheme = colors[techIndex % colors.length];
+                        return (
+                          <Badge 
+                            key={tech} 
+                            variant="solid" 
+                            colorScheme={colorScheme}
+                            fontSize="xs"
+                            px={2}
+                            py={1}
+                          >
+                            {tech}
+                          </Badge>
+                        );
+                      })}
                     </HStack>
                     
                     <HStack spacing={3} pt={2}>
@@ -147,7 +167,7 @@ const ProjectsSection = () => {
                 </CardBody>
               </Card>
             ))}
-          </SimpleGrid>
+          </Box>
           
           <Button
             size="lg"

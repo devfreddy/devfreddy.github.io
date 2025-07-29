@@ -5,61 +5,136 @@ import {
   HStack, 
   Heading, 
   Text, 
-  Card, 
-  CardBody,
   Badge
 } from '@chakra-ui/react'
+
+// Custom Card components for Chakra UI v3
+const Card = ({ children, ...props }) => (
+  <Box 
+    bg="white" 
+    borderRadius="lg" 
+    border="1px" 
+    borderColor="gray.200"
+    {...props}
+  >
+    {children}
+  </Box>
+)
+
+const CardBody = ({ children, ...props }) => (
+  <Box p={6} {...props}>
+    {children}
+  </Box>
+)
 
 const ExperienceSection = () => {
   const experiences = [
     {
-      company: "Tech Startup Inc.",
-      position: "Senior Full Stack Developer",
-      duration: "2022 - Present",
+      company: "New Relic",
+      position: "Senior Solution Delivery Architect / Senior Partner Solutions Engineer",
+      duration: "February 2022 - June 2023",
       location: "Remote",
-      description: "Led development of core platform features, mentored junior developers, and implemented CI/CD pipelines that reduced deployment time by 60%.",
+      description: "Technical resource supporting technical and go-to-market initiatives for partners in the observability platform space.",
       achievements: [
-        "Built scalable microservices architecture serving 100k+ users",
-        "Reduced page load times by 40% through performance optimization",
-        "Mentored 3 junior developers and established code review processes"
+        "Ensured successful onboarding, training, and certification of partner technical resources",
+        "Provided pre-sales support to partners for active opportunities",
+        "Developed partner demo environments, technical assessments, and enablement content",
+        "Collaborated internally to support partner technical initiatives and enhance value"
       ],
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "Docker"]
+      technologies: ["New Relic One", "Observability", "Partner Enablement", "Pre-sales Engineering"]
     },
     {
-      company: "Digital Agency Co.",
-      position: "Full Stack Developer",
-      duration: "2020 - 2022",
-      location: "San Francisco, CA",
-      description: "Developed custom web applications for clients across various industries, from e-commerce platforms to content management systems.",
+      company: "New Relic",
+      position: "Lead Software Engineer",
+      duration: "September 2019 - February 2022",
+      location: "Remote",
+      description: "Team technical lead, architect, mentor, and innovator focused on platform programmability and open source initiatives.",
       achievements: [
-        "Delivered 20+ client projects on time and under budget",
-        "Improved client retention rate by 35% through quality deliverables",
-        "Introduced automated testing, reducing bugs by 50%"
+        "Early adopter and contributor to New Relic One Programmability platform",
+        "Lead engineer for the Open Source Program Office (OSPO)",
+        "Founding member of Open Instrumentation Experience Team (Virtuoso)",
+        "Architected CLI-driven automated agent installer framework and onboarding UI"
       ],
-      technologies: ["Vue.js", "Python", "Django", "PostgreSQL", "Redis"]
+      technologies: ["New Relic One", "CLI Tools", "Open Source", "Agent Architecture"]
     },
     {
-      company: "Local Web Solutions",
-      position: "Junior Developer",
-      duration: "2019 - 2020",
-      location: "Austin, TX",
-      description: "Started my professional journey building websites for small businesses and learning the fundamentals of modern web development.",
+      company: "Masterworks",
+      position: "Software Engineering Lead/Manager",
+      duration: "January 2019 - August 2019",
+      location: "Remote",
+      description: "Full-service marketing agency role as architect, engineer, system operations advisor, and team manager.",
       achievements: [
-        "Developed responsive websites for 15+ small businesses",
-        "Learned modern frameworks and best practices",
-        "Contributed to open-source projects"
+        "Developed application for direct-mail business process optimization",
+        "Managed and mentored a remote team of 6 technologists",
+        "Managed full SDLC including business and product requirements",
+        "Led multiple contractor teams in application delivery"
       ],
-      technologies: ["HTML", "CSS", "JavaScript", "WordPress", "PHP"]
+      technologies: ["AWS", "ReactJS", "VueJS", "GraphQL", "Team Management"]
+    },
+    {
+      company: "Masterworks",
+      position: "Senior Software Engineer",
+      duration: "December 2017 - January 2019",
+      location: "Remote",
+      description: "Built business intelligence platforms and client-facing portals for marketing agency operations.",
+      achievements: [
+        "Assisted in designing and deploying business intelligence platform",
+        "Built robust client-facing portal exposing BI capabilities", 
+        "Setup and maintained cloud infrastructures and CI/CD pipelines",
+        "Managed multiple contractor teams delivering applications"
+      ],
+      technologies: ["AWS", "BigQuery", "ExpressJS", "ReactJS", "CircleCI", "Looker"]
+    },
+    {
+      company: "CURE International",
+      position: "Senior Web Developer",
+      duration: "January 2013 - July 2017",
+      location: "Lemoyne, PA",
+      description: "Technology lead for marketing, fundraising, donor support, and communications systems at international non-profit operating in 29 countries.",
+      achievements: [
+        "Served as technology point of contact for all marketing and fundraising technology",
+        "Developed and maintained donor management and communication systems",
+        "Implemented monitoring and performance optimization across platforms",
+        "Built custom integrations with Salesforce and payment processing systems"
+      ],
+      technologies: ["PHP", "Node.js", "Python", "Salesforce", "New Relic", "Stripe"]
+    },
+    {
+      company: "CURE International", 
+      position: "Database Administrator & IT Lead",
+      duration: "April 2011 - January 2013",
+      location: "Lemoyne, PA",
+      description: "Database administration and IT leadership for international non-profit healthcare organization.",
+      achievements: [
+        "Managed database systems supporting global operations",
+        "Led IT infrastructure and system administration initiatives",
+        "Supported technology needs across 29 international locations"
+      ],
+      technologies: ["Database Administration", "IT Infrastructure", "System Administration"]
+    },
+    {
+      company: "Mzinga",
+      position: "Technical Solutions Engineer", 
+      duration: "October 2008 - April 2011",
+      location: "Remote",
+      description: "Dual role providing technical support for enterprise social software solutions and developing custom ETL processes for e-learning platforms.",
+      achievements: [
+        "Provided technical support for e-learning course authoring tools and LMS",
+        "Authored custom ETL processes for customer data integration",
+        "Developed advanced automated reporting solutions for customers",
+        "Supported enterprise clients in learning, marketing, and support markets"
+      ],
+      technologies: ["ETL", "SQL", "PL/SQL", "Bash", "Python", "Java"]
     }
   ]
 
   const education = [
     {
-      institution: "University of Technology",
-      degree: "Bachelor of Science in Computer Science",
-      duration: "2015 - 2019",
-      location: "Austin, TX",
-      highlights: ["Dean's List for 3 consecutive semesters", "Computer Science Club President"]
+      institution: "Messiah College",
+      degree: "Bachelor of Science in Computer Science", 
+      duration: "2004 - 2008",
+      location: "Grantham, PA",
+      highlights: []
     }
   ]
 
@@ -91,7 +166,7 @@ const ExperienceSection = () => {
                           </Text>
                         </VStack>
                         <VStack align="end" spacing={1}>
-                          <Badge colorScheme="blue" variant="subtle">
+                          <Badge colorScheme="blue" variant="solid" bg="blue.500" color="white">
                             {exp.duration}
                           </Badge>
                           <Text fontSize="sm" color="gray.500">
@@ -118,11 +193,22 @@ const ExperienceSection = () => {
                       </Box>
                       
                       <HStack wrap="wrap" spacing={2}>
-                        {exp.technologies.map((tech) => (
-                          <Badge key={tech} variant="outline" colorScheme="gray">
-                            {tech}
-                          </Badge>
-                        ))}
+                        {exp.technologies.map((tech, techIndex) => {
+                          const colors = ['purple', 'green', 'orange', 'teal', 'pink', 'cyan'];
+                          const colorScheme = colors[techIndex % colors.length];
+                          return (
+                            <Badge 
+                              key={tech} 
+                              variant="solid" 
+                              colorScheme={colorScheme}
+                              fontSize="xs"
+                              px={2}
+                              py={1}
+                            >
+                              {tech}
+                            </Badge>
+                          );
+                        })}
                       </HStack>
                     </VStack>
                   </CardBody>
@@ -158,7 +244,7 @@ const ExperienceSection = () => {
                         )}
                       </VStack>
                       <VStack align="end" spacing={1}>
-                        <Badge colorScheme="blue" variant="subtle">
+                        <Badge colorScheme="green" variant="solid" bg="green.500" color="white">
                           {edu.duration}
                         </Badge>
                         <Text fontSize="sm" color="gray.500">

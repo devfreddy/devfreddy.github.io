@@ -15,7 +15,7 @@ const AboutSection = () => {
           <VStack spacing={4} textAlign="center">
             <Heading size="xl" color="gray.800">About Me</Heading>
             <Text fontSize="lg" color="gray.600" maxW="600px">
-              I'm a passionate developer with 5+ years of experience building web applications 
+              I'm a passionate developer with 15+ years of experience building web applications 
               that solve real-world problems and deliver exceptional user experiences.
             </Text>
           </VStack>
