@@ -74,11 +74,11 @@ const HeroSection = ({ scrollToSection, showBanner }) => {
           textShadow="2px 2px 4px rgba(0,0,0,0.3)"
           variants={nameVariants}
         >
-          Hi, I'm Michael Frederick aka Devfreddy
+          Welcome
         </MotionHeading>
         
         <MotionHeading as="h2" size="lg" color="whiteAlpha.900" fontWeight="semibold" variants={itemVariants}>
-          Product-Minded Technical Lead & Solutions Engineer
+          I'm Michael Frederick (DevFreeddy), A Product-Minded Technical Lead & Solutions Engineer
         </MotionHeading>
         
         <MotionText fontSize="lg" color="whiteAlpha.800" maxW="600px" lineHeight="1.6" variants={itemVariants}>
@@ -92,7 +92,7 @@ const HeroSection = ({ scrollToSection, showBanner }) => {
               bg="rgba(255, 255, 255, 0.2)"
               color="white"
               size="lg"
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection('experience')}
               _hover={{ 
                 transform: 'translateY(-2px)', 
                 boxShadow: 'xl',
@@ -105,7 +105,7 @@ const HeroSection = ({ scrollToSection, showBanner }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              View My Experience
             </MotionButton>
             
             <MotionButton

@@ -30,6 +30,22 @@ const CardBody = ({ children, ...props }) => (
 const ExperienceSection = () => {
   const experiences = [
     {
+      company: "Apollo GraphQL",
+      position: "Senior Professional Services Engineer",
+      duration: "June 2023 - Present",
+      location: "Remote",
+      description: "Senior consultant delivering GraphQL solutions and driving customer success for enterprise clients across multiple industries and time zones.",
+      achievements: [
+        "Led complex customer migrations including enterprise gateway-to-router transitions (6 weeks to production)",
+        "Pioneered untested Progressive Override capabilities for large-scale monolithic graph migrations",
+        "Supported high-stakes scenarios: election coverage during tech strikes, critical @shareable issues",
+        "Drove adoption of Enterprise Apollo features: Custom Events, Coprocessor, Observability across major clients",
+        "Contributed to internal enablement: SME program, pse-toolbox, documentation, and team knowledge sharing",
+        "Provided global coverage from New Zealand to Poland/Italy supporting international enterprise customers"
+      ],
+      technologies: ["GraphQL", "Apollo Router", "Apollo Studio", "Rust", "Golang", "Ruby", "Rhai", "Progressive Override", "Datadog", "Platform API"]
+    },
+    {
       company: "New Relic",
       position: "Senior Solution Delivery Architect / Senior Partner Solutions Engineer",
       duration: "February 2022 - June 2023",

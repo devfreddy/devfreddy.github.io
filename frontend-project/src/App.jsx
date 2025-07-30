@@ -3,7 +3,7 @@ import ConstructionBanner from './components/ConstructionBanner'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
-import ProjectsSection from './components/ProjectsSection'
+// import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
 import { useBannerState } from './hooks/useBannerState'
 
@@ -23,7 +23,7 @@ function App() {
       <Navbar scrollToSection={scrollToSection} showBanner={showBanner} />
       <HeroSection scrollToSection={scrollToSection} showBanner={showBanner} />
       <AboutSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <ExperienceSection />
     </Box>
   )

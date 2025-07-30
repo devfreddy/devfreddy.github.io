@@ -30,6 +30,17 @@ body {
   min-height: 100vh;
 }
 
+/* Restore default text selection */
+::selection {
+  background: Highlight;
+  color: HighlightText;
+}
+
+::-moz-selection {
+  background: Highlight;
+  color: HighlightText;
+}
+
 #root {
   width: 100%;
 }
