@@ -78,7 +78,7 @@ const HeroSection = ({ scrollToSection, showBanner }) => {
         </MotionHeading>
         
         <MotionHeading as="h2" size="lg" color="whiteAlpha.900" fontWeight="semibold" variants={itemVariants}>
-          I'm Michael Frederick (DevFreeddy), A Product-Minded Technical Lead & Solutions Engineer
+          I'm Michael Frederick (Devfreddy), A Product-Minded Technical Lead & Solutions Engineer
         </MotionHeading>
         
         <MotionText fontSize="lg" color="whiteAlpha.800" maxW="600px" lineHeight="1.6" variants={itemVariants}>
