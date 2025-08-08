@@ -27,8 +27,8 @@ cp -r dist $TMP_DIST
 cd "$REPO_ROOT"
 git checkout production
 
-# 5. Remove all files except .git (or selectively if needed)
-git rm -rf . > /dev/null 2>&1 || true
+# 5. Remove all tracked files except CNAME
+git ls-files | grep -v '^CNAME$' | xargs -r git rm -rf
 
 # 6. Copy dist contents into repo root (production branch)
 cp -r $TMP_DIST/* "$REPO_ROOT"
