@@ -3,7 +3,7 @@
 set -e
 
 REPO_ROOT=$(pwd)
-FRONTEND_DIR="$REPO_ROOT/frontend"
+FRONTEND_DIR="$REPO_ROOT/frontend-project"
 TMP_DIST="/tmp/vite-deploy-dist"
 
 echo "Starting deployment from frontend folder..."
