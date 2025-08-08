@@ -1,0 +1,574 @@
+{
+  "cocktails": [
+    {
+      "id": "absinthe-frappe",
+      "name": "Absinthe Frappe",
+      "category": "Absinthe",
+      "ingredients": [
+        { "name": "Absinthe", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/2", "unit": "oz" },
+        { "name": "Club soda", "amount": "2", "unit": "oz" },
+        { "name": "Mint sprig", "amount": "1", "unit": "sprig" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "apple-bourbon-porch-sipper",
+      "name": "Apple Bourbon Porch Sipper",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Elderflower liqueur", "amount": "1/2", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "1/2", "unit": "oz" },
+        { "name": "Honey or agave", "amount": "1/4", "unit": "oz" },
+        { "name": "Vodka-infused apple chunks", "amount": "3-4", "unit": "pieces" },
+        { "name": "Club soda", "amount": "to top", "unit": "" },
+        { "name": "Ice", "amount": "as needed", "unit": "" },
+        { "name": "Fresh mint or basil", "amount": "optional", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "bourbon-brule",
+      "name": "Bourbon Brule",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "3", "unit": "oz" },
+        { "name": "Sherry", "amount": "1", "unit": "oz" },
+        { "name": "Ginger liqueur", "amount": "1", "unit": "oz" },
+        { "name": "Orange juice", "amount": "1/8", "unit": "cup" },
+        { "name": "Orange slice", "amount": "1", "unit": "slice", "notes": "covered in sugar and bruleed on a hot skillet" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "bourbon-sunset",
+      "name": "Bourbon Sunset",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "1.5", "unit": "oz" },
+        { "name": "Pineapple juice", "amount": "1", "unit": "oz" },
+        { "name": "Aperol", "amount": "0.75", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "0.5", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.25", "unit": "oz", "notes": "optional" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "cherry-almond-manhattan",
+      "name": "Cherry Almond Manhattan",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Cherry Heering", "amount": "1", "unit": "oz" },
+        { "name": "Bourbon", "amount": "1", "unit": "oz" },
+        { "name": "Amaretto", "amount": "0.5", "unit": "oz" },
+        { "name": "Bitters", "amount": "dash", "unit": "" },
+        { "name": "Cherry", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "cream-soda-manhattan",
+      "name": "Cream Soda Manhattan",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Licor 43", "amount": "0.5", "unit": "oz" },
+        { "name": "Sweet vermouth", "amount": "0.5", "unit": "oz" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Orange bitters", "amount": "1", "unit": "dash" },
+        { "name": "Vanilla syrup", "amount": "1", "unit": "bar spoon" },
+        { "name": "Club soda", "amount": "to top", "unit": "", "notes": "optional" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "elderflower-bourbon-sour",
+      "name": "Elderflower Bourbon Sour",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "1.5", "unit": "oz" },
+        { "name": "St-Germain", "amount": "0.75", "unit": "oz" },
+        { "name": "Fresh lemon juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.5", "unit": "oz" },
+        { "name": "Ice", "amount": "as needed", "unit": "" },
+        { "name": "Lemon wheel or cherry", "amount": "for garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "hold-fast-to-your-dreams",
+      "name": "Hold Fast To Your Dreams - Words To Stand By",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Aperol", "amount": "0.75", "unit": "oz" },
+        { "name": "Amaro", "amount": "0.5", "unit": "oz" },
+        { "name": "Fresh sour (lemon or lime juice)", "amount": "0.75", "unit": "oz" },
+        { "name": "Orange bitters", "amount": "2-3", "unit": "dashes" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "kentucky-mule",
+      "name": "Kentucky Mule",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Lime juice", "amount": "1/2", "unit": "oz" },
+        { "name": "Ginger beer", "amount": "4-6", "unit": "oz" },
+        { "name": "Lime wedge", "amount": "1", "unit": "garnish" },
+        { "name": "Mint sprig", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "paper-train",
+      "name": "Paper Train",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "1", "unit": "oz" },
+        { "name": "Aperol", "amount": "0.75", "unit": "oz" },
+        { "name": "Averna", "amount": "0.75", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Club soda", "amount": "to top", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "rosemarys-baby-erin",
+      "name": "Rosemary's Baby (Erin)",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Allspice dram", "amount": "1/2", "unit": "oz" },
+        { "name": "Limoncello", "amount": "1", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "1/2", "unit": "oz" }
+      ],
+      "instructions": ["Shake and stir over ice"]
+    },
+    {
+      "id": "rosemarys-baby-michael",
+      "name": "Rosemary's Baby (Michael)",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Allspice dram", "amount": "1/2", "unit": "oz" },
+        { "name": "Limoncello", "amount": "1/2", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "1/4", "unit": "oz" }
+      ],
+      "instructions": ["Shake and stir over ice"]
+    },
+    {
+      "id": "spanish-gold",
+      "name": "Spanish Gold",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "2", "unit": "oz" },
+        { "name": "Licor 43", "amount": "3/4", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "1/2", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/4", "unit": "oz" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "the-cherry-monk",
+      "name": "The Cherry Monk",
+      "category": "Bourbon",
+      "ingredients": [
+        { "name": "Bourbon", "amount": "1", "unit": "oz" },
+        { "name": "Cherry Heering", "amount": "1/2", "unit": "oz" }
+      ],
+      "instructions": [],
+      "notes": "Recipe incomplete"
+    },
+    {
+      "id": "brandy-crusta",
+      "name": "Brandy Crusta",
+      "category": "Brandy/Cognac/Pisco",
+      "ingredients": [
+        { "name": "Cognac or brandy", "amount": "2", "unit": "oz" },
+        { "name": "Orange curaçao", "amount": "0.5", "unit": "oz", "notes": "Cointreau or Grand Marnier work well" },
+        { "name": "Fresh lemon juice", "amount": "0.25", "unit": "oz" },
+        { "name": "Maraschino liqueur", "amount": "0.25", "unit": "oz" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Sugar", "amount": "for rim", "unit": "" },
+        { "name": "Lemon peel spiral", "amount": "for garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "east-india-cocktail",
+      "name": "East India Cocktail",
+      "category": "Brandy/Cognac/Pisco",
+      "ingredients": [
+        { "name": "Brandy", "amount": "2", "unit": "oz" },
+        { "name": "Orange curaçao", "amount": "1/2", "unit": "oz" },
+        { "name": "Maraschino liqueur", "amount": "1/2", "unit": "tsp" },
+        { "name": "Angostura bitters", "amount": "dash", "unit": "" },
+        { "name": "Pineapple juice", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Nutmeg", "amount": "garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "pisco-punch",
+      "name": "Pisco Punch",
+      "category": "Brandy/Cognac/Pisco",
+      "ingredients": [
+        { "name": "Pisco", "amount": "2", "unit": "oz" },
+        { "name": "Fresh lemon juice", "amount": "3/4", "unit": "oz" },
+        { "name": "Pineapple juice", "amount": "3/4", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "3/4", "unit": "oz", "notes": "2:1 sugar to water" },
+        { "name": "Club soda", "amount": "to top", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "vieux-carre",
+      "name": "Vieux Carre",
+      "category": "Brandy/Cognac/Pisco",
+      "ingredients": [
+        { "name": "Rye whiskey", "amount": "3/4", "unit": "oz" },
+        { "name": "Cognac", "amount": "3/4", "unit": "oz" },
+        { "name": "Sweet vermouth", "amount": "3/4", "unit": "oz" },
+        { "name": "Benedictine", "amount": "1", "unit": "tsp" },
+        { "name": "Peychaud's bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Lemon twist", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "chartreuse-blossom",
+      "name": "Chartreuse Blossom",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Gin", "amount": "1", "unit": "oz" },
+        { "name": "Green Chartreuse", "amount": "0.5", "unit": "oz" },
+        { "name": "St-Germain", "amount": "0.5", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Lemon twist or edible flower", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "elderflower-gin-herb-smash",
+      "name": "Elderflower Gin & Herb Smash",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "London dry gin", "amount": "1.5", "unit": "oz" },
+        { "name": "St-Germain", "amount": "0.75", "unit": "oz" },
+        { "name": "Fresh lemon juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.5", "unit": "oz" },
+        { "name": "Fresh herbs", "amount": "4–6", "unit": "leaves or sprigs", "notes": "mint, basil, or thyme — muddle" },
+        { "name": "Ice", "amount": "as needed", "unit": "" },
+        { "name": "Herb sprig or lemon wheel", "amount": "for garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "lavender-strawberry-gin-fizz",
+      "name": "Lavender Strawberry Gin Fizz",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Gin", "amount": "2", "unit": "oz" },
+        { "name": "Lavender simple syrup", "amount": "3/4", "unit": "oz" },
+        { "name": "Fresh strawberry purée", "amount": "1", "unit": "oz" },
+        { "name": "Fresh lemon juice", "amount": "3/4", "unit": "oz" },
+        { "name": "Soda water", "amount": "to top", "unit": "" },
+        { "name": "Ice", "amount": "as needed", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "limoncello-reviver",
+      "name": "Limoncello Reviver",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Empress gin", "amount": "1", "unit": "oz" },
+        { "name": "Limoncello", "amount": "1", "unit": "oz" },
+        { "name": "Lillet blanc", "amount": "1", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "1", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/2", "unit": "oz", "notes": "optional" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "mistletoe-martini",
+      "name": "Mistletoe Martini",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Botanist gin", "amount": "1.5", "unit": "oz" },
+        { "name": "White cranberry juice", "amount": "2", "unit": "oz" },
+        { "name": "Rosemary simple syrup", "amount": "0.5", "unit": "oz" },
+        { "name": "Lime juice", "amount": "0.5", "unit": "oz" },
+        { "name": "Prosecco", "amount": "2", "unit": "oz" },
+        { "name": "Cranberries", "amount": "garnish", "unit": "" },
+        { "name": "Rosemary sprig", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "strawberry-herb-sour",
+      "name": "Strawberry Herb Sour",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Green Chartreuse", "amount": "1", "unit": "oz" },
+        { "name": "Gin", "amount": "1", "unit": "oz", "notes": "or blanco tequila for a twist" },
+        { "name": "Fresh lemon juice", "amount": "1", "unit": "oz" },
+        { "name": "Strawberry purée", "amount": "3/4", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/2", "unit": "oz", "notes": "adjust to taste depending on your purée" },
+        { "name": "Peychaud's or orange bitters", "amount": "1", "unit": "dash", "notes": "optional" },
+        { "name": "Basil leaf or sliced strawberry", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "summer-breeze-cocktail",
+      "name": "Summer Breeze Cocktail",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Gin", "amount": "1", "unit": "oz" },
+        { "name": "Tequila", "amount": "1", "unit": "oz" },
+        { "name": "Cointreau", "amount": "0.5", "unit": "oz" },
+        { "name": "Lillet blanc", "amount": "0.5", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.5", "unit": "oz" },
+        { "name": "Bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Club soda", "amount": "to top", "unit": "" },
+        { "name": "Lemon wheel and/or mint sprig", "amount": "for garnish", "unit": "" }
+      ],
+      "instructions": ["Serve over ice"]
+    },
+    {
+      "id": "violet-fizz",
+      "name": "Violet Fizz",
+      "category": "Gin",
+      "ingredients": [
+        { "name": "Gin", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Crème de violette", "amount": "1/2", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "3/4", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/2", "unit": "oz" },
+        { "name": "Club soda", "amount": "to top", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "capri-sunset",
+      "name": "Capri Sunset",
+      "category": "Liqueur (Primary)",
+      "ingredients": [
+        { "name": "Aperol", "amount": "1", "unit": "oz" },
+        { "name": "Limoncello", "amount": "0.5", "unit": "oz" },
+        { "name": "Prosecco", "amount": "4", "unit": "oz" },
+        { "name": "Club soda", "amount": "splash", "unit": "" },
+        { "name": "Lemon peel", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "pineapple-lime-daiquiri",
+      "name": "Pineapple Lime Daiquiri",
+      "category": "Rum",
+      "ingredients": [
+        { "name": "White rum", "amount": "2", "unit": "oz" },
+        { "name": "Lime juice", "amount": "1", "unit": "oz" },
+        { "name": "Pineapple juice", "amount": "1", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.5", "unit": "oz" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "black-manhattan",
+      "name": "Black Manhattan",
+      "category": "Rye Whiskey",
+      "ingredients": [
+        { "name": "Rye whiskey", "amount": "2", "unit": "oz" },
+        { "name": "Amaro", "amount": "1", "unit": "oz" },
+        { "name": "Angostura bitters", "amount": "dash", "unit": "" },
+        { "name": "Orange bitters", "amount": "dash", "unit": "" },
+        { "name": "Cherry", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "desert-derby",
+      "name": "Desert Derby",
+      "category": "Rye Whiskey",
+      "ingredients": [
+        { "name": "Rye whiskey", "amount": "2", "unit": "oz" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Fresh grapefruit juice", "amount": "1", "unit": "oz" },
+        { "name": "Lime juice", "amount": "1/2", "unit": "oz" },
+        { "name": "Honey syrup", "amount": "1/4", "unit": "oz" },
+        { "name": "Sage leaves", "amount": "muddle and garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "louisiane-and-maine",
+      "name": "Louisiane and Maine",
+      "category": "Rye Whiskey",
+      "ingredients": [
+        { "name": "Rye", "amount": "2", "unit": "oz" },
+        { "name": "Sweet vermouth", "amount": "0.5", "unit": "oz" },
+        { "name": "Benedictine", "amount": "0.25", "unit": "oz" },
+        { "name": "Cherry Heering", "amount": "0.25", "unit": "oz" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "sazerac",
+      "name": "Sazerac",
+      "category": "Rye Whiskey",
+      "ingredients": [
+        { "name": "Rye whiskey", "amount": "2", "unit": "oz", "notes": "traditionally, though cognac was the original base" },
+        { "name": "Sugar cube", "amount": "1", "unit": "cube", "notes": "or 0.25 oz simple syrup" },
+        { "name": "Peychaud's bitters", "amount": "2-3", "unit": "dashes" },
+        { "name": "Absinthe", "amount": "for rinse", "unit": "" },
+        { "name": "Lemon peel", "amount": "for garnish", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "the-monastic-sling",
+      "name": "The Monastic Sling",
+      "category": "Rye Whiskey",
+      "ingredients": [
+        { "name": "Rye whiskey", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Cherry Heering", "amount": "1/2", "unit": "oz" },
+        { "name": "Benedictine", "amount": "1/2", "unit": "oz" },
+        { "name": "Lemon juice", "amount": "3/4", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "1/4", "unit": "oz", "notes": "optional" },
+        { "name": "Angostura bitters", "amount": "2", "unit": "dashes" },
+        { "name": "Club soda", "amount": "to top", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "blood-and-sand",
+      "name": "Blood and Sand Cocktail",
+      "category": "Scotch Whiskey",
+      "ingredients": [
+        { "name": "Scotch whiskey", "amount": "3/4", "unit": "oz" },
+        { "name": "Cherry Heering", "amount": "3/4", "unit": "oz" },
+        { "name": "Sweet vermouth", "amount": "3/4", "unit": "oz" },
+        { "name": "Orange juice", "amount": "3/4", "unit": "oz" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "el-diablo",
+      "name": "El Diablo",
+      "category": "Tequila",
+      "ingredients": [
+        { "name": "Reposado tequila", "amount": "1 1/2", "unit": "oz" },
+        { "name": "Crème de cassis", "amount": "1/2", "unit": "oz" },
+        { "name": "Lime juice", "amount": "1/2", "unit": "oz" },
+        { "name": "Ginger beer", "amount": "2", "unit": "oz" },
+        { "name": "Lime wedge", "amount": "1", "unit": "garnish" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "elderflower-margarita",
+      "name": "Elderflower Margarita",
+      "category": "Tequila",
+      "ingredients": [
+        { "name": "Tequila", "amount": "1.5", "unit": "oz" },
+        { "name": "St. Germain", "amount": "0.5", "unit": "oz" },
+        { "name": "Lime juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.25", "unit": "oz", "notes": "optional" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "frozen-margarita",
+      "name": "Frozen Margarita",
+      "category": "Tequila",
+      "ingredients": [],
+      "instructions": [],
+      "notes": "Recipe incomplete"
+    },
+    {
+      "id": "prickly-pear-margarita",
+      "name": "Prickly Pear Margarita",
+      "category": "Tequila",
+      "ingredients": [
+        { "name": "Tequila", "amount": "2", "unit": "oz" },
+        { "name": "Prickly pear syrup", "amount": "1", "unit": "oz" },
+        { "name": "Lime juice", "amount": "1", "unit": "oz" },
+        { "name": "Orange liqueur", "amount": "0.5", "unit": "oz", "notes": "Cointreau" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "tequila-chartreuse-highball",
+      "name": "Tequila & Chartreuse Highball",
+      "category": "Tequila",
+      "ingredients": [
+        { "name": "Tequila", "amount": "1.5", "unit": "oz" },
+        { "name": "Green chartreuse", "amount": "0.5", "unit": "oz" },
+        { "name": "Lime juice", "amount": "0.75", "unit": "oz" },
+        { "name": "Simple syrup", "amount": "0.25", "unit": "oz", "notes": "optional" },
+        { "name": "Seltzer", "amount": "to top", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "elderflower-martini",
+      "name": "Elderflower Martini",
+      "category": "Vodka",
+      "ingredients": [
+        { "name": "Vodka or gin", "amount": "1.5", "unit": "oz" },
+        { "name": "St. Germain", "amount": "0.5", "unit": "oz" },
+        { "name": "Dry vermouth", "amount": "0.5", "unit": "oz" },
+        { "name": "Orange bitters", "amount": "dash", "unit": "" }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "whiskey-sangaree",
+      "name": "Whiskey Sangaree",
+      "category": "Whiskey (Unspecified)",
+      "ingredients": [
+        { "name": "Whiskey", "amount": "2", "unit": "oz" },
+        { "name": "Demerara syrup", "amount": "1", "unit": "tsp", "notes": "or 1 tsp demerara sugar and 1 tsp water" },
+        { "name": "Club soda", "amount": "2", "unit": "oz" },
+        { "name": "Ruby port", "amount": "1/2", "unit": "oz" }
+      ],
+      "instructions": []
+    }
+  ],
+  "simple_syrups": [
+    { "name": "Cherry simple syrup", "type": "flavored_syrup" },
+    { "name": "Honey simple syrup", "type": "flavored_syrup" },
+    { "name": "Watermelon simple syrup", "type": "flavored_syrup" },
+    { "name": "Blueberry simple syrup", "type": "flavored_syrup" },
+    { "name": "Peach simple syrup", "type": "flavored_syrup" },
+    { "name": "Chocolate mint simple syrup", "type": "flavored_syrup" },
+    { "name": "Apricot simple syrup", "type": "flavored_syrup" },
+    { "name": "Lavender simple syrup", "type": "flavored_syrup" },
+    { "name": "Banana simple syrup", "type": "flavored_syrup" },
+    { "name": "Rosemary simple syrup", "type": "flavored_syrup" },
+    { "name": "Vanilla syrup", "type": "flavored_syrup" }
+  ],
+  "purees": [
+    { "name": "Strawberry purée", "type": "fruit_puree" }
+  ],
+  "categories": [
+    "Absinthe",
+    "Bourbon",
+    "Brandy/Cognac/Pisco",
+    "Gin",
+    "Liqueur (Primary)",
+    "Rum",
+    "Rye Whiskey",
+    "Scotch Whiskey",
+    "Tequila",
+    "Vodka",
+    "Whiskey (Unspecified)"
+  ]
+}
