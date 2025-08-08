@@ -1,46 +1,45 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -e
 
 REPO_ROOT=$(pwd)
+FRONTEND_DIR="$REPO_ROOT/frontend"
 TMP_DIST="/tmp/vite-deploy-dist"
 
-echo "Starting deployment process..."
+echo "Starting deployment from frontend folder..."
 
-# 1. Checkout main and pull latest changes
-echo "Checking out main branch and pulling latest..."
+# 1. Checkout main and pull latest
 git checkout main
 git pull origin main
 
-# 2. Build the project
-echo "Building the project..."
+# 2. Build in frontend folder
+echo "Building project in frontend..."
+cd "$FRONTEND_DIR"
+npm install
 npm run build
 
 # 3. Copy dist folder to temporary location
-echo "Copying dist folder to temporary location..."
+echo "Copying dist folder to temp..."
 rm -rf $TMP_DIST
 cp -r dist $TMP_DIST
 
-# 4. Checkout production branch
-echo "Checking out production branch..."
+# 4. Back to repo root and checkout production
+cd "$REPO_ROOT"
 git checkout production
 
-# 5. Remove all files in production branch except .git
-echo "Cleaning production branch..."
-git rm -rf . > /dev/null 2>&1 || true  # Ignore error if no files tracked
+# 5. Remove all files except .git (or selectively if needed)
+git rm -rf . > /dev/null 2>&1 || true
 
-# 6. Copy dist contents into production root
-echo "Copying dist files into production branch..."
-cp -r $TMP_DIST/* $REPO_ROOT/
+# 6. Copy dist contents into repo root (production branch)
+cp -r $TMP_DIST/* "$REPO_ROOT"
 
-# 7. Add, commit, and push changes
-echo "Adding and committing changes..."
+# 7. Add, commit, and push
 git add .
 git commit -m "Deploy build from main branch at $(date +"%Y-%m-%d %H:%M:%S")"
 git push origin production
 
-# 8. Switch back to main branch
-echo "Switching back to main branch..."
+# 8. Checkout back to main and go to frontend folder
 git checkout main
+cd "$FRONTEND_DIR"
 
 echo "Deployment complete!"
