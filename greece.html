@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greece Itinerary - Frederick Party</title>
+    <style>
+        @media print {
+            body { margin: 0.5in; }
+            .page-break { page-break-before: always; }
+            h2 { page-break-after: avoid; }
+            .day-section { page-break-inside: avoid; }
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1e4d8b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #1e4d8b;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #1e4d8b;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #2c5aa0;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .trip-summary {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .trip-summary h3 {
+            margin-top: 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 10px;
+            border-left: 3px solid #2c5aa0;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        
+        .day-section {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .date-header {
+            background: #1e4d8b;
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+        }
+        
+        .activity {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 2px solid #2c5aa0;
+        }
+        
+        .time {
+            color: #1e4d8b;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .accommodation {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .restaurant {
+            background: #fff5e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .transport {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .contact-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .contact-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .contact-title {
+            font-weight: bold;
+            color: #1e4d8b;
+            margin-bottom: 5px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .included {
+            color: #4caf50;
+            font-size: 14px;
+        }
+        
+        .not-included {
+            color: #f44336;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Greece Travel Itinerary</h1>
+        <p style="color: #666; margin: 5px 0;">September 5-15, 2025</p>
+        <p style="font-size: 18px; color: #1e4d8b;">Athens • Paros • Santorini</p>
+    </div>
+
+    <div class="trip-summary">
+        <h3>Trip Overview</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Travelers</div>
+                <div>Mr. Michael Frederick<br>Mrs. Carla Picard</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Reference Number</div>
+                <div>BRWU250073</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Duration</div>
+                <div>11 Days / 10 Nights</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Emergency Contact</div>
+                <div>+30 6970075911 (24/7)</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Accommodations</h2>
+    <div class="accommodation">
+        <strong>Athens (Sep 5-7):</strong> King George Hotel<br>
+        Deluxe Room with Acropolis View • 2 nights • Confirmation: 71957473
+    </div>
+    <div class="accommodation">
+        <strong>Paros (Sep 7-11):</strong> Cosme Hotel<br>
+        Ocean Suite • 4 nights • Confirmation: 47719953
+    </div>
+    <div class="accommodation">
+        <strong>Santorini (Sep 11-15):</strong> Canaves Suites<br>
+        River Pool Suite with Caldera View • 4 nights • Confirmation: 47720019
+    </div>
+
+    <h2>Day-by-Day Itinerary</h2>
+
+    <div class="day-section">
+        <div class="date-header">Friday, September 5 - Arrival in Athens</div>
+        <div class="activity">
+            <span class="time">09:55</span> Arrival at Athens Airport (UA 982 from IAD)
+            <ul>
+                <li>VIP Airport Welcome Service</li>
+                <li>Fast-track through Passport Control</li>
+                <li>Luggage assistance</li>
+            </ul>
+        </div>
+        <div class="transport">
+            <strong>Transfer:</strong> Luxury minivan to King George Hotel (45 minutes)
+        </div>
+        <div class="activity">
+            <span class="time">11:00</span> Check-in at King George Hotel (early check-in requested)
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Kuzina Restaurant - 19:00
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Saturday, September 6 - Athens Exploration</div>
+        <div class="activity">
+            <span class="time">09:00</span> <strong>Full Day Athens Tour</strong>
+            <ul>
+                <li>Acropolis and Parthenon visit</li>
+                <li>Acropolis Museum</li>
+                <li>Ancient Agora and Temple of Hephaestus</li>
+                <li>Historic city center walking tour</li>
+                <li>Private driving tour of modern Athens</li>
+            </ul>
+            <p class="included">✓ Includes: Private guide, vehicle with driver, entrance tickets</p>
+        </div>
+        <div class="restaurant">
+            <strong>Lunch:</strong> Ella Greek Cooking - 13:00
+        </div>
+        <div class="activity">
+            <span class="time">17:00</span> Return to hotel
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Sunday, September 7 - Travel to Paros</div>
+        <div class="activity">
+            <span class="time">08:45</span> Transfer to Athens Airport
+        </div>
+        <div class="transport">
+            <strong>Flight:</strong> OA066 Athens to Paros<br>
+            Departure: 11:15 | Arrival: 12:05<br>
+            Confirmation: QI6A8C
+        </div>
+        <div class="activity">
+            <span class="time">12:30</span> Check-in at Cosme Hotel (early check-in requested)
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Monday, September 8 - Paros Food & Traditions</div>
+        <div class="activity">
+            <span class="time">09:30</span> <strong>Parian Food & Traditions Tour</strong>
+            <ul>
+                <li>Organic farm visit with tastings</li>
+                <li>Traditional home visit in Marpissa</li>
+                <li>Village walk through Prodromos</li>
+                <li>Meze lunch at local taverna</li>
+                <li>Coffee and pastry in Lefkes</li>
+            </ul>
+            <p class="included">✓ Includes: Guide, transport, all tastings and meals</p>
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Tuesday, September 9 - Antiparos Adventure</div>
+        <div class="activity">
+            <span class="time">08:30</span> <strong>North Antiparos Hike</strong>
+            <ul>
+                <li>Ferry to Antiparos</li>
+                <li>2-3 hour coastal hike (easy level)</li>
+                <li>Visit Kastro fortress and ancient sites</li>
+                <li>Light meze lunch with sea view</li>
+            </ul>
+            <p class="included">✓ Includes: Guide, transfers, ferry tickets, lunch</p>
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Siparos Seaside - 19:30 (Party of 4)
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Wednesday, September 10 - Cooking Experience</div>
+        <div class="activity">
+            <span class="time">11:20</span> <strong>Private Cooking Class at the Farm</strong>
+            <ul>
+                <li>Hands-on cooking with Mrs. Maria</li>
+                <li>Full meal preparation from appetizers to dessert</li>
+                <li>Using organic farm ingredients</li>
+                <li>Enjoy your creations with local wine and Souma</li>
+            </ul>
+            <p class="included">✓ Includes: Private class for 4, all ingredients, lunch with drinks</p>
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Barbarossa Restaurant - 19:00
+        </div>
+    </div>
+
+    <div class="day-section page-break">
+        <div class="date-header">Thursday, September 11 - Travel to Santorini</div>
+        <div class="activity">
+            <span class="time">09:30</span> Transfer to Paros Port
+        </div>
+        <div class="transport">
+            <strong>Ferry:</strong> SeaJets Super Jet to Santorini<br>
+            Departure: 10:45 | Arrival: 12:15<br>
+            Confirmation: 7416THBBS
+        </div>
+        <div class="activity">
+            <span class="time">12:45</span> Check-in at Canaves Suites (early check-in requested)
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Petra Restaurant - 19:30 (Party of 4)
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Friday, September 12 - Ancient Santorini</div>
+        <div class="activity">
+            <span class="time">09:00</span> <strong>Ancient Akrotiri & Villages Tour</strong>
+            <ul>
+                <li>Akrotiri archaeological site (3,600-year-old Minoan city)</li>
+                <li>Megalochori traditional village</li>
+                <li>Pyrgos hilltop village with panoramic views</li>
+            </ul>
+            <p class="included">✓ Includes: Private guide, vehicle, entrance tickets</p>
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Mia's Restaurant - 19:00 (Party of 4)
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Saturday, September 13 - Caldera Hike</div>
+        <div class="activity">
+            <span class="time">09:00</span> <strong>Caldera Hike from Fira to Oia</strong>
+            <ul>
+                <li>10km scenic trail along the caldera rim</li>
+                <li>Moderate to difficult level (4.5 hours)</li>
+                <li>Stunning views and photo opportunities</li>
+                <li>Light meze lunch at journey's end</li>
+            </ul>
+            <p class="included">✓ Includes: Private guide, transfers, lunch</p>
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Sunday, September 14 - Sailing Adventure</div>
+        <div class="activity">
+            <span class="time">09:40</span> <strong>Private Morning Catamaran Cruise</strong>
+            <ul>
+                <li>5-hour private sailing experience</li>
+                <li>Volcanic hot springs swimming</li>
+                <li>White and Red Beach visits</li>
+                <li>BBQ lunch prepared onboard</li>
+                <li>Snorkeling equipment provided</li>
+            </ul>
+            <p class="included">✓ Includes: Private yacht, crew, BBQ lunch, drinks, equipment</p>
+        </div>
+        <div class="restaurant">
+            <strong>Dinner:</strong> Elements Restaurant - 19:30
+        </div>
+    </div>
+
+    <div class="day-section">
+        <div class="date-header">Monday, September 15 - Departure</div>
+        <div class="activity">
+            <span class="time">06:30</span> Transfer to Santorini Airport (breakfast boxes provided)
+        </div>
+        <div class="transport">
+            <strong>Flight:</strong> A3353 Santorini to Athens<br>
+            Departure: 08:25 | Arrival: 09:15
+        </div>
+        <div class="activity">
+            VIP Connection Service in Athens
+            <ul>
+                <li>Meet at arrival gate</li>
+                <li>Fast-track through security</li>
+                <li>Escort to departure gate</li>
+            </ul>
+        </div>
+        <div class="transport">
+            <strong>Flight:</strong> UA983 Athens to IAD<br>
+            Departure: 11:45
+        </div>
+    </div>
+
+    <div class="contact-section page-break">
+        <h2>Important Contacts</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-title">Emergency (24/7)</div>
+                +30 6970075911
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Athens Airport Services</div>
+                VIP: +30 2103530100<br>
+                Transfer: +30 6938770770
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Athens Guide</div>
+                Elena Voronina: +30 6946033129
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">King George Hotel</div>
+                +30 2103222210
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Cosme Hotel Paros</div>
+                +30 2284 440000
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Paros Tours & Transfers</div>
+                +30 22840 28090
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Canaves Suites Santorini</div>
+                +30 2286071453
+            </div>
+            <div class="contact-item">
+                <div class="contact-title">Santorini Services</div>
+                Port/Transfer: +30 6944684619<br>
+                Cruise: +30 2286072200
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #f0f4f8; border-radius: 8px;">
+        <h3>Travel Notes</h3>
+        <ul>
+            <li><strong>What to Bring:</strong> Comfortable walking shoes, sunscreen, hat, sunglasses, swimwear, light layers for evenings</li>
+            <li><strong>Volcanic Springs:</strong> Dark swimwear recommended (sulfur can stain light colors)</li>
+            <li><strong>Hiking:</strong> Athletic or hiking shoes required for Caldera trail</li>
+            <li><strong>Sites:</strong> Some archaeological sites have uneven surfaces and many steps</li>
+            <li><strong>Dietary Requirements:</strong> Please notify guides/restaurants in advance</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0; color: #666;">
+        <p>Have a wonderful journey through Greece!</p>
+        <p style="font-size: 12px;">Prepared by Martha Rhodes • BluCove Greece<br>
+        www.blucovegreece.com</p>
+    </div>
+</body>
+</html>
