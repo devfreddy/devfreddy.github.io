@@ -7,11 +7,10 @@ import AboutSection from './components/AboutSection'
 // import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
 import CocktailsPageBasic from './components/CocktailsPageBasic'
-import { useBannerState } from './hooks/useBannerState'
 
-const HomePage = ({ showBanner, scrollToSection }) => (
+const HomePage = ({ scrollToSection }) => (
   <>
-    <HeroSection scrollToSection={scrollToSection} showBanner={showBanner} />
+    <HeroSection scrollToSection={scrollToSection} />
     <AboutSection />
     {/* <ProjectsSection /> */}
     <ExperienceSection />
@@ -19,8 +18,6 @@ const HomePage = ({ showBanner, scrollToSection }) => (
 )
 
 function App() {
-  const showBanner = useBannerState()
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -30,12 +27,12 @@ function App() {
 
   return (
     <Box>
-      <ConstructionBanner />
-      <Navbar scrollToSection={scrollToSection} showBanner={showBanner} />
+      <Navbar scrollToSection={scrollToSection} />
       <Routes>
-        <Route path="/" element={<HomePage showBanner={showBanner} scrollToSection={scrollToSection} />} />
+        <Route path="/" element={<HomePage scrollToSection={scrollToSection} />} />
         <Route path="/cocktails" element={<CocktailsPageBasic />} />
       </Routes>
+      <ConstructionBanner />
     </Box>
   )
 }

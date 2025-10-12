@@ -1,28 +1,46 @@
 # Construction Banner - Design Decisions
 
-## Why localStorage vs Cookies?
-**Decision: Use localStorage**
+## Why Footer vs Header? (2025-10-12)
+**Decision: Move to footer position**
 
 **Rationale:**
-- Simpler API for boolean state
-- No server interaction needed
-- Storage event API for cross-tab sync
-- No expiration management required
+- Less intrusive to users (doesn't push content down)
+- No need for dismiss functionality (not blocking navigation)
+- Permanent visibility is acceptable in footer
+- Simplified code by removing state management
 
-## Why Custom Hook vs Inline State?
-**Decision: Create useBannerState hook**
+**Trade-offs:**
+- Less prominent (users might not notice immediately)
+- Acceptable: Main purpose is branding, not critical information
+
+## Why Remove Dismiss Functionality? (2025-10-12)
+**Decision: Always show banner**
 
 **Rationale:**
-- Reusable across components
-- Encapsulates localStorage logic
-- Easier to test and maintain
-- Cleaner component code
+- Footer position is non-intrusive
+- Simplified codebase (removed hook, localStorage, events)
+- Permanent branding presence acceptable
+- Reduced maintenance complexity
 
-## Trade-offs
-- **Persistence**: Banner state lost if localStorage cleared (acceptable)
-- **Complexity**: Added event listeners for sync (necessary for good UX)
+**Previous Architecture (Deprecated):**
+~~localStorage-based state~~
+~~Custom hook for cross-tab sync~~
+~~Dynamic component spacing~~
+
+## Previous Decisions (Historical)
+
+### Why localStorage vs Cookies? (Original)
+**Decision: Use localStorage** *(No longer applicable)*
+
+### Why Custom Hook vs Inline State? (Original)
+**Decision: Create useBannerState hook** *(No longer applicable)*
+
+## Lessons Learned
+- Footer positioning removes need for complex state management
+- Simpler is better when feature requirements change
+- Permanent footer banners can replace dismissible header banners for branding
 
 ## Future Improvements
-- [ ] Add "show again" option
-- [ ] Track dismiss timestamp (show again after X days)
-- [ ] A/B test different messaging
+- [ ] Add animation on scroll (subtle bounce/pulse)
+- [ ] Make clickable to link to Claude Code
+- [ ] Consider dark mode variant

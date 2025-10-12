@@ -228,4 +228,25 @@ To activate this workflow in a session, simply reference it:
 - "Use the session wrap-up protocol"
 - "Document this feature following our framework"
 
+### Session Wrap-Up Triggers
+
+**IMPORTANT:** When you hear ANY of these phrases, IMMEDIATELY activate the Session Wrap-Up Protocol (see section above):
+- "wrap this session up"
+- "let's wrap up"
+- "wrap up this session"
+- "let's wrap this up"
+- "wrap it up"
+- "use the wrap-up protocol"
+- "finish this session"
+
+The protocol is a 6-step process that MUST be completed in order:
+1. ✅ Review Accomplishments
+2. ✅ Update Feature Documentation
+3. ✅ Update Session Documentation
+4. ✅ Create Next Steps
+5. ✅ Commit Changes (with proper format)
+6. ✅ Provide Summary
+
+Do NOT skip steps or provide a casual summary - follow the complete protocol.
+
 The workflow will guide documentation practices, session management, and commit conventions throughout development.

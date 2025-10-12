@@ -2,41 +2,40 @@
 
 ## Architecture
 
-### State Management Pattern
-- **Custom Hook** (`useBannerState`): Encapsulates localStorage logic
-- **Event Listeners**: Storage API for cross-tab, custom events for same-tab
-- **Shared State**: Multiple components consume `showBanner` state
+### Display Pattern (Updated 2025-10-12)
+- **Always Visible**: Banner is permanently displayed (no dismiss functionality)
+- **Footer Position**: Fixed at bottom of viewport
+- **No State Management**: Simplified from previous localStorage-based approach
 
-### Cross-Tab Synchronization
-```javascript
-// Storage event (different tabs)
-window.addEventListener('storage', handleStorageChange)
-
-// Custom event (same tab)
-window.addEventListener('bannerDismissed', handleStorageChange)
-window.dispatchEvent(new Event('bannerDismissed'))
-```
+### Previous Architecture (Deprecated 2025-10-12)
+~~**Custom Hook** (`useBannerState`): Encapsulated localStorage logic~~
+~~**Event Listeners**: Storage API for cross-tab, custom events for same-tab~~
+~~**Shared State**: Multiple components consumed `showBanner` state~~
 
 ## Key Files
-- `frontend-project/src/components/ConstructionBanner.jsx`: UI component
-- `frontend-project/src/hooks/useBannerState.js`: State management hook
+- `frontend-project/src/components/ConstructionBanner.jsx`: UI component (simplified)
+- ~~`frontend-project/src/hooks/useBannerState.js`: State management hook~~ (no longer used)
 
-## Data Flow
+## Component Structure
+```javascript
+// Simple, always-visible footer component
+const ConstructionBanner = () => {
+  return (
+    <Box position="fixed" bottom="0" ... >
+      {/* Banner content */}
+    </Box>
+  )
+}
 ```
-User clicks "hide"
-  ↓
-localStorage.setItem('constructionBannerDismissed', 'true')
-  ↓
-Custom event dispatched
-  ↓
-useBannerState hook updates
-  ↓
-All components using showBanner re-render
-  ↓
-Banner hidden, navbar/hero adjust spacing
-```
+
+## Positioning
+- **Position**: `fixed` at `bottom: 0`
+- **Z-Index**: `1001` (above most content)
+- **Shadow**: Upward shadow (`0 -2px 10px`) for footer appearance
+- **No Impact**: Other components no longer adjust for banner
 
 ## Performance
-- Minimal overhead (single localStorage read on mount)
-- Event listeners cleaned up properly
-- No polling or interval-based checks
+- Zero state management overhead
+- No localStorage operations
+- No event listeners
+- Renders once on mount

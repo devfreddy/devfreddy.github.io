@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Link } from '@chakra-ui/react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 
-const Navbar = ({ scrollToSection, showBanner }) => {
+const Navbar = ({ scrollToSection }) => {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
 
@@ -13,18 +13,17 @@ const Navbar = ({ scrollToSection, showBanner }) => {
   ]
 
   return (
-    <Box 
-      position="fixed" 
-      top={showBanner ? "44px" : "0"}
-      left={0} 
-      right={0} 
-      bg="white" 
-      borderBottom="1px" 
-      borderColor="gray.200" 
+    <Box
+      position="fixed"
+      top="0"
+      left={0}
+      right={0}
+      bg="white"
+      borderBottom="1px"
+      borderColor="gray.200"
       zIndex={1000}
       px={4}
       py={3}
-      transition="top 0.3s ease"
     >
       <Flex maxW="1200px" mx="auto" justify="space-between" align="center">
         <Link 

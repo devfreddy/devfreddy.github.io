@@ -9,7 +9,7 @@ const MotionHeading = motion.create(Heading)
 const MotionText = motion.create(Text)
 const MotionButton = motion.create(Button)
 
-const HeroSection = ({ scrollToSection, showBanner }) => {
+const HeroSection = ({ scrollToSection }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -55,8 +55,7 @@ const HeroSection = ({ scrollToSection, showBanner }) => {
       alignItems="center"
       justifyContent="center"
       bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      pt={showBanner ? "140px" : "80px"}
-      transition="padding-top 0.3s ease"
+      pt="80px"
       position="relative"
       overflow="hidden"
       initial="hidden"
