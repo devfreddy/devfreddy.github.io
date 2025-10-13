@@ -45,15 +45,6 @@ git push origin main
 
 Monitor deployment: https://github.com/devfreddy/devfreddy.github.io/actions
 
-### Manual Deployment (Legacy)
-The manual build-and-deploy script still exists but is no longer needed:
-
-```bash
-./build-and-deploy.sh
-```
-
-**Note:** This script is deprecated. Use the automatic GitHub Actions deployment instead.
-
 ## Git Workflows
 
 ### Check Repository Status

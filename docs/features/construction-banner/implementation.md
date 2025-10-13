@@ -14,7 +14,7 @@
 
 ## Key Files
 - `frontend-project/src/components/ConstructionBanner.jsx`: UI component (simplified)
-- ~~`frontend-project/src/hooks/useBannerState.js`: State management hook~~ (no longer used)
+- ~~`frontend-project/src/hooks/useBannerState.js`: State management hook~~ (removed 2025-10-12)
 
 ## Component Structure
 ```javascript

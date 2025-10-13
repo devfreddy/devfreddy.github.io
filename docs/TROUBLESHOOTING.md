@@ -116,43 +116,35 @@
    - Ensure using BrowserRouter (not HashRouter)
    - Verify 404.html redirects properly
 
-3. **Rebuild and redeploy:**
-   ```bash
-   ./build-and-deploy.sh
-   ```
+3. **Trigger redeployment:**
+   - Push any commit to `main` branch to trigger GitHub Actions
+   - Monitor deployment at https://github.com/devfreddy/devfreddy.github.io/actions
 
 ---
 
-### Deployment Script Fails
+### GitHub Actions Deployment Fails
 
 **Symptoms:**
-- `./build-and-deploy.sh` errors
+- Deployment workflow fails in Actions tab
 - Build succeeds but deploy fails
-- Git push rejected
+- Site not updating after push
 
 **Solutions:**
 
-1. **Check script permissions:**
-   ```bash
-   chmod +x build-and-deploy.sh
-   ```
+1. **Check workflow logs:**
+   - Visit https://github.com/devfreddy/devfreddy.github.io/actions
+   - Click on the failed workflow run
+   - Review build and deploy logs
 
-2. **Verify Git status:**
-   ```bash
-   git status
-   # Ensure no conflicts
-   ```
+2. **Verify GitHub Pages settings:**
+   - Go to repository Settings → Pages
+   - Ensure source is set to "GitHub Actions"
+   - Check that deployment branch is correct
 
-3. **Manual deployment:**
-   ```bash
-   cd frontend-project
-   npm run build
-   cp -r dist/* ../
-   cp dist/index.html ../404.html
-   git add .
-   git commit -m "Deploy: Update site"
-   git push origin main
-   ```
+3. **Check repository permissions:**
+   - Ensure Actions have write permissions
+   - Settings → Actions → General → Workflow permissions
+   - Select "Read and write permissions"
 
 ---
 

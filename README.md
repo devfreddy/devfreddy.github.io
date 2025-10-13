@@ -93,17 +93,13 @@ npm run preview
 
 ## Deployment
 
-The site is deployed to GitHub Pages using a custom build script:
+The site is automatically deployed to GitHub Pages using GitHub Actions. On every push to the `main` branch:
 
-```bash
-./build-and-deploy.sh
-```
-
-**What it does:**
-1. Builds the React app
-2. Copies output to repository root
+1. Builds the React app in [frontend-project](frontend-project/)
+2. Deploys the build output to GitHub Pages
 3. Ensures 404.html is in place for client-side routing
-4. Commits and pushes to GitHub
+
+View the workflow at [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
 
 ## Project Structure
 
@@ -124,7 +120,7 @@ devfreddy.github.io/
 │   ├── COMMANDS.md            # Useful commands
 │   ├── SETUP_LOG.md           # Setup history
 │   └── TODO.md                # Task tracking
-├── build-and-deploy.sh        # Deployment script
+├── .github/workflows/         # GitHub Actions workflows
 └── README.md                  # This file
 ```
 
@@ -173,7 +169,6 @@ Comprehensive documentation is available in the `docs/` directory:
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Run ESLint |
-| `./build-and-deploy.sh` | Build and deploy to GitHub Pages |
 
 ## Performance
 

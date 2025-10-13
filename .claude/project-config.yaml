@@ -67,7 +67,7 @@ project_specifics:
   # Build and deployment
   build_output: "frontend-project/dist"
   deployment_target: "github-pages"
-  deployment_script: "./build-and-deploy.sh"
+  deployment_method: "github-actions"
 
   # Key patterns
   use_chakra_ui: true

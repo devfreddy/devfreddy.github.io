@@ -94,7 +94,7 @@ Ensures consistent Node.js version across development environments.
 ### GitHub Pages Configuration
 **Repository:** devfreddy.github.io
 **Branch:** main
-**Build Script:** build-and-deploy.sh
+**Deployment:** GitHub Actions (automatic on push)
 
 ### Client-Side Routing Setup
 **File:** `frontend-project/public/404.html`

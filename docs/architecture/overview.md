@@ -277,15 +277,15 @@ ColorModeToggle → Chakra Theme → localStorage → System
 
 **Deployment Flow**:
 ```bash
-./build-and-deploy.sh
+Push to main branch
+  ↓
+GitHub Actions workflow triggered
   ↓
 npm run build (creates dist/)
   ↓
-Copy dist/* to root
+Upload build artifacts
   ↓
-Copy index.html to 404.html
-  ↓
-Git commit and push
+Deploy to GitHub Pages
   ↓
 GitHub Pages serves files
 ```
@@ -354,9 +354,11 @@ Vite bundles code
   ↓
 Output to dist/
   ↓
-./build-and-deploy.sh
+Push to main branch
   ↓
-Copy to root + commit
+GitHub Actions workflow
+  ↓
+Deploy to GitHub Pages
   ↓
 GitHub Pages (devfreddy.github.io)
 ```
@@ -365,7 +367,7 @@ GitHub Pages (devfreddy.github.io)
 
 | Environment | URL | Branch | Auto-Deploy |
 |-------------|-----|--------|-------------|
-| Production | devfreddy.github.io | main | Manual (script) |
+| Production | devfreddy.github.io | main | Yes (GitHub Actions) |
 | Development | localhost:5173 | * | N/A |
 
 ---
