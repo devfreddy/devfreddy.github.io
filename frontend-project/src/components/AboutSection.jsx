@@ -13,39 +13,45 @@ const AboutSection = () => {
   ]
 
   return (
-    <Box id="about" py={20} bg={{ base: 'white', _dark: 'gray.900' }}>
+    <Box id="about" pt={12} pb={12} bg={{ base: 'white', _dark: 'gray.900' }}>
       <Container maxW="1200px">
-        <VStack spacing={16}>
-          <VStack spacing={4} textAlign="center">
+        <VStack spacing={12}>
+          <VStack textAlign="center">
             <Heading size="xl" color={{ base: 'gray.800', _dark: 'gray.100' }}>About Me</Heading>
             <Text fontSize="lg" color={{ base: 'gray.600', _dark: 'gray.400' }} maxW="600px">
-              I'm a passionate developer with 15+ years of experience building web applications
-              that solve real-world problems and deliver exceptional user experiences.
+              Technical problems fascinate me, but what really drives me is helping others solve them.
+              I approach challenges as both detective and teacher—first figuring out what's *actually* blocking progress
+              (architectural, organizational, or just unclear requirements), then helping teams build the understanding
+              and capability to solve it themselves. After 15+ years moving between engineering, consulting, and
+              customer-facing roles, I've learned that the best solutions come from understanding both the technical
+              constraints and the people navigating them.
             </Text>
           </VStack>
 
-          <SimpleGrid columns={[1, null, 2]} spacing={12} w="full">
+          <SimpleGrid pt={12} columns={[1, null, 2]} spacing={12} w="full">
             <VStack align="start" spacing={6}>
-              <Box>
-                <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>My Story</Heading>
+              <Box pr={{ base: 0, md: 4 }}>
+                <Heading size="md" mb={2} mt={2} color={{ base: 'gray.800', _dark: 'gray.100' }}>My Story</Heading>
                 <VStack align="start" spacing={4}>
                   <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
-                    Started my journey in computer science with a fascination for how code
-                    can transform ideas into reality. Over the years, I've worked with startups
-                    and established companies, building everything from simple landing pages
-                    to complex full-stack applications.
+                    I started in tech support, where I learned that we're all just end-users trying to get
+                    things done and hoping for better digital experiences. That perspective stuck with me
+                    through roles in database administration, web development, and engineering leadership.
+                    Somewhere along the way, I realized the hardest problems weren't technical—they were
+                    about people, process, and communication.
                   </Text>
                   <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
-                    I believe in writing clean, maintainable code and am always eager to learn
-                    new technologies. When I'm not coding, you can find me in the garden growing
-                    vegetables, on the volleyball court, hitting the golf course, or crafting cocktails.
+                    I've spent my career learning to spot when teams are stuck not on the code, but on
+                    something else entirely. When I'm not working, you'll find me in the garden, on the
+                    volleyball court, playing golf, or crafting cocktails—all reminders that sometimes
+                    the best solutions come from stepping away and thinking differently.
                   </Text>
                 </VStack>
               </Box>
             </VStack>
 
-            <Box>
-              <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>What I Do</Heading>
+            <Box pl={{ base: 0, md: 4 }}>
+              <Heading size="md" mb={2} mt={2} color={{ base: 'gray.800', _dark: 'gray.100' }}>What I Do</Heading>
               <VStack align="start" spacing={3}>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">🚀</Text>
@@ -71,12 +77,16 @@ const AboutSection = () => {
                   <Text color="blue.500" fontSize="lg">🌐</Text>
                   <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Global customer support & crisis management</Text>
                 </HStack>
+                <HStack>
+                  <Text color="blue.500" fontSize="lg">🔍</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Root cause analysis & problem diagnosis</Text>
+                </HStack>
               </VStack>
             </Box>
           </SimpleGrid>
 
           <Box w="full">
-            <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>Technical Skills</Heading>
+            <Heading size="md" mb={6} mt={8} color={{ base: 'gray.800', _dark: 'gray.100' }}>Technical Skills</Heading>
             <SimpleGrid columns={[2, null, 4]} spacing={4}>
               {skills.map((skillGroup) => (
                 <Box key={skillGroup.name}>

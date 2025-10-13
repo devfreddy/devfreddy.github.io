@@ -73,16 +73,16 @@ const HeroSection = ({ scrollToSection }) => {
           textShadow="2px 2px 4px rgba(0,0,0,0.3)"
           variants={nameVariants}
         >
-          Welcome
+          Michael Frederick
         </MotionHeading>
-        
+
         <MotionHeading as="h2" size="lg" color="whiteAlpha.900" fontWeight="semibold" variants={itemVariants}>
-          I'm Michael Frederick (Devfreddy), A Product-Minded Technical Lead & Solutions Engineer
+          I Help Customers Navigate Complex Technical Decisions
         </MotionHeading>
-        
+
         <MotionText fontSize="lg" color="whiteAlpha.800" maxW="600px" lineHeight="1.6" variants={itemVariants}>
-          15+ years of experience delivering innovative solutions across multiple industries. 
-          Passionate about building scalable applications and leading teams to success.
+          Staff Solutions Architect specializing in GraphQL, observability, and distributed systems.
+          I combine technical depth with the ability to read customer needs—then guide them to solutions they understand, trust, and can successfully implement.
         </MotionText>
         
         <motion.div variants={itemVariants}>

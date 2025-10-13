@@ -31,47 +31,51 @@ const ExperienceSection = () => {
   const experiences = [
     {
       company: "Apollo GraphQL",
-      position: "Senior Professional Services Engineer",
+      position: "Staff Solutions Architect",
       duration: "June 2023 - Present",
       location: "Remote",
-      description: "Senior consultant delivering GraphQL solutions and driving customer success for enterprise clients across multiple industries and time zones.",
+      description: "Solutions architect delivering GraphQL and observability expertise to enterprise customers. Expanded scope from technical consulting to strategic advisory and account management.",
       achievements: [
-        "Led complex customer migrations including enterprise gateway-to-router transitions (6 weeks to production)",
+        "Served as Observability SME for Enterprise Solutions team—helped customers understand OpenTelemetry data from Apollo Router, customize telemetry export, and build effective dashboards",
+        "Guided customers through 'what to measure' challenges—translating complex distributed systems into actionable metrics and alerts",
+        "Led complex enterprise migrations including gateway-to-router transitions (6 weeks to production)",
         "Pioneered untested Progressive Override capabilities for large-scale monolithic graph migrations",
         "Supported high-stakes scenarios: election coverage during tech strikes, critical @shareable issues",
-        "Drove adoption of Enterprise Apollo features: Custom Events, Coprocessor, Observability across major clients",
+        "Drove adoption of enterprise features: OpenTelemetry customization, Custom Events, Coprocessor across major clients",
         "Contributed to internal enablement: SME program, pse-toolbox, documentation, and team knowledge sharing",
-        "Provided global coverage from New Zealand to Poland/Italy supporting international enterprise customers"
+        "Provided global coverage from New Zealand to Poland/Italy supporting international customers"
       ],
-      technologies: ["GraphQL", "Apollo Router", "Apollo Studio", "Rust", "Golang", "Ruby", "Rhai", "Progressive Override", "Datadog", "Platform API"]
+      technologies: ["GraphQL", "Apollo Router", "Apollo Studio", "OpenTelemetry", "Datadog", "New Relic", "Rust", "Golang", "Ruby", "Rhai", "Progressive Override", "Platform API"]
     },
     {
       company: "New Relic",
       position: "Senior Solution Delivery Architect / Senior Partner Solutions Engineer",
       duration: "February 2022 - June 2023",
       location: "Remote",
-      description: "Technical resource supporting technical and go-to-market initiatives for partners in the observability platform space.",
+      description: "Technical resource supporting partners in the observability ecosystem. Focused on partner enablement, pre-sales technical support, and building observability expertise across partner organizations.",
       achievements: [
-        "Ensured successful onboarding, training, and certification of partner technical resources",
-        "Provided pre-sales support to partners for active opportunities",
-        "Developed partner demo environments, technical assessments, and enablement content",
-        "Collaborated internally to support partner technical initiatives and enhance value"
+        "Enabled partner technical teams on New Relic observability platform—training, certification, and technical depth",
+        "Provided pre-sales support to partners for observability opportunities—solution design, technical validation, proof of concepts",
+        "Developed partner demo environments showcasing distributed tracing, APM, infrastructure monitoring, and custom dashboards",
+        "Created technical assessments and enablement content for partner organizations",
+        "Collaborated across teams to enhance partner technical capabilities and joint customer value"
       ],
-      technologies: ["New Relic One", "Observability", "Partner Enablement", "Pre-sales Engineering"]
+      technologies: ["New Relic One", "APM", "Distributed Tracing", "Infrastructure Monitoring", "OpenTelemetry", "Custom Dashboards", "Partner Enablement", "Pre-sales Engineering"]
     },
     {
       company: "New Relic",
       position: "Lead Software Engineer",
       duration: "September 2019 - February 2022",
       location: "Remote",
-      description: "Team technical lead, architect, mentor, and innovator focused on platform programmability and open source initiatives.",
+      description: "Team technical lead focused on platform programmability, observability agent architecture, and open source initiatives. Bridged product engineering with customer-facing solutions.",
       achievements: [
-        "Early adopter and contributor to New Relic One Programmability platform",
-        "Lead engineer for the Open Source Program Office (OSPO)",
-        "Founding member of Open Instrumentation Experience Team (Virtuoso)",
-        "Architected CLI-driven automated agent installer framework and onboarding UI"
+        "Lead engineer for Open Source Program Office (OSPO)—drove open source strategy and community engagement",
+        "Founding member of Open Instrumentation Experience Team (Virtuoso)—built tools for easier observability adoption",
+        "Architected CLI-driven automated agent installer framework—simplified instrumentation and onboarding for customers",
+        "Early contributor to New Relic One Programmability platform—custom visualizations and integrations",
+        "Mentored engineers on observability best practices, instrumentation patterns, and platform architecture"
       ],
-      technologies: ["New Relic One", "CLI Tools", "Open Source", "Agent Architecture"]
+      technologies: ["New Relic One", "OpenTelemetry", "APM Agents", "CLI Tools", "Open Source", "Instrumentation", "Custom Visualizations"]
     },
     {
       company: "Masterworks",
@@ -155,9 +159,9 @@ const ExperienceSection = () => {
   ]
 
   return (
-    <Box id="experience" py={20} bg={{ base: 'white', _dark: 'gray.900' }}>
+    <Box id="experience" pt={0} pb={12} bg={{ base: 'white', _dark: 'gray.900' }}>
       <Container maxW="1200px">
-        <VStack spacing={12}>
+        <VStack spacing={8}>
           <VStack spacing={4} textAlign="center">
             <Heading size="xl" color={{ base: 'gray.800', _dark: 'gray.100' }}>Experience & Education</Heading>
             <Text fontSize="lg" color={{ base: 'gray.600', _dark: 'gray.400' }} maxW="600px">
