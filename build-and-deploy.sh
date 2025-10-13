@@ -41,9 +41,10 @@ cd "$REPO_ROOT"
 git checkout production
 
 # 5. Remove all tracked files except CNAME
+echo "Cleaning production branch (preserving CNAME)..."
 FILES_TO_REMOVE=$(git ls-files | grep -v '^CNAME$')
 if [ -n "$FILES_TO_REMOVE" ]; then
-    echo "$FILES_TO_REMOVE" | xargs git rm -rf
+    echo "$FILES_TO_REMOVE" | xargs git rm -rf --quiet
 fi
 
 # 6. Copy dist contents into repo root (production branch)
