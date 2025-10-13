@@ -8,6 +8,8 @@
 
 **Part 3 (Evening):** Enhanced SDLC workflow with comprehensive `/wrap` slash command that automates session documentation, project doc updates (COMMANDS.md, TROUBLESHOOTING.md, ROADMAP.md), and provides structured wrap-up process.
 
+**Part 4 (Evening):** Replaced all shell scripts with slash commands (`/start`, `/new-feature`, `/wrap`) for better Claude Code integration, and cleaned up redundant workflow documentation files.
+
 ## What Was Accomplished
 
 ### Construction Banner Refactor
@@ -49,47 +51,63 @@
 - ✅ Updated COMMANDS.md with new deployment and SDLC workflow commands
 - ✅ Updated sdlc-workflow.md to reference `/wrap` as primary method
 
+### Shell Scripts to Slash Commands Migration
+- ✅ Created `/start` command to replace `scripts/startup.sh`
+- ✅ Created `/new-feature` command to replace `scripts/new-feature.sh`
+- ✅ Removed all shell scripts from `scripts/` directory
+- ✅ Updated COMMANDS.md to reference slash commands instead of scripts
+- ✅ Updated sdlc-workflow.md with all three slash commands
+- ✅ Removed redundant `prompts/` directory
+- ✅ Removed `.claude/workflows/` directory (outdated duplicates)
+- ✅ Added quick start note to sdlc-workflow.md
+
 ## Next Steps
 
 ### Immediate (Next Session)
+1. **Test Slash Commands**
+   - Restart Claude Code to load new commands
+   - Test `/start` command to verify it loads context properly
+   - Test `/new-feature` when creating next feature
+   - Use `/wrap` at end of next session
+
 1. **Verify GitHub Actions Deployment**
    - Monitor Actions tab to confirm workflow runs successfully
    - Check that site deploys correctly to GitHub Pages
    - Verify the deployment URL is working
 
-2. **Clean Up Deprecated Deployment Files** (Optional)
+1. **Clean Up Deprecated Deployment Files** (Optional)
    - Consider deleting the `production` branch (no longer needed)
    - Archive or remove `build-and-deploy.sh` script
    - Update any documentation referencing old deployment method
 
-3. **Test Footer Banner on Mobile**
+1. **Test Footer Banner on Mobile**
    - Verify responsive behavior on different screen sizes
    - Check if banner interferes with mobile navigation
    - Ensure text wraps properly on small screens
 
-4. **Consider Dark Mode Support**
+1. **Consider Dark Mode Support**
    - Current gradient may need dark mode variant
    - Check contrast ratios in dark mode
    - Add `_dark` styling if needed
 
-5. **Clean Up Unused Code**
+1. **Clean Up Unused Code**
    - Remove or deprecate `useBannerState.js` hook file
    - Update any imports that might reference it
    - Run build to verify no broken references
 
 ### Short Term
-6. **Add Interactivity to Footer Banner**
+1. **Add Interactivity to Footer Banner**
    - Consider making banner clickable (link to Claude Code)
    - Add subtle hover effects
    - Optional: Add animation on scroll
 
-7. **Update Navigation System Docs**
+1. **Update Navigation System Docs**
    - Feature docs may still reference construction banner dependency
    - Update implementation details
    - Remove any stale references
 
 ### Long Term
-8. **Consider Additional Footer Content**
+1. **Consider Additional Footer Content**
    - Social links
    - Copyright information
    - Additional branding elements
@@ -114,9 +132,10 @@ None identified
 
 ## Task Order Recommendation
 
-1. Verify GitHub Actions deployment is working (highest priority)
-2. Clean up deprecated production branch and build script
-3. Test mobile responsiveness
-4. Clean up unused `useBannerState.js` file
-5. Add dark mode support
-6. Consider additional footer enhancements
+1. Test slash commands work after restart (highest priority)
+1. Verify GitHub Actions deployment is working
+1. Clean up deprecated production branch and build script
+1. Test mobile responsiveness
+1. Clean up unused `useBannerState.js` file
+1. Add dark mode support
+1. Consider additional footer enhancements
