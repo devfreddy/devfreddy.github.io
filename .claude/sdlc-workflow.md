@@ -1,5 +1,12 @@
 # Unified SDLC Workflow Framework
 
+> **Quick Start:** Use slash commands to interact with this workflow:
+> - `/start` - Begin a session
+> - `/new-feature` - Create a feature
+> - `/wrap` - End a session
+>
+> This document provides the detailed framework these commands implement.
+
 ## Overview
 This framework defines a consistent development lifecycle for all projects, emphasizing feature-driven development, comprehensive documentation, session tracking, and intelligent context loading.
 
