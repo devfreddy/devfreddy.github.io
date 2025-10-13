@@ -151,14 +151,16 @@ ls -la dist/
 ### Start a Session
 Initialize context for a new work session:
 
-```bash
-./scripts/startup.sh
+In Claude Code, use the `/start` slash command:
+```
+/start
 ```
 
 **What it does:**
-1. Checks project configuration
-2. Generates session context from recent work
-3. Provides suggested starting points
+1. Reviews recent session work and next steps
+2. Checks active features and sprint priorities
+3. Identifies any blockers
+4. Suggests starting point for today
 
 ### Wrap Up a Session
 Complete session documentation and commit changes:
@@ -168,33 +170,34 @@ In Claude Code, use the `/wrap` slash command:
 /wrap
 ```
 
-Or manually run the script:
-```bash
-./scripts/wrap-up.sh
-```
-
-**The /wrap command:**
+**What it does:**
 1. Updates session wrap-up documentation
 2. Updates COMMANDS.md, TROUBLESHOOTING.md if needed
 3. Updates ROADMAP.md and feature docs
 4. Commits all documentation changes
 5. Provides session summary
 
+### Create New Feature
+Set up documentation structure for a new feature:
+
+In Claude Code, use the `/new-feature` slash command:
+```
+/new-feature
+```
+
+**What it does:**
+1. Creates feature directory with all documentation files
+2. Updates feature index
+3. Provides template structure for documentation
+
 ## Documentation
-
-### Generate Feature Documentation Template
-```bash
-mkdir -p docs/features/feature-name
-touch docs/features/feature-name/{README.md,implementation.md,testing.md,decisions.md}
-```
-
-### Create Session Notes
-```bash
-mkdir -p docs/sessions/$(date +%Y-%m-%d)
-touch docs/sessions/$(date +%Y-%m-%d)/notes.md
-```
 
 ### View Session History
 ```bash
 ls -lt docs/sessions/
+```
+
+### View Feature Documentation
+```bash
+ls -la docs/features/
 ```

@@ -598,6 +598,35 @@ Common triggers for documentation updates:
 - "Save this command" → Update COMMANDS.md
 ```
 
+### Starting a Session
+
+**Primary Method**: Use the `/start` slash command
+```
+/start
+```
+
+This command will:
+1. Review recent session work and next steps
+2. Check active features (🟡 in progress)
+3. Review current sprint priorities
+4. Identify any blockers
+5. Suggest where to start today
+
+**Alternative**: Manually review `docs/sessions/` and `docs/ROADMAP.md`
+
+### Creating a New Feature
+
+**Primary Method**: Use the `/new-feature` slash command
+```
+/new-feature
+```
+
+This command will:
+1. Ask for feature name
+2. Create feature directory with all documentation files (README.md, implementation.md, testing.md, decisions.md)
+3. Update feature index
+4. Provide next steps
+
 ### Ending a Session
 
 **Primary Method**: Use the `/wrap` slash command
@@ -606,16 +635,14 @@ Common triggers for documentation updates:
 ```
 
 This command will:
-1. Review the current session's work
-2. Update the wrap-up documentation at `docs/sessions/YYYY-MM-DD/wrap-up.md`
-3. Commit and push the changes
-4. Provide a session summary
+1. Update session wrap-up documentation
+2. Update project docs (COMMANDS.md, TROUBLESHOOTING.md, ROADMAP.md, features)
+3. Commit all documentation changes
+4. Provide session summary
 
-**Alternative Methods**:
-- Say: "wrap this session up", "let's wrap up", "finish session"
-- Run script directly: `./scripts/wrap-up.sh` (creates template only)
+**Alternative**: Say "wrap this session up", "let's wrap up", or "finish session"
 
-**Note**: The `/wrap` command is the recommended approach as it provides a complete, structured wrap-up process.
+**Note**: All SDLC commands are now slash commands. Shell scripts in `scripts/` are deprecated.
 
 ## Integration Tips
 
