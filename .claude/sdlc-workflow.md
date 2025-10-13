@@ -599,16 +599,23 @@ Common triggers for documentation updates:
 ```
 
 ### Ending a Session
-```bash
-# Any of these phrases trigger wrap-up:
-"wrap this session up"
-"let's wrap up"
-"finish session"
-"use wrap-up protocol"
 
-# Or run script:
-./scripts/wrap-up.sh
+**Primary Method**: Use the `/wrap` slash command
 ```
+/wrap
+```
+
+This command will:
+1. Review the current session's work
+2. Update the wrap-up documentation at `docs/sessions/YYYY-MM-DD/wrap-up.md`
+3. Commit and push the changes
+4. Provide a session summary
+
+**Alternative Methods**:
+- Say: "wrap this session up", "let's wrap up", "finish session"
+- Run script directly: `./scripts/wrap-up.sh` (creates template only)
+
+**Note**: The `/wrap` command is the recommended approach as it provides a complete, structured wrap-up process.
 
 ## Integration Tips
 
