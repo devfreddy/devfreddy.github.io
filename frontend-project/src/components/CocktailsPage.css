@@ -46,6 +46,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
   background-color: white;
+  color: #2d3748;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
@@ -62,6 +63,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
   background-color: white;
+  color: #2d3748;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
@@ -70,6 +72,77 @@
 .cocktails-category-select:focus {
   border-color: #4299e1;
   box-shadow: 0 0 0 1px #4299e1;
+}
+
+/* Dark mode support */
+.dark .cocktails-page {
+  background-color: #1a202c;
+}
+
+.dark .cocktails-title {
+  color: #f7fafc;
+}
+
+.dark .cocktails-description {
+  color: #a0aec0;
+}
+
+.dark .cocktails-search,
+.dark .cocktails-category-select {
+  background-color: #2d3748;
+  color: #f7fafc;
+  border-color: #4a5568;
+}
+
+.dark .cocktails-search::placeholder {
+  color: #718096;
+}
+
+.dark .cocktails-search:focus,
+.dark .cocktails-category-select:focus {
+  border-color: #4299e1;
+}
+
+.dark .cocktails-count {
+  color: #a0aec0;
+}
+
+.dark .cocktail-card {
+  background-color: #2d3748;
+}
+
+.dark .cocktail-name {
+  color: #f7fafc;
+}
+
+.dark .cocktail-category {
+  background-color: #2c5282;
+  color: #bee3f8;
+}
+
+.dark .section-title {
+  color: #cbd5e0;
+}
+
+.dark .ingredient-item,
+.dark .instruction-item {
+  color: #a0aec0;
+}
+
+.dark .ingredient-notes {
+  color: #718096;
+}
+
+.dark .cocktail-notes {
+  color: #a0aec0;
+}
+
+.dark .no-results-text {
+  color: #718096;
+}
+
+.dark .no-results-help {
+  color: #4a5568;
 }
 
 .cocktails-count {

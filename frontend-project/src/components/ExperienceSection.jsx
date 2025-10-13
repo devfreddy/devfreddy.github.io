@@ -10,11 +10,11 @@ import {
 
 // Custom Card components for Chakra UI v3
 const Card = ({ children, ...props }) => (
-  <Box 
-    bg="white" 
-    borderRadius="lg" 
-    border="1px" 
-    borderColor="gray.200"
+  <Box
+    bg={{ base: 'white', _dark: 'gray.800' }}
+    borderRadius="lg"
+    border="1px"
+    borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
     {...props}
   >
     {children}
@@ -155,29 +155,29 @@ const ExperienceSection = () => {
   ]
 
   return (
-    <Box id="experience" py={20} bg="white">
+    <Box id="experience" py={20} bg={{ base: 'white', _dark: 'gray.900' }}>
       <Container maxW="1200px">
         <VStack spacing={12}>
           <VStack spacing={4} textAlign="center">
-            <Heading size="xl" color="gray.800">Experience & Education</Heading>
-            <Text fontSize="lg" color="gray.600" maxW="600px">
+            <Heading size="xl" color={{ base: 'gray.800', _dark: 'gray.100' }}>Experience & Education</Heading>
+            <Text fontSize="lg" color={{ base: 'gray.600', _dark: 'gray.400' }} maxW="600px">
               My professional journey and the experiences that have shaped me as a developer.
             </Text>
           </VStack>
 
           <Box w="full">
-            <Heading size="lg" color="gray.800" mb={8}>Work Experience</Heading>
+            <Heading size="lg" color={{ base: 'gray.800', _dark: 'gray.100' }} mb={8}>Work Experience</Heading>
             <VStack spacing={6} align="stretch">
               {experiences.map((exp, index) => (
-                <Card key={index} variant="outline" bg="gray.50">
+                <Card key={index} variant="outline" bg={{ base: 'gray.50', _dark: 'gray.800' }}>
                   <CardBody>
                     <VStack align="start" spacing={4}>
                       <HStack justify="space-between" w="full" wrap="wrap">
                         <VStack align="start" spacing={1}>
-                          <Heading size="md" color="blue.600">
+                          <Heading size="md" color={{ base: 'blue.600', _dark: 'blue.400' }}>
                             {exp.position}
                           </Heading>
-                          <Text fontWeight="semibold" color="gray.700">
+                          <Text fontWeight="semibold" color={{ base: 'gray.700', _dark: 'gray.300' }}>
                             {exp.company}
                           </Text>
                         </VStack>
@@ -185,23 +185,23 @@ const ExperienceSection = () => {
                           <Badge colorScheme="blue" variant="solid" bg="blue.500" color="white">
                             {exp.duration}
                           </Badge>
-                          <Text fontSize="sm" color="gray.500">
+                          <Text fontSize="sm" color={{ base: 'gray.500', _dark: 'gray.400' }}>
                             {exp.location}
                           </Text>
                         </VStack>
                       </HStack>
-                      
-                      <Text color="gray.600">
+
+                      <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
                         {exp.description}
                       </Text>
-                      
+
                       <Box>
-                        <Text fontWeight="semibold" color="gray.700" mb={2}>
+                        <Text fontWeight="semibold" color={{ base: 'gray.700', _dark: 'gray.300' }} mb={2}>
                           Key Achievements:
                         </Text>
                         <VStack align="start" spacing={1}>
                           {exp.achievements.map((achievement, i) => (
-                            <Text key={i} fontSize="sm" color="gray.600">
+                            <Text key={i} fontSize="sm" color={{ base: 'gray.600', _dark: 'gray.400' }}>
                               • {achievement}
                             </Text>
                           ))}
@@ -233,26 +233,26 @@ const ExperienceSection = () => {
             </VStack>
           </Box>
 
-          <Box w="full" h="1px" bg="gray.200" />
+          <Box w="full" h="1px" bg={{ base: 'gray.200', _dark: 'gray.700' }} />
 
           <Box w="full">
-            <Heading size="lg" color="gray.800" mb={8}>Education</Heading>
+            <Heading size="lg" color={{ base: 'gray.800', _dark: 'gray.100' }} mb={8}>Education</Heading>
             <VStack spacing={6} align="stretch">
               {education.map((edu, index) => (
-                <Card key={index} variant="outline" bg="blue.50">
+                <Card key={index} variant="outline" bg={{ base: 'blue.50', _dark: 'gray.800' }}>
                   <CardBody>
                     <HStack justify="space-between" w="full" wrap="wrap">
                       <VStack align="start" spacing={1}>
-                        <Heading size="md" color="blue.600">
+                        <Heading size="md" color={{ base: 'blue.600', _dark: 'blue.400' }}>
                           {edu.degree}
                         </Heading>
-                        <Text fontWeight="semibold" color="gray.700">
+                        <Text fontWeight="semibold" color={{ base: 'gray.700', _dark: 'gray.300' }}>
                           {edu.institution}
                         </Text>
                         {edu.highlights && (
                           <VStack align="start" spacing={1} mt={2}>
                             {edu.highlights.map((highlight, i) => (
-                              <Text key={i} fontSize="sm" color="gray.600">
+                              <Text key={i} fontSize="sm" color={{ base: 'gray.600', _dark: 'gray.400' }}>
                                 • {highlight}
                               </Text>
                             ))}
@@ -263,7 +263,7 @@ const ExperienceSection = () => {
                         <Badge colorScheme="green" variant="solid" bg="green.500" color="white">
                           {edu.duration}
                         </Badge>
-                        <Text fontSize="sm" color="gray.500">
+                        <Text fontSize="sm" color={{ base: 'gray.500', _dark: 'gray.400' }}>
                           {edu.location}
                         </Text>
                       </VStack>

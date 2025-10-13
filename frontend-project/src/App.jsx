@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import ConstructionBanner from './components/ConstructionBanner'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
@@ -18,6 +19,13 @@ const HomePage = ({ scrollToSection }) => (
 )
 
 function App() {
+  const location = useLocation()
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {

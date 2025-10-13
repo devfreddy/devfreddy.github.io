@@ -6,77 +6,99 @@ const Navbar = ({ scrollToSection }) => {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
 
-  const homeNavItems = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Experience', id: 'experience' }
-  ]
-
   return (
     <Box
       position="fixed"
       top="0"
       left={0}
       right={0}
-      bg="white"
+      bg={{ base: 'white', _dark: 'gray.800' }}
       borderBottom="1px"
-      borderColor="gray.200"
+      borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
       zIndex={1000}
       px={4}
       py={3}
     >
       <Flex maxW="1200px" mx="auto" justify="space-between" align="center">
-        <Link 
+        <Link
           as={RouterLink}
           to="/"
-          fontSize="xl" 
-          fontWeight="bold" 
-          color="blue.500"
-          _hover={{ textDecoration: 'none', color: 'blue.600' }}
+          fontSize="xl"
+          fontWeight="bold"
+          color={{ base: 'gray.800', _dark: 'white' }}
+          _hover={{ textDecoration: 'none', color: { base: 'gray.600', _dark: 'gray.300' } }}
         >
-          Dev Freddy
+          DevFreddy
         </Link>
-        
+
         <HStack spacing={8}>
-          {isHomePage && homeNavItems.map((item) => (
-            <Link
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              cursor="pointer"
-              fontWeight="medium"
-              color="gray.600"
-              _hover={{ color: 'blue.500', textDecoration: 'none' }}
-              transition="color 0.2s"
-            >
-              {item.name}
-            </Link>
-          ))}
-          
-          <Link
-            as={RouterLink}
-            to="/cocktails"
-            fontWeight="medium"
-            color={location.pathname === '/cocktails' ? 'blue.500' : 'gray.600'}
-            _hover={{ color: 'blue.500', textDecoration: 'none' }}
-            transition="color 0.2s"
-          >
-            Cocktails
-          </Link>
-          
-          {!isHomePage && (
+          {isHomePage ? (
+            <>
+              <Link
+                onClick={() => scrollToSection('home')}
+                cursor="pointer"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Home
+              </Link>
+              <Link
+                onClick={() => scrollToSection('about')}
+                cursor="pointer"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                About
+              </Link>
+              <Link
+                onClick={() => scrollToSection('experience')}
+                cursor="pointer"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Experience
+              </Link>
+            </>
+          ) : (
             <Link
               as={RouterLink}
               to="/"
               fontWeight="medium"
-              color="gray.600"
+              color={{ base: 'gray.600', _dark: 'gray.300' }}
               _hover={{ color: 'blue.500', textDecoration: 'none' }}
               transition="color 0.2s"
             >
               Home
             </Link>
           )}
-          
-          <ColorModeButton />
+
+          <Link
+            as={RouterLink}
+            to="/cocktails"
+            fontWeight="medium"
+            color={location.pathname === '/cocktails' ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+            _hover={{ color: 'blue.500', textDecoration: 'none' }}
+            transition="color 0.2s"
+          >
+            Cocktails
+          </Link>
+
+          <ColorModeButton
+            color={{ base: 'gray.600', _dark: 'gray.700' }}
+            bg={{ base: 'gray.300', _dark: 'orange.200' }}
+            _hover={{
+              color: { base: 'blue.500', _dark: 'gray.800' },
+              bg: { base: 'gray.400', _dark: 'orange.300' }
+            }}
+            px={3}
+            h="32px"
+          />
         </HStack>
       </Flex>
     </Box>

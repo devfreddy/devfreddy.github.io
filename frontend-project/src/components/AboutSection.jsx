@@ -13,13 +13,13 @@ const AboutSection = () => {
   ]
 
   return (
-    <Box id="about" py={20} bg="white">
+    <Box id="about" py={20} bg={{ base: 'white', _dark: 'gray.900' }}>
       <Container maxW="1200px">
         <VStack spacing={16}>
           <VStack spacing={4} textAlign="center">
-            <Heading size="xl" color="gray.800">About Me</Heading>
-            <Text fontSize="lg" color="gray.600" maxW="600px">
-              I'm a passionate developer with 15+ years of experience building web applications 
+            <Heading size="xl" color={{ base: 'gray.800', _dark: 'gray.100' }}>About Me</Heading>
+            <Text fontSize="lg" color={{ base: 'gray.600', _dark: 'gray.400' }} maxW="600px">
+              I'm a passionate developer with 15+ years of experience building web applications
               that solve real-world problems and deliver exceptional user experiences.
             </Text>
           </VStack>
@@ -27,17 +27,17 @@ const AboutSection = () => {
           <SimpleGrid columns={[1, null, 2]} spacing={12} w="full">
             <VStack align="start" spacing={6}>
               <Box>
-                <Heading size="md" mb={4} color="gray.800">My Story</Heading>
+                <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>My Story</Heading>
                 <VStack align="start" spacing={4}>
-                  <Text color="gray.600">
-                    Started my journey in computer science with a fascination for how code 
-                    can transform ideas into reality. Over the years, I've worked with startups 
-                    and established companies, building everything from simple landing pages 
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
+                    Started my journey in computer science with a fascination for how code
+                    can transform ideas into reality. Over the years, I've worked with startups
+                    and established companies, building everything from simple landing pages
                     to complex full-stack applications.
                   </Text>
-                  <Text color="gray.600">
-                    I believe in writing clean, maintainable code and am always eager to learn 
-                    new technologies. When I'm not coding, you can find me in the garden growing 
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
+                    I believe in writing clean, maintainable code and am always eager to learn
+                    new technologies. When I'm not coding, you can find me in the garden growing
                     vegetables, on the volleyball court, hitting the golf course, or crafting cocktails.
                   </Text>
                 </VStack>
@@ -45,47 +45,47 @@ const AboutSection = () => {
             </VStack>
 
             <Box>
-              <Heading size="md" mb={4} color="gray.800">What I Do</Heading>
+              <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>What I Do</Heading>
               <VStack align="start" spacing={3}>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">🚀</Text>
-                  <Text color="gray.600">GraphQL architecture & enterprise migrations</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>GraphQL architecture & enterprise migrations</Text>
                 </HStack>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">🏗️</Text>
-                  <Text color="gray.600">Technical consulting & solution delivery</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Technical consulting & solution delivery</Text>
                 </HStack>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">⚡</Text>
-                  <Text color="gray.600">Performance optimization & observability</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Performance optimization & observability</Text>
                 </HStack>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">🔧</Text>
-                  <Text color="gray.600">Platform engineering & API design</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Platform engineering & API design</Text>
                 </HStack>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">👥</Text>
-                  <Text color="gray.600">Team leadership & technical mentoring</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Team leadership & technical mentoring</Text>
                 </HStack>
                 <HStack>
                   <Text color="blue.500" fontSize="lg">🌐</Text>
-                  <Text color="gray.600">Global customer support & crisis management</Text>
+                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>Global customer support & crisis management</Text>
                 </HStack>
               </VStack>
             </Box>
           </SimpleGrid>
 
           <Box w="full">
-            <Heading size="md" mb={4} color="gray.800">Technical Skills</Heading>
+            <Heading size="md" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>Technical Skills</Heading>
             <SimpleGrid columns={[2, null, 4]} spacing={4}>
               {skills.map((skillGroup) => (
                 <Box key={skillGroup.name}>
-                  <Text fontWeight="semibold" color="blue.600" mb={2}>
+                  <Text fontWeight="semibold" color={{ base: 'blue.600', _dark: 'blue.400' }} mb={2}>
                     {skillGroup.name}
                   </Text>
                   <VStack align="start" spacing={1}>
                     {skillGroup.items.map((skill) => (
-                      <Text key={skill} color="gray.600" fontSize="sm">
+                      <Text key={skill} color={{ base: 'gray.600', _dark: 'gray.400' }} fontSize="sm">
                         • {skill}
                       </Text>
                     ))}
