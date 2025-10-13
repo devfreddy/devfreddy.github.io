@@ -1,0 +1,76 @@
+# Project metadata and preferences
+project:
+  name: "DevFreddy Portfolio"
+  type: "web"
+  version: "1.0.0"
+  description: "Personal portfolio website showcasing professional experience, technical skills, and projects with interactive animations"
+
+preferences:
+  # Working style
+  autonomy_level: "high"
+  verbosity:
+    status_updates: "normal"
+    code_comments: "normal"
+    documentation: "thorough"
+
+  # Development preferences
+  testing_strategy: "manual"
+  commit_style: "descriptive"
+  documentation_style: "comprehensive"
+
+tech_stack:
+  language: "javascript"
+  framework: "react"
+  testing: "vitest"
+  build: "vite"
+
+  # Additional technologies
+  ui_library: "chakra-ui"
+  animation: "framer-motion"
+  visualization: "d3"
+  routing: "react-router-dom"
+  state: "zustand"
+
+features:
+  # Feature flags
+  use_startup_context: true
+  auto_wrap_up: false
+  track_metrics: true
+
+conventions:
+  # Project-specific conventions
+  file_naming: "camel"
+  component_structure: "nested"
+  import_style: "relative"
+
+  # Code style
+  component_extension: "jsx"
+  hooks_prefix: "use"
+  store_library: "zustand"
+
+  # Documentation
+  feature_docs_required: true
+  session_tracking: true
+
+session_defaults:
+  # What to load at session start
+  load_recent_sessions: 3
+  load_active_features: true
+  load_architecture: true
+  auto_run_tests: false
+
+project_specifics:
+  # Frontend project location
+  source_directory: "frontend-project/src"
+  components_directory: "frontend-project/src/components"
+
+  # Build and deployment
+  build_output: "frontend-project/dist"
+  deployment_target: "github-pages"
+  deployment_script: "./build-and-deploy.sh"
+
+  # Key patterns
+  use_chakra_ui: true
+  use_framer_motion: true
+  state_management: "zustand + hooks"
+  routing_mode: "BrowserRouter"
