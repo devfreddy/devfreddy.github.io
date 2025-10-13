@@ -30,16 +30,29 @@ npm run lint
 
 ## Deployment
 
-### Deploy to GitHub Pages
+### Automatic Deployment (Recommended)
+Deployment happens automatically via GitHub Actions when you push to `main`:
+
+```bash
+git push origin main
+```
+
+**What happens:**
+1. GitHub Actions workflow triggers on push to main
+2. Builds the frontend project (`npm ci && npm run build`)
+3. Uploads build artifact to GitHub Pages
+4. Deploys to production automatically
+
+Monitor deployment: https://github.com/devfreddy/devfreddy.github.io/actions
+
+### Manual Deployment (Legacy)
+The manual build-and-deploy script still exists but is no longer needed:
+
 ```bash
 ./build-and-deploy.sh
 ```
 
-**What it does:**
-1. Builds the frontend project
-2. Copies build output to root directory
-3. Ensures 404.html is in place for client-side routing
-4. Commits and pushes changes
+**Note:** This script is deprecated. Use the automatic GitHub Actions deployment instead.
 
 ## Git Workflows
 
@@ -133,6 +146,40 @@ npm run build
 ls -la dist/
 ```
 
+## SDLC Workflow
+
+### Start a Session
+Initialize context for a new work session:
+
+```bash
+./scripts/startup.sh
+```
+
+**What it does:**
+1. Checks project configuration
+2. Generates session context from recent work
+3. Provides suggested starting points
+
+### Wrap Up a Session
+Complete session documentation and commit changes:
+
+In Claude Code, use the `/wrap` slash command:
+```
+/wrap
+```
+
+Or manually run the script:
+```bash
+./scripts/wrap-up.sh
+```
+
+**The /wrap command:**
+1. Updates session wrap-up documentation
+2. Updates COMMANDS.md, TROUBLESHOOTING.md if needed
+3. Updates ROADMAP.md and feature docs
+4. Commits all documentation changes
+5. Provides session summary
+
 ## Documentation
 
 ### Generate Feature Documentation Template
@@ -145,4 +192,9 @@ touch docs/features/feature-name/{README.md,implementation.md,testing.md,decisio
 ```bash
 mkdir -p docs/sessions/$(date +%Y-%m-%d)
 touch docs/sessions/$(date +%Y-%m-%d)/notes.md
+```
+
+### View Session History
+```bash
+ls -lt docs/sessions/
 ```

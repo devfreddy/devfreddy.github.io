@@ -4,15 +4,11 @@ description: Wrap up the current session and generate documentation
 
 # Session Wrap-Up Protocol
 
-Execute the following session wrap-up procedure:
+Execute the following 6-step session wrap-up procedure based on the unified SDLC workflow:
 
-## 1. Review Session Work
+## 1. Update Session Documentation
 
-Read the current session's wrap-up document at `docs/sessions/YYYY-MM-DD/wrap-up.md` where YYYY-MM-DD is today's date.
-
-## 2. Update Wrap-Up Documentation
-
-Update the wrap-up document with:
+Read and update the wrap-up document at `docs/sessions/YYYY-MM-DD/wrap-up.md` (today's date) with:
 
 ### Summary Section
 - Brief overview of what was accomplished this session
@@ -26,40 +22,103 @@ Update the wrap-up document with:
 - Infrastructure changes
 
 ### Next Steps
-Break down into three categories:
-- **Immediate (Next Session)**: High priority items to tackle next
-- **Short Term**: Work to complete in the next few sessions
-- **Long Term**: Future enhancements or refactoring
+- **Immediate (Next Session)**: High priority items
+- **Short Term**: Work for next few sessions
+- **Long Term**: Future enhancements
 
-### Prerequisites for Next Session
-- Any setup needed before the next session
-- Dependencies to install
-- External changes needed (like GitHub settings)
+### Other Sections
+- **Prerequisites for Next Session**: Setup needed
+- **Blockers**: Issues encountered and their status
+- **Features for Future Work**: Out-of-scope ideas
+- **Task Order Recommendation**: Prioritized task list
 
-### Blockers
-- List any blockers encountered
-- Note if they were resolved or still pending
+## 2. Update Project Documentation
 
-### Features for Future Work
-- Ideas that came up but are out of scope for now
-- Enhancement opportunities identified
+Check and update these files if relevant to this session's work:
 
-### Task Order Recommendation
-- Numbered list of recommended task order based on priority and dependencies
+### docs/COMMANDS.md
+- Add any new useful commands discovered/created
+- Update commands that changed (e.g., deployment scripts)
+- Remove obsolete commands
 
-## 3. Commit Changes
+### docs/TROUBLESHOOTING.md
+- Document any issues encountered and their solutions
+- Add workarounds discovered
+- Update existing entries if better solutions found
 
-After updating the wrap-up documentation:
-- Stage the wrap-up document
-- Commit with message: "Session wrap-up: YYYY-MM-DD"
-- Push to remote
+### docs/ROADMAP.md
+- Update progress on current sprint items
+- Mark completed features
+- Add new items discovered during work
 
-## 4. Session Summary
+### docs/features/index.md
+- Update feature status (🟡 in progress, 🟢 complete, ⚪ planned)
+- Add new features if created
+- Update dependencies between features
 
-Provide the user with:
-- A concise summary of what was accomplished
-- Top 3 priorities for next session
-- Any important notes or warnings
+## 3. Update Feature Documentation
+
+If you worked on specific features, update their documentation:
+
+### docs/features/[feature-name]/
+- **README.md**: Update if feature behavior changed
+- **implementation.md**: Document technical changes
+- **testing.md**: Add test cases or validation steps
+- **decisions.md**: Document key design decisions made
+
+## 4. Review Git Status
+
+Check what files were modified:
+```bash
+git status
+git diff --stat
+```
+
+Identify any uncommitted changes that should be committed before wrap-up.
+
+## 5. Commit Session Documentation
+
+Stage and commit all documentation updates:
+```bash
+git add docs/
+git commit -m "Session wrap-up: YYYY-MM-DD
+
+Updated session documentation and project docs
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+git push origin main
+```
+
+## 6. Generate Session Summary
+
+Provide the user with a concise summary:
+
+### Format:
+```markdown
+# Session Complete - YYYY-MM-DD
+
+## Delivered
+- [User-visible change 1]
+- [User-visible change 2]
+
+## Technical Changes
+- [Internal improvement 1]
+- [Internal improvement 2]
+
+## Documentation Updated
+- [Doc 1]
+- [Doc 2]
+
+## Top 3 Priorities for Next Session
+1. [Highest priority]
+2. [Second priority]
+3. [Third priority]
+
+## Notes
+- [Any important notes or warnings]
+```
 
 ## Important Guidelines
 
@@ -68,3 +127,5 @@ Provide the user with:
 - Include links to modified files using markdown format: [filename](path/to/file)
 - Update existing sections, don't create duplicate entries
 - Ensure next steps are actionable and specific
+- Always update COMMANDS.md if commands changed
+- Document solutions in TROUBLESHOOTING.md for future reference
