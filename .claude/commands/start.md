@@ -18,15 +18,15 @@ Initialize a new work session by loading relevant context from the project.
    - Pay attention to "Next Steps" section
    - Identify any unfinished work
 
-3. **Check Active Features**
-   - Read `docs/features/index.md`
-   - List features marked with 🟡 (in progress)
-   - Note any features that need attention
-
-4. **Review Current Sprint**
-   - Read `docs/ROADMAP.md`
-   - Check "Current Sprint" or "Next Up" sections
+3. **Check Current Priorities**
+   - Read `docs/README.md`
+   - Check "Current Priorities" section
+   - Note "This Week" and "Next Sprint" priorities
    - Identify high-priority items
+
+4. **Check Feature Status (if needed)**
+   - Read `docs/FEATURES.md` if working on specific features
+   - Note any features that need attention
 
 5. **Check for Blockers**
    - Look for any blockers noted in recent session docs
@@ -46,14 +46,15 @@ Provide a summary in this format:
 - [Item 1]
 - [Item 2]
 
-## Active Features (🟡 In Progress)
-- [Feature 1]: [Status]
-- [Feature 2]: [Status]
-
-## Current Sprint Priorities
-1. [Top priority from ROADMAP]
+## Current Priorities (from docs/README.md)
+### This Week
+1. [Top priority]
 2. [Second priority]
 3. [Third priority]
+
+### Next Sprint
+- [Future priority 1]
+- [Future priority 2]
 
 ## Suggested Starting Point
 [Based on the context, suggest what to work on next]

@@ -1,182 +1,160 @@
 ---
-description: Create documentation structure for a new feature
+description: Add documentation for a new feature
 ---
 
-# New Feature Setup
+# New Feature Documentation
 
-Create complete documentation structure for a new feature.
+Add documentation for a new feature to the consolidated FEATURES.md file.
 
 ## Instructions
 
-Ask the user for the feature name if not already provided, then:
+Ask the user for the feature name and details if not already provided, then:
 
-## 1. Create Feature Directory
+## 1. Read Current Features
 
-Create directory: `docs/features/[feature-name]/`
+Read `docs/FEATURES.md` to understand the current structure and avoid duplicates.
 
-## 2. Create README.md
+## 2. Add Feature to Catalog Table
 
-Create `docs/features/[feature-name]/README.md` with:
+Add a new row to the Feature Catalog table at the top of `docs/FEATURES.md`:
 
 ```markdown
-# Feature: [feature-name]
+| [Feature Name](#feature-name-anchor) | 🟡 In Progress | `src/path/to/file.jsx` | Dependencies |
+```
 
-## Overview
+Status options:
+- 🟢 Complete
+- 🟡 In Progress
+- 🔴 Planned
+- ⚪ Not Started
+
+## 3. Add Feature Section
+
+Add a new section to `docs/FEATURES.md` with the following structure:
+
+```markdown
+## Feature Name
+
+### Overview
 [Brief description of what this feature does]
 
-## Problem Statement
-[What problem does this solve?]
+### What It Does
+- Key capability 1
+- Key capability 2
+- Key capability 3
+- User interaction details
 
-## User Interface
-[How users interact with this feature]
+### Key Props (if applicable)
+\`\`\`jsx
+<ComponentName
+  prop1={type}  // Description
+  prop2={type}  // Description
+/>
+\`\`\`
 
-## Configuration
-[Any configuration needed]
+### Technical Details
+- **File**: `src/path/to/file.jsx`
+- **Dependencies**: List of dependencies
+- **State Management**: How state is handled
+- **Performance**: Key performance considerations
 
-## Usage Examples
-[Code examples or usage instructions]
+### Implementation Notes
+- Important implementation details
+- Known limitations
+- Edge cases
 
-## Related Features
-- [List related features]
+### Future Enhancements (if applicable)
+- Planned improvement 1
+- Planned improvement 2
 
-## Status
-🟡 In Progress - Started YYYY-MM-DD
+---
 ```
 
-## 3. Create implementation.md
+## 4. Update Feature Dependencies Graph (if needed)
 
-Create `docs/features/[feature-name]/implementation.md` with:
+If the new feature has dependencies on other features, update the dependencies graph section.
 
-```markdown
-# Implementation: [feature-name]
+## 5. Update docs/README.md
 
-## Architecture
+Add the feature to the appropriate status section in `docs/README.md`:
 
-### Components
-- **Component A**: Purpose and responsibility
-- **Component B**: Purpose and responsibility
+- **Completed Features ✅** - If status is 🟢
+- **In Progress 🚧** - If status is 🟡
+- **Planned 📋** - If status is 🔴 or ⚪
 
-### Data Flow
-[Describe how data flows through the feature]
-
-## Key Files
-| File | Purpose | Key Functions |
-|------|---------|---------------|
-| file1.js | Main logic | func1(), func2() |
-
-## State Management
-[How state is managed in this feature]
-
-## Dependencies
-- External packages used
-- Internal modules required
-
-## Performance Considerations
-- Optimization strategies
-- Caching approach
-- Resource usage
-
-## Security Considerations
-- Input validation
-- Access control
-- Data sanitization
-```
-
-## 4. Create testing.md
-
-Create `docs/features/[feature-name]/testing.md` with:
-
-```markdown
-# Testing: [feature-name]
-
-## Test Coverage
-- Current coverage: X%
-- Target coverage: Y%
-
-## Unit Tests
-| Test Case | Purpose | Status |
-|-----------|---------|--------|
-| test1 | Validates X | ⚪ Pending |
-
-## Integration Tests
-[Description of integration test scenarios]
-
-## Manual Testing Procedures
-1. Step-by-step testing instructions
-2. Expected results at each step
-
-## Edge Cases
-- Edge case 1: How it's handled
-- Edge case 2: How it's handled
-
-## Performance Tests
-[Benchmark requirements and results]
-
-## Known Issues
-[List any known issues]
-```
-
-## 5. Create decisions.md
-
-Create `docs/features/[feature-name]/decisions.md` with:
-
-```markdown
-# Design Decisions: [feature-name]
-
-## Decision 1: [Title]
-**Date**: YYYY-MM-DD
-**Status**: Proposed
-
-### Context
-What was the situation requiring a decision?
-
-### Options Considered
-1. **Option A**: Description
-   - Pros:
-   - Cons:
-2. **Option B**: Description
-   - Pros:
-   - Cons:
-
-### Decision
-[Which option was chosen and why]
-
-### Consequences
-- Positive outcomes
-- Trade-offs accepted
-- Future considerations
-```
-
-## 6. Update Feature Index
-
-Add entry to `docs/features/index.md`:
-
-```markdown
-- 🟡 **[feature-name]**: [Brief description] ([docs](features/[feature-name]/))
-```
-
-## 7. Inform User
+## 6. Inform User
 
 Tell the user:
 
 ```markdown
-✅ Created feature documentation for: [feature-name]
+✅ Added feature documentation for: [Feature Name]
 
-**Files created:**
-- [docs/features/[feature-name]/README.md](docs/features/[feature-name]/README.md)
-- [docs/features/[feature-name]/implementation.md](docs/features/[feature-name]/implementation.md)
-- [docs/features/[feature-name]/testing.md](docs/features/[feature-name]/testing.md)
-- [docs/features/[feature-name]/decisions.md](docs/features/[feature-name]/decisions.md)
+**Updated files:**
+- [docs/FEATURES.md](docs/FEATURES.md) - Added feature section
+- [docs/README.md](docs/README.md) - Updated feature status
 
 **Next steps:**
-1. Fill in the feature documentation with details
-2. Start implementing the feature
-3. Update documentation as you build
+1. Implement the feature
+2. Update documentation as you build
+3. Mark as complete when done
 
-Would you like me to help you fill in any of these files?
+The feature is currently marked as [status]. Update the status in both files as you make progress.
+
+Would you like me to help you start implementing this feature?
 ```
 
 ## Notes
-- Use kebab-case for feature names (e.g., `user-authentication`, not `User Authentication`)
-- Always update the feature index
-- Create all 4 documentation files even if some will be brief initially
+
+- Use Title Case for feature names in headings
+- Use kebab-case for anchor links
+- Keep descriptions concise and actionable
+- Include code examples where helpful
+- Link to actual file paths in the codebase
+- Update the feature status as work progresses
+- If the feature is complex, you can expand the documentation, but try to keep it in a single section
+
+## Example Feature Entry
+
+```markdown
+## Contact Form
+
+### Overview
+User-facing contact form with validation and email integration.
+
+### What It Does
+- Collects user inquiries (name, email, message)
+- Client-side validation for all fields
+- Spam protection with reCAPTCHA
+- Email notification via backend API
+- Success/error feedback to user
+
+### Key Props
+\`\`\`jsx
+<ContactForm
+  onSubmit={(data) => void}     // Form submission handler
+  apiEndpoint={string}           // Backend API URL
+  recaptchaSiteKey={string}      // reCAPTCHA public key
+/>
+\`\`\`
+
+### Technical Details
+- **File**: `src/components/ContactForm.jsx`
+- **Dependencies**: Chakra UI, React Hook Form, reCAPTCHA
+- **Validation**: Zod schema validation
+- **API**: POST to `/api/contact` with JSON payload
+
+### Implementation Notes
+- Uses React Hook Form for performance
+- Debounces validation to reduce re-renders
+- Displays inline error messages
+- Clears form on successful submission
+- Rate limiting: 1 submission per minute per IP
+
+### Future Enhancements
+- Add file attachment support
+- Implement email templates
+- Add notification preferences
+- Track submission analytics
+
+---
+```
