@@ -3,7 +3,7 @@
 > Modern, performant, and accessible personal portfolio showcasing professional experience, technical skills, and creative projects.
 
 **Live Site**: https://devfreddy.github.io
-**Last Updated**: 2025-10-12
+**Last Updated**: 2025-10-15
 
 ---
 
@@ -30,7 +30,7 @@ Monitor: https://github.com/devfreddy/devfreddy.github.io/actions
 ## Current Priorities
 
 ### This Week
-1. **Consolidate Documentation** - Simplify docs structure (DONE)
+1. **Write First Musing** - Test the new blog section with real content
 2. **Projects Section** - Uncomment and enhance existing code
 3. **Contact Form** - Add contact section or form
 4. **Accessibility Improvements** - Add ARIA labels and keyboard navigation
@@ -44,7 +44,7 @@ Monitor: https://github.com/devfreddy/devfreddy.github.io/actions
 ### Backlog
 - TypeScript migration
 - Test coverage
-- Blog section
+- Blog enhancements (RSS, search, related posts)
 - Case studies
 - Enhanced cocktails page (images, favorites)
 
@@ -56,7 +56,8 @@ Monitor: https://github.com/devfreddy/devfreddy.github.io/actions
 - Hero section with animations
 - About & Experience sections
 - Navigation system with routing
-- Cocktails page (search/filter)
+- Musings blog section (markdown-based)
+- Cocktails page (search/filter, hidden from nav)
 - Construction banner
 - Particle background (D3.js)
 - Floating tech icons
@@ -89,6 +90,11 @@ Monitor: https://github.com/devfreddy/devfreddy.github.io/actions
 - D3.js 7.9.0
 - Zustand 5.0.6
 
+**Content**
+- React Markdown 9.0.1
+- Gray Matter 4.0.3
+- Remark GFM 4.0.0
+
 **Build & Deploy**
 - Vite 7.0.6
 - Node.js 24.4.1 (via Volta)
@@ -117,7 +123,7 @@ devfreddy.github.io/
 │   └── sessions/            # Session notes by date
 │
 ├── .claude/                 # Claude Code configuration
-│   └── commands/            # Slash commands (/start, /wrap)
+│   └── commands/            # Slash commands (/start, /wrap, /new-musing)
 │
 └── .github/                 # GitHub Actions workflows
     └── workflows/

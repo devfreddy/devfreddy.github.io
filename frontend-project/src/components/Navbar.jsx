@@ -64,30 +64,41 @@ const Navbar = ({ scrollToSection }) => {
               >
                 Experience
               </Link>
+              <Link
+                as={RouterLink}
+                to="/musings"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Musings
+              </Link>
             </>
           ) : (
-            <Link
-              as={RouterLink}
-              to="/"
-              fontWeight="medium"
-              color={{ base: 'gray.600', _dark: 'gray.300' }}
-              _hover={{ color: 'blue.500', textDecoration: 'none' }}
-              transition="color 0.2s"
-            >
-              Home
-            </Link>
+            <>
+              <Link
+                as={RouterLink}
+                to="/"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Home
+              </Link>
+              <Link
+                as={RouterLink}
+                to="/musings"
+                fontWeight="medium"
+                color={location.pathname.startsWith('/musings') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Musings
+              </Link>
+            </>
           )}
-
-          <Link
-            as={RouterLink}
-            to="/cocktails"
-            fontWeight="medium"
-            color={location.pathname === '/cocktails' ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
-            _hover={{ color: 'blue.500', textDecoration: 'none' }}
-            transition="color 0.2s"
-          >
-            Cocktails
-          </Link>
 
           <ColorModeButton
             color={{ base: 'gray.600', _dark: 'gray.700' }}

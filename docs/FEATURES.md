@@ -11,7 +11,8 @@ Complete reference for all features in the DevFreddy Portfolio.
 | [Hero Section](#hero-section) | 🟢 Complete | `src/components/HeroSection.jsx` | Particle Background, Floating Tech Icons |
 | [About Section](#about-section) | 🟢 Complete | `src/components/AboutSection.jsx` | - |
 | [Experience Section](#experience-section) | 🟢 Complete | `src/components/ExperienceSection.jsx` | - |
-| [Cocktails Page](#cocktails-page) | 🟢 Complete | `src/pages/CocktailsPage.jsx` | Navigation System |
+| [Musings Blog](#musings-blog) | 🟢 Complete | `src/components/MusingsPage.jsx` | react-markdown, gray-matter |
+| [Cocktails Page](#cocktails-page) | 🟢 Complete | `src/components/CocktailsPageBasic.jsx` | Navigation System (hidden) |
 | [Navigation System](#navigation-system) | 🟢 Complete | `src/components/Navbar.jsx` | React Router |
 | [Construction Banner](#construction-banner) | 🟢 Complete | `src/components/ConstructionBanner.jsx` | - |
 | [Particle Background](#particle-background) | 🟢 Complete | `src/components/ParticleBackground.jsx` | D3.js |
@@ -92,10 +93,83 @@ Professional work history and education timeline.
 
 ---
 
+## Musings Blog
+
+### Overview
+Markdown-based blog section for sharing thoughts, learnings, and observations about technology and collaboration.
+
+### What It Does
+- Displays blog posts from markdown files with frontmatter
+- List view showing all posts with title, date, excerpt, and tags
+- Individual post view with full markdown rendering
+- Automatic post discovery from `src/musings/*.md` files
+- Click-through navigation from list to detail and back
+- Posts sorted by date (newest first)
+- Dark mode support throughout
+
+### Post Structure
+```markdown
+---
+title: Post Title
+date: YYYY-MM-DD
+excerpt: Brief description (1-2 sentences)
+tags: [tag1, tag2, tag3]
+---
+
+# Post Content
+
+Your markdown content here...
+```
+
+### Markdown Features Supported
+- Headers (H1-H6)
+- Paragraphs and line breaks
+- Lists (ordered and unordered)
+- Code blocks with syntax highlighting
+- Inline code
+- Blockquotes
+- Links and bold/italic text
+- Tables (via remark-gfm)
+- Task lists (via remark-gfm)
+
+### Routes
+- `/musings` - List of all posts
+- `/musings/{slug}` - Individual post view
+
+### Technical Details
+- **File**: `src/components/MusingsPage.jsx`
+- **Dependencies**: react-markdown, gray-matter, remark-gfm
+- **Post Discovery**: Vite's `import.meta.glob` for automatic file loading
+- **Parsing**: gray-matter for frontmatter extraction
+- **Rendering**: ReactMarkdown with GitHub-flavored markdown support
+
+### Implementation Notes
+- Posts are loaded dynamically from markdown files
+- Frontmatter parsed on the client
+- Slug is derived from filename (e.g., `welcome.md` → `/musings/welcome`)
+- No build step required for new posts
+- Markdown styling uses Chakra UI tokens for theme consistency
+- Responsive design with max-width for readability
+
+### Creating New Posts
+Use the `/new-musing` slash command to create a new post with proper frontmatter structure and template.
+
+### Future Enhancements
+- RSS feed generation
+- Search functionality (title, content, tags)
+- Tag filtering
+- Reading time estimate
+- Table of contents generation
+- Related posts suggestions
+- Social sharing metadata
+- Comments integration (Giscus/Utterances)
+
+---
+
 ## Cocktails Page
 
 ### Overview
-Searchable and filterable cocktail recipe collection with detailed ingredients and instructions.
+Searchable and filterable cocktail recipe collection with detailed ingredients and instructions. Hidden from public navigation but accessible via direct URL.
 
 ### What It Does
 - Displays cocktail recipes with ingredients and instructions
@@ -103,6 +177,7 @@ Searchable and filterable cocktail recipe collection with detailed ingredients a
 - Filter by category (Classic, Tiki, Modern, etc.)
 - Responsive grid layout
 - Highlights matching search terms
+- Hidden from navbar (accessible via `/cocktails` URL only)
 
 ### Key Features
 ```jsx
@@ -128,16 +203,18 @@ const filteredCocktails = useMemo(() => {
 ```
 
 ### Technical Details
-- **File**: `src/pages/CocktailsPage.jsx`
+- **File**: `src/components/CocktailsPageBasic.jsx`
 - **State**: Local state with useState
 - **Performance**: useMemo for filtered results
 - **Dependencies**: Chakra UI, React Router
+- **Visibility**: Hidden from navbar, accessible via direct URL
 
 ### Implementation Notes
 - **Search**: Case-insensitive, matches name and ingredients
 - **Filter**: Category dropdown with "All Categories" option
 - **Layout**: Responsive grid (1 column mobile, 2-3 desktop)
 - **Accessibility**: Proper labels and semantic HTML
+- **Privacy**: "Security through obscurity" - no links to this page on the site
 
 ### Future Enhancements
 - Add cocktail images
@@ -437,4 +514,4 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues and solutions.
 
 ---
 
-**Last Updated**: 2025-10-12
+**Last Updated**: 2025-10-15

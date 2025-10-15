@@ -8,6 +8,7 @@ import AboutSection from './components/AboutSection'
 // import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
 import CocktailsPageBasic from './components/CocktailsPageBasic'
+import MusingsRouter from './components/MusingsPage'
 
 const HomePage = ({ scrollToSection }) => (
   <>
@@ -39,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage scrollToSection={scrollToSection} />} />
         <Route path="/cocktails" element={<CocktailsPageBasic />} />
+        <Route path="/musings/*" element={<MusingsRouter />} />
       </Routes>
       <ConstructionBanner />
     </Box>
