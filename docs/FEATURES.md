@@ -100,26 +100,34 @@ Markdown-based blog section for sharing thoughts, learnings, and observations ab
 
 ### What It Does
 - Displays blog posts from markdown files with frontmatter
-- List view showing all posts with title, date, excerpt, and tags
+- Enhanced list view with:
+  - Large, prominent post cards with hover effects
+  - Title, date, excerpt, and tags
+  - Reading time estimation (based on word count)
+  - Empty state when no posts exist
 - Individual post view with full markdown rendering
 - Automatic post discovery from `src/musings/*.md` files
 - Click-through navigation from list to detail and back
 - Posts sorted by date (newest first)
 - Dark mode support throughout
+- Placeholder posts marked with `placeholder: true` and "placeholder" tag
 
 ### Post Structure
 ```markdown
 ---
-title: Post Title
+title: "Post Title (quote if contains colons)"
 date: YYYY-MM-DD
-excerpt: Brief description (1-2 sentences)
+excerpt: "Brief description (1-2 sentences)"
 tags: [tag1, tag2, tag3]
+placeholder: true  # Optional: marks as placeholder content
 ---
 
 # Post Content
 
 Your markdown content here...
 ```
+
+**Important**: Quote titles and excerpts that contain special YAML characters (especially colons) to avoid parsing errors.
 
 ### Markdown Features Supported
 - Headers (H1-H6)
@@ -138,30 +146,44 @@ Your markdown content here...
 
 ### Technical Details
 - **File**: `src/components/MusingsPage.jsx`
-- **Dependencies**: react-markdown, gray-matter, remark-gfm
-- **Post Discovery**: Vite's `import.meta.glob` for automatic file loading
+- **Dependencies**:
+  - react-markdown (markdown rendering)
+  - gray-matter (frontmatter parsing)
+  - remark-gfm (GitHub-flavored markdown)
+  - buffer (polyfill for gray-matter in browser)
+- **Post Discovery**: Vite's `import.meta.glob('*.md', { query: '?raw', import: 'default' })`
 - **Parsing**: gray-matter for frontmatter extraction
 - **Rendering**: ReactMarkdown with GitHub-flavored markdown support
+- **Reading Time**: Calculated at 200 words per minute
 
 ### Implementation Notes
 - Posts are loaded dynamically from markdown files
-- Frontmatter parsed on the client
+- Frontmatter parsed on the client using gray-matter
+- Buffer polyfill required in Vite config for browser compatibility
 - Slug is derived from filename (e.g., `welcome.md` → `/musings/welcome`)
 - No build step required for new posts
 - Markdown styling uses Chakra UI tokens for theme consistency
 - Responsive design with max-width for readability
+- Card hover effects: translateY(-4px) + border color change + shadow elevation
 
 ### Creating New Posts
 Use the `/new-musing` slash command to create a new post with proper frontmatter structure and template.
+
+### Completed Enhancements
+- ✅ Reading time estimate (Oct 15, 2025)
+- ✅ Enhanced card design with hover effects (Oct 15, 2025)
+- ✅ Empty state handling (Oct 15, 2025)
+- ✅ Cross-page navigation with hash-based scrolling (Oct 15, 2025)
 
 ### Future Enhancements
 - RSS feed generation
 - Search functionality (title, content, tags)
 - Tag filtering
-- Reading time estimate
+- Reading progress indicator on individual posts
 - Table of contents generation
 - Related posts suggestions
-- Social sharing metadata
+- Social sharing buttons
+- Social sharing metadata (Open Graph, Twitter Cards)
 - Comments integration (Giscus/Utterances)
 
 ---

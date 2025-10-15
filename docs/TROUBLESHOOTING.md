@@ -2,11 +2,99 @@
 
 > Common issues and solutions for DevFreddy Portfolio development
 
-**Last Updated**: 2025-10-12
+**Last Updated**: 2025-10-15
 
 ---
 
 ## Development Issues
+
+### Buffer is not defined (gray-matter error)
+
+**Symptoms:**
+- Console error: `ReferenceError: Buffer is not defined`
+- Occurs when using gray-matter for markdown frontmatter parsing
+- Blog posts fail to load
+
+**Cause:**
+- gray-matter uses Node.js Buffer API which isn't available in browser
+- Vite needs explicit Buffer polyfill configuration
+
+**Solution:**
+
+1. **Install buffer package:**
+   ```bash
+   cd frontend-project
+   npm install buffer
+   ```
+
+2. **Update vite.config.js:**
+   ```javascript
+   import { defineConfig } from 'vite'
+   import react from '@vitejs/plugin-react'
+
+   export default defineConfig({
+     plugins: [react()],
+     define: {
+       global: 'globalThis',
+     },
+     resolve: {
+       alias: {
+         buffer: 'buffer',
+       },
+     },
+     optimizeDeps: {
+       esbuildOptions: {
+         define: {
+           global: 'globalThis',
+         },
+       },
+     },
+   })
+   ```
+
+3. **Add Buffer to main.jsx:**
+   ```javascript
+   import { Buffer } from 'buffer'
+   window.Buffer = Buffer
+   ```
+
+4. **Restart dev server:**
+   ```bash
+   npm run dev
+   ```
+
+**Fixed**: 2025-10-15
+
+---
+
+### YAML Frontmatter Parsing Error
+
+**Symptoms:**
+- `YAMLException: incomplete explicit mapping pair`
+- Error mentions "key node is missed"
+- Occurs when loading markdown files with frontmatter
+
+**Cause:**
+- YAML interprets colons (`:`) as key-value separators
+- Unquoted titles/excerpts containing colons break parsing
+- Example: `title: My Post: A Story` causes error
+
+**Solution:**
+
+Quote any frontmatter values containing special YAML characters:
+
+```markdown
+---
+title: "The Debugging Mindset: Curiosity Over Panic"  ✅
+excerpt: "Here's what I learned: be curious"          ✅
+date: 2025-10-15
+tags: [debugging, learning]
+---
+```
+
+**Fixed**: 2025-10-15
+
+---
 
 ### Vite Dev Server Won't Start
 

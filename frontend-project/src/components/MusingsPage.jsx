@@ -16,10 +16,14 @@ const MusingsPage = () => {
     const loadPosts = async () => {
       const postsData = []
 
+      console.log('Available posts:', Object.keys(posts))
+
       for (const path in posts) {
         const content = await posts[path]()
         const { data, content: markdown } = matter(content)
         const slug = path.split('/').pop().replace('.md', '')
+
+        console.log('Loading post:', slug, 'with data:', data)
 
         postsData.push({
           slug,
@@ -34,6 +38,7 @@ const MusingsPage = () => {
 
       // Sort by date, newest first
       postsData.sort((a, b) => new Date(b.date) - new Date(a.date))
+      console.log('Final postList:', postsData)
       setPostList(postsData)
     }
 
@@ -49,57 +54,124 @@ const MusingsPage = () => {
     })
   }
 
+  const calculateReadingTime = (content) => {
+    const wordsPerMinute = 200
+    const wordCount = content.trim().split(/\s+/).length
+    const minutes = Math.ceil(wordCount / wordsPerMinute)
+    return minutes
+  }
+
   return (
-    <Box pt={20} pb={12} bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh">
+    <Box pt={20} pb={16} bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh">
       <Container maxW="900px">
-        <VStack spacing={8} align="stretch">
-          <Box textAlign="center" mb={8}>
-            <Heading size="2xl" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>
+        <VStack spacing={12} align="stretch">
+          {/* Hero Section */}
+          <Box textAlign="center" mb={4}>
+            <Heading
+              size="3xl"
+              mb={6}
+              color={{ base: 'gray.800', _dark: 'gray.100' }}
+              fontWeight="bold"
+              letterSpacing="tight"
+            >
               Musings
             </Heading>
-            <Text fontSize="lg" color={{ base: 'gray.600', _dark: 'gray.400' }} maxW="600px" mx="auto">
+            <Text
+              fontSize="xl"
+              color={{ base: 'gray.600', _dark: 'gray.400' }}
+              maxW="650px"
+              mx="auto"
+              lineHeight="tall"
+            >
               Thoughts, learnings, and observations—thinking out loud about technology and collaboration
             </Text>
           </Box>
 
-          {postList.map((post) => (
-            <Card.Root
-              key={post.slug}
-              cursor="pointer"
-              onClick={() => navigate(`/musings/${post.slug}`)}
-              _hover={{
-                transform: 'translateY(-2px)',
-                shadow: 'lg'
-              }}
-              transition="all 0.2s"
+          {/* Blog Posts Grid */}
+          {postList.length === 0 ? (
+            <Box
+              textAlign="center"
+              py={16}
+              px={4}
             >
-              <Card.Body p={6}>
-                <VStack align="start" spacing={3}>
-                  <Heading size="lg" color={{ base: 'gray.800', _dark: 'gray.100' }}>
-                    {post.title}
-                  </Heading>
+              <Text
+                fontSize="lg"
+                color={{ base: 'gray.500', _dark: 'gray.500' }}
+                mb={2}
+              >
+                No musings yet
+              </Text>
+              <Text
+                fontSize="md"
+                color={{ base: 'gray.400', _dark: 'gray.600' }}
+              >
+                Check back soon for new thoughts and ideas
+              </Text>
+            </Box>
+          ) : (
+            <VStack spacing={6} align="stretch">
+              {postList.map((post) => (
+                <Card.Root
+                  key={post.slug}
+                  cursor="pointer"
+                  onClick={() => navigate(`/musings/${post.slug}`)}
+                  _hover={{
+                    transform: 'translateY(-4px)',
+                    shadow: 'xl',
+                    borderColor: { base: 'blue.500', _dark: 'blue.400' }
+                  }}
+                  transition="all 0.3s ease"
+                  borderWidth="1px"
+                  borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
+                >
+                  <Card.Body p={8}>
+                    <VStack align="start" spacing={4}>
+                      <Heading
+                        size="xl"
+                        color={{ base: 'gray.800', _dark: 'gray.100' }}
+                        fontWeight="semibold"
+                        letterSpacing="tight"
+                      >
+                        {post.title}
+                      </Heading>
 
-                  <Text fontSize="sm" color={{ base: 'gray.500', _dark: 'gray.500' }}>
-                    {formatDate(post.date)}
-                  </Text>
+                      <HStack spacing={3} fontSize="sm" color={{ base: 'gray.500', _dark: 'gray.500' }}>
+                        <Text>{formatDate(post.date)}</Text>
+                        <Text>•</Text>
+                        <Text>{calculateReadingTime(post.content)} min read</Text>
+                      </HStack>
 
-                  <Text color={{ base: 'gray.600', _dark: 'gray.400' }}>
-                    {post.excerpt}
-                  </Text>
+                      <Text
+                        color={{ base: 'gray.600', _dark: 'gray.400' }}
+                        fontSize="md"
+                        lineHeight="tall"
+                      >
+                        {post.excerpt}
+                      </Text>
 
-                  {post.tags && post.tags.length > 0 && (
-                    <HStack spacing={2}>
-                      {post.tags.map((tag) => (
-                        <Badge key={tag} colorScheme="blue" variant="subtle">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </HStack>
-                  )}
-                </VStack>
-              </Card.Body>
-            </Card.Root>
-          ))}
+                      {post.tags && post.tags.length > 0 && (
+                        <HStack spacing={2} flexWrap="wrap">
+                          {post.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              colorScheme="blue"
+                              variant="subtle"
+                              px={3}
+                              py={1}
+                              fontSize="xs"
+                              fontWeight="medium"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </HStack>
+                      )}
+                    </VStack>
+                  </Card.Body>
+                </Card.Root>
+              ))}
+            </VStack>
+          )}
         </VStack>
       </Container>
     </Box>

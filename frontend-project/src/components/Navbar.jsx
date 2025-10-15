@@ -1,10 +1,33 @@
 import { Box, Flex, HStack, Link } from '@chakra-ui/react'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
+import { useEffect } from 'react'
 
 const Navbar = ({ scrollToSection }) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const isHomePage = location.pathname === '/'
+
+  // Handle hash navigation when landing on homepage
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const sectionId = location.hash.substring(1)
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  }, [location])
+
+  const handleSectionClick = (sectionId) => {
+    if (isHomePage) {
+      scrollToSection(sectionId)
+    } else {
+      navigate(`/#${sectionId}`)
+    }
+  }
 
   return (
     <Box
@@ -86,6 +109,26 @@ const Navbar = ({ scrollToSection }) => {
                 transition="color 0.2s"
               >
                 Home
+              </Link>
+              <Link
+                onClick={() => handleSectionClick('about')}
+                cursor="pointer"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                About
+              </Link>
+              <Link
+                onClick={() => handleSectionClick('experience')}
+                cursor="pointer"
+                fontWeight="medium"
+                color={{ base: 'gray.600', _dark: 'gray.300' }}
+                _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                transition="color 0.2s"
+              >
+                Experience
               </Link>
               <Link
                 as={RouterLink}
