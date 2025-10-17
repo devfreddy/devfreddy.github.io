@@ -1,7 +1,7 @@
 ---
-title: Orchestrating Multiple AI Streams: The Surprising Art of Parallel Problem-Solving
-date: 2025-10-16
-excerpt: How I learned to juggle complex development tasks across repositories with Claude working in parallel.
+title: "Orchestrating Multiple AI Streams: The Surprising Art of Parallel Problem-Solving"
+date: "2025-10-16"
+excerpt: "How I learned to juggle complex development tasks across repositories with Claude working in parallel."
 tags: [llm-workflows, productivity, development, parallel-work]
 ---
 

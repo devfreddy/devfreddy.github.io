@@ -1,7 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import ConstructionBanner from './components/ConstructionBanner'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
@@ -42,7 +41,6 @@ function App() {
         <Route path="/cocktails" element={<CocktailsPageBasic />} />
         <Route path="/musings/*" element={<MusingsRouter />} />
       </Routes>
-      <ConstructionBanner />
     </Box>
   )
 }

@@ -18,14 +18,10 @@ const MusingsPage = () => {
     const loadPosts = async () => {
       const postsData = []
 
-      console.log('Available posts:', Object.keys(posts))
-
       for (const path in posts) {
         const content = await posts[path]()
         const { data, content: markdown } = matter(content)
         const slug = path.split('/').pop().replace('.md', '')
-
-        console.log('Loading post:', slug, 'with data:', data)
 
         postsData.push({
           slug,
@@ -40,7 +36,6 @@ const MusingsPage = () => {
 
       // Sort by date, newest first
       postsData.sort((a, b) => new Date(b.date) - new Date(a.date))
-      console.log('Final postList:', postsData)
       setPostList(postsData)
     }
 
@@ -48,7 +43,15 @@ const MusingsPage = () => {
   }, [])
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
+    if (!dateString) return 'No date'
+
+    // Add time to ensure consistent timezone handling
+    const date = new Date(dateString + 'T00:00:00')
+
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date'
+    }
+
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -232,7 +235,15 @@ const MusingPost = () => {
   }, [slug, navigate])
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
+    if (!dateString) return 'No date'
+
+    // Add time to ensure consistent timezone handling
+    const date = new Date(dateString + 'T00:00:00')
+
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date'
+    }
+
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
