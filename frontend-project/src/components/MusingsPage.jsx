@@ -82,8 +82,19 @@ const MusingsPage = () => {
               maxW="650px"
               mx="auto"
               lineHeight="tall"
+              mb={4}
             >
               Thoughts, learnings, and observations—thinking out loud about technology and collaboration
+            </Text>
+            <Text
+              fontSize="sm"
+              color={{ base: 'gray.500', _dark: 'gray.500' }}
+              maxW="700px"
+              mx="auto"
+              lineHeight="relaxed"
+              fontStyle="italic"
+            >
+              These posts start with my original ideas and perspectives, then are developed collaboratively with Claude for clarity and structure. The thoughts are mine; the polish is shared.
             </Text>
           </Box>
 
