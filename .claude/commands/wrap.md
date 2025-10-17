@@ -55,7 +55,9 @@ Read and update the wrap-up document at `docs/sessions/YYYY-MM-DD/wrap-up.md` (t
 - Add workarounds discovered
 - Update existing entries if better solutions found
 
-## 3. Review Git Status
+## 3. Review and Commit Code Changes
+
+**IMPORTANT: Commit code changes BEFORE documentation**
 
 Check what files were modified:
 ```bash
@@ -63,13 +65,42 @@ git status
 git diff --stat
 ```
 
-Identify any uncommitted changes that should be committed before wrap-up.
+### If there are uncommitted code changes:
+
+1. **Review the changes:**
+   ```bash
+   git diff
+   ```
+
+2. **Stage and commit code changes with a descriptive message:**
+   ```bash
+   git add <modified-code-files>
+   git commit -m "<Descriptive title of what was accomplished>
+
+   - Feature/fix 1 description
+   - Feature/fix 2 description
+   - Bug fix description
+
+   🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+   Co-Authored-By: Claude <noreply@anthropic.com>"
+   ```
+
+   **Examples of good commit messages:**
+   - "Improve mobile navigation and fix date parsing"
+   - "Add user authentication with OAuth"
+   - "Fix performance issues in particle background"
+
+3. **Push code changes:**
+   ```bash
+   git push origin main
+   ```
 
 ## 4. Commit Session Documentation
 
 Stage and commit all documentation updates:
 ```bash
-git add docs/
+git add docs/ .claude/
 git commit -m "Session wrap-up: YYYY-MM-DD
 
 Updated session documentation and project docs
