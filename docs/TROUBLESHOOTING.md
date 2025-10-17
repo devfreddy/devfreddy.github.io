@@ -2,11 +2,62 @@
 
 > Common issues and solutions for DevFreddy Portfolio development
 
-**Last Updated**: 2025-10-15
+**Last Updated**: 2025-10-17
 
 ---
 
 ## Development Issues
+
+### JavaScript Date Parsing Issues
+
+**Symptoms:**
+- Dates showing as "Invalid Date" in UI
+- Date shifting to previous/next day unexpectedly
+- "ChakraProvider context undefined" errors (actually caused by date parsing failures)
+- Component render breaking on musings page
+
+**Cause:**
+- `new Date("YYYY-MM-DD")` interprets date as UTC midnight, not local time
+- Timezone conversion can shift dates
+- Failed date parsing breaks React component rendering, causing cascading context errors
+- Manual string splitting can fail on unexpected formats
+
+**Solution:**
+
+Always append `T00:00:00` to YYYY-MM-DD date strings for consistent local timezone parsing:
+
+```javascript
+// ❌ BAD - Unreliable, timezone-dependent
+const date = new Date("2025-10-16")
+
+// ❌ BAD - Complex, error-prone with edge cases
+const [year, month, day] = dateString.split('-').map(num => parseInt(num, 10))
+const date = new Date(year, month - 1, day)
+
+// ✅ GOOD - Reliable, local timezone, consistent
+const formatDate = (dateString) => {
+  if (!dateString) return 'No date'
+
+  // Add time component for local timezone interpretation
+  const date = new Date(dateString + 'T00:00:00')
+
+  if (isNaN(date.getTime())) {
+    return 'Invalid Date'
+  }
+
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+```
+
+**Key Insight:** React context errors (like "ChakraProvider context undefined") can be symptoms of earlier JavaScript errors breaking the component render tree. Always investigate data parsing errors first.
+
+**Fixed**: 2025-10-17 in [MusingsPage.jsx](../frontend-project/src/components/MusingsPage.jsx)
+
+---
 
 ### Buffer is not defined (gray-matter error)
 

@@ -32,11 +32,13 @@ Create a new file at: `frontend-project/src/musings/{slug}.md`
 
 Use this template:
 
+**IMPORTANT**: Always quote the title, date, and excerpt fields in the frontmatter to avoid YAML parsing errors, especially when titles contain colons or special characters.
+
 ```markdown
 ---
-title: [Title]
-date: [Today's date in YYYY-MM-DD format]
-excerpt: [Excerpt]
+title: "[Title]"
+date: "[Today's date in YYYY-MM-DD format]"
+excerpt: "[Excerpt]"
 tags: [tag1, tag2, tag3]
 ---
 
@@ -101,9 +103,9 @@ Ready to start writing?
 
 ```markdown
 ---
-title: On Debugging Complex Systems
-date: 2025-10-15
-excerpt: Lessons learned from tracking down a production issue that took three days to diagnose
+title: "On Debugging Complex Systems"
+date: "2025-10-15"
+excerpt: "Lessons learned from tracking down a production issue that took three days to diagnose"
 tags: [debugging, observability, production]
 ---
 
