@@ -4,6 +4,8 @@ import { useParams, useNavigate, Routes, Route } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import matter from 'gray-matter'
+import { useColorMode } from './ui/color-mode'
+import './MusingsPage.css'
 
 // Import all markdown files
 const posts = import.meta.glob('../musings/*.md', { query: '?raw', import: 'default' })
@@ -194,6 +196,7 @@ const MusingPost = () => {
   const navigate = useNavigate()
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(true)
+  const { colorMode } = useColorMode()
 
   useEffect(() => {
     const loadPost = async () => {
@@ -252,34 +255,43 @@ const MusingPost = () => {
   }
 
   return (
-    <Box pt={20} pb={12} bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh">
-      <Container maxW="800px">
-        <VStack spacing={8} align="stretch">
+    <Box pt={20} pb={16} bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh">
+      <Container maxW="820px">
+        <VStack spacing={12} align="stretch">
+          {/* Header Section */}
           <Box>
             <Text
-              fontSize="sm"
+              fontSize="md"
               color={{ base: 'blue.600', _dark: 'blue.400' }}
               cursor="pointer"
               onClick={() => navigate('/musings')}
-              mb={4}
+              mb={8}
               _hover={{ textDecoration: 'underline' }}
+              fontWeight="medium"
             >
               ← Back to all musings
             </Text>
 
-            <Heading size="2xl" mb={4} color={{ base: 'gray.800', _dark: 'gray.100' }}>
+            <Heading
+              size="3xl"
+              mb={6}
+              color={{ base: 'gray.900', _dark: 'gray.50' }}
+              fontWeight="800"
+              letterSpacing="tight"
+              lineHeight="1.1"
+            >
               {post.title}
             </Heading>
 
-            <HStack spacing={4} mb={6}>
-              <Text fontSize="sm" color={{ base: 'gray.500', _dark: 'gray.500' }}>
+            <HStack spacing={4} mb={8}>
+              <Text fontSize="md" color={{ base: 'gray.500', _dark: 'gray.500' }} fontWeight="medium">
                 {formatDate(post.date)}
               </Text>
 
               {post.tags && post.tags.length > 0 && (
-                <HStack spacing={2}>
+                <HStack spacing={2} flexWrap="wrap">
                   {post.tags.map((tag) => (
-                    <Badge key={tag} colorScheme="blue" variant="subtle">
+                    <Badge key={tag} colorScheme="blue" variant="subtle" px={3} py={1}>
                       {tag}
                     </Badge>
                   ))}
@@ -288,51 +300,8 @@ const MusingPost = () => {
             </HStack>
           </Box>
 
-          <Box
-            className="markdown-content"
-            sx={{
-              '& h1': { fontSize: '2xl', fontWeight: 'bold', mt: 8, mb: 4, color: { base: 'gray.800', _dark: 'gray.100' } },
-              '& h2': { fontSize: 'xl', fontWeight: 'bold', mt: 6, mb: 3, color: { base: 'gray.800', _dark: 'gray.100' } },
-              '& h3': { fontSize: 'lg', fontWeight: 'semibold', mt: 4, mb: 2, color: { base: 'gray.800', _dark: 'gray.100' } },
-              '& p': { mb: 4, lineHeight: 1.7, color: { base: 'gray.600', _dark: 'gray.400' } },
-              '& ul, & ol': { mb: 4, pl: 6, color: { base: 'gray.600', _dark: 'gray.400' } },
-              '& li': { mb: 2 },
-              '& code': {
-                px: 1.5,
-                py: 0.5,
-                borderRadius: 'md',
-                fontSize: 'sm',
-                bg: { base: 'gray.100', _dark: 'gray.800' },
-                color: { base: 'blue.600', _dark: 'blue.400' }
-              },
-              '& pre': {
-                p: 4,
-                borderRadius: 'md',
-                mb: 4,
-                overflowX: 'auto',
-                bg: { base: 'gray.100', _dark: 'gray.800' }
-              },
-              '& pre code': {
-                px: 0,
-                py: 0,
-                bg: 'transparent',
-                color: { base: 'gray.800', _dark: 'gray.200' }
-              },
-              '& blockquote': {
-                borderLeft: '4px solid',
-                borderColor: { base: 'blue.500', _dark: 'blue.400' },
-                pl: 4,
-                py: 2,
-                my: 4,
-                fontStyle: 'italic',
-                color: { base: 'gray.600', _dark: 'gray.400' }
-              },
-              '& a': {
-                color: { base: 'blue.600', _dark: 'blue.400' },
-                textDecoration: 'underline'
-              }
-            }}
-          >
+          {/* Article Content */}
+          <Box className={`musing-article ${colorMode === 'dark' ? 'dark-mode' : ''}`}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>

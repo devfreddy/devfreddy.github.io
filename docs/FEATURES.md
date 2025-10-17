@@ -96,7 +96,7 @@ Professional work history and education timeline.
 ## Musings Blog
 
 ### Overview
-Markdown-based blog section for sharing thoughts, learnings, and observations about technology and collaboration.
+Markdown-based blog section for sharing thoughts, learnings, and observations about technology and collaboration. Features magazine-quality typography and reading experience.
 
 ### What It Does
 - Displays blog posts from markdown files with frontmatter
@@ -105,12 +105,17 @@ Markdown-based blog section for sharing thoughts, learnings, and observations ab
   - Title, date, excerpt, and tags
   - Reading time estimation (based on word count)
   - Empty state when no posts exist
-- Individual post view with full markdown rendering
+  - Transparency note about collaborative writing process
+- Individual post view with **enhanced typography**:
+  - Larger, more readable text (18px base)
+  - Serif fonts (Georgia/Cambria) for body content
+  - Generous spacing (1.8 line height)
+  - Bold, prominent headings
+  - Enhanced code blocks with borders and syntax styling
+  - Full dark mode support
 - Automatic post discovery from `src/musings/*.md` files
 - Click-through navigation from list to detail and back
 - Posts sorted by date (newest first)
-- Dark mode support throughout
-- Placeholder posts marked with `placeholder: true` and "placeholder" tag
 
 ### Post Structure
 ```markdown
@@ -145,7 +150,9 @@ Your markdown content here...
 - `/musings/{slug}` - Individual post view
 
 ### Technical Details
-- **File**: `src/components/MusingsPage.jsx`
+- **Files**:
+  - `src/components/MusingsPage.jsx` (component logic)
+  - `src/components/MusingsPage.css` (typography and styling)
 - **Dependencies**:
   - react-markdown (markdown rendering)
   - gray-matter (frontmatter parsing)
@@ -162,9 +169,17 @@ Your markdown content here...
 - Buffer polyfill required in Vite config for browser compatibility
 - Slug is derived from filename (e.g., `welcome.md` → `/musings/welcome`)
 - No build step required for new posts
-- Markdown styling uses Chakra UI tokens for theme consistency
-- Responsive design with max-width for readability
+- Typography styling uses dedicated CSS file (`.musing-article` class) for reliability
+- Dark mode handled via conditional class (`dark-mode`)
+- Responsive design with 820px max-width for optimal reading line length
 - Card hover effects: translateY(-4px) + border color change + shadow elevation
+
+### Typography Design
+- **Body text**: 18px Georgia/Cambria serif font with 1.8 line height
+- **Headings**: Bold weights (600-800), larger sizes (24-36px), tight letter spacing
+- **Code blocks**: SF Mono with borders, rounded corners, and proper padding
+- **Inline code**: Pink accent color (#db2777) with subtle background
+- **Spacing**: Generous margins (1.5rem paragraphs, 2-3rem headings)
 
 ### Creating New Posts
 Use the `/new-musing` slash command to create a new post with proper frontmatter structure and template.
@@ -174,6 +189,9 @@ Use the `/new-musing` slash command to create a new post with proper frontmatter
 - ✅ Enhanced card design with hover effects (Oct 15, 2025)
 - ✅ Empty state handling (Oct 15, 2025)
 - ✅ Cross-page navigation with hash-based scrolling (Oct 15, 2025)
+- ✅ Transparency note about collaborative writing (Oct 16, 2025)
+- ✅ Magazine-quality typography overhaul (Oct 16, 2025)
+- ✅ Dedicated CSS styling for reliability (Oct 16, 2025)
 
 ### Future Enhancements
 - RSS feed generation
@@ -536,4 +554,4 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues and solutions.
 
 ---
 
-**Last Updated**: 2025-10-15
+**Last Updated**: 2025-10-16
