@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vite.dev/config/
+// Google Analytics configured via VITE_GA_MEASUREMENT_ID environment variable
 export default defineConfig({
   plugins: [
     react(),
