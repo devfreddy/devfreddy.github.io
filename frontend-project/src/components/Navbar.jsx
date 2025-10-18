@@ -102,6 +102,16 @@ const Navbar = ({ scrollToSection }) => {
                 >
                   Musings
                 </Link>
+                <Link
+                  as={RouterLink}
+                  to="/experiments"
+                  fontWeight="medium"
+                  color={{ base: 'gray.600', _dark: 'gray.300' }}
+                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                  transition="color 0.2s"
+                >
+                  Experiments
+                </Link>
               </>
             ) : (
               <>
@@ -144,6 +154,16 @@ const Navbar = ({ scrollToSection }) => {
                   transition="color 0.2s"
                 >
                   Musings
+                </Link>
+                <Link
+                  as={RouterLink}
+                  to="/experiments"
+                  fontWeight="medium"
+                  color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
+                  transition="color 0.2s"
+                >
+                  Experiments
                 </Link>
               </>
             )}
@@ -267,6 +287,20 @@ const Navbar = ({ scrollToSection }) => {
                 >
                   Musings
                 </Link>
+                <Link
+                  as={RouterLink}
+                  to="/experiments"
+                  onClick={() => setIsOpen(false)}
+                  fontWeight="medium"
+                  color={{ base: 'gray.700', _dark: 'gray.200' }}
+                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+                  py={3}
+                  px={4}
+                  transition="all 0.2s"
+                  textAlign="right"
+                >
+                  Experiments
+                </Link>
               </>
             ) : (
               <>
@@ -323,6 +357,20 @@ const Navbar = ({ scrollToSection }) => {
                   textAlign="right"
                 >
                   Musings
+                </Link>
+                <Link
+                  as={RouterLink}
+                  to="/experiments"
+                  onClick={() => setIsOpen(false)}
+                  fontWeight="medium"
+                  color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
+                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+                  py={3}
+                  px={4}
+                  transition="all 0.2s"
+                  textAlign="right"
+                >
+                  Experiments
                 </Link>
               </>
             )}
