@@ -19,6 +19,7 @@ Complete reference for all features in the DevFreddy Portfolio.
 | [Floating Tech Icons](#floating-tech-icons) | 🟢 Complete | `src/components/FloatingTechIcons.jsx` | React Icons |
 | [Dark Mode](#dark-mode) | 🟢 Complete | `src/App.jsx` | Chakra UI, next-themes |
 | [Client-Side Routing](#client-side-routing) | 🟢 Complete | `src/App.jsx`, `public/404.html` | React Router |
+| [Google Analytics](#google-analytics) | 🟢 Complete | `index.html`, `vite.config.js` | vite-plugin-html |
 
 ---
 
@@ -554,4 +555,65 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues and solutions.
 
 ---
 
-**Last Updated**: 2025-10-16
+---
+
+## Google Analytics
+
+### Overview
+Google Analytics GA4 tracking for visitor analytics and site usage metrics.
+
+### What It Does
+- Tracks page views across the site
+- Monitors user engagement and behavior
+- Provides insights on visitor traffic and popular content
+- Configured via environment variables for security
+
+### Implementation
+```html
+<!-- index.html -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_MEASUREMENT_ID%"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '%VITE_GA_MEASUREMENT_ID%');
+</script>
+```
+
+### Configuration
+1. Create `.env` file in `frontend-project/` directory
+2. Add your GA4 Measurement ID: `VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX`
+3. Run `npm run build` to inject the ID into the HTML
+4. Deploy the built `dist/` folder
+
+### Technical Details
+- **Files**:
+  - `frontend-project/index.html` (GA tracking code)
+  - `frontend-project/vite.config.js` (environment variable injection)
+  - `frontend-project/.env` (Measurement ID storage)
+- **Dependencies**: vite-plugin-html (for HTML template variable injection)
+- **Build Process**: Vite replaces `%VITE_GA_MEASUREMENT_ID%` placeholders during build
+- **Security**: GA Measurement ID stored in .env file (not committed to repo)
+
+### Setup Instructions
+1. Go to https://analytics.google.com/
+2. Create a new property for the site
+3. Add data stream for Web platform
+4. Use site URL: `https://devfreddy.com` (the custom domain, not the GitHub Pages URL)
+5. Copy the Measurement ID (format: `G-XXXXXXXXXX`)
+6. Add it to `.env` file: `VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX`
+
+### Important Notes
+- **Custom Domain**: Always use `devfreddy.com` in GA configuration, not `devfreddy.github.io`
+  - Even though the site is hosted on GitHub Pages, DNS is configured to serve at devfreddy.com
+  - Visitors see devfreddy.com in their browsers, so GA should track that domain
+  - The GitHub Pages URL (devfreddy.github.io) is just the underlying hosting infrastructure
+- **Environment Variables**: The `.env` file is gitignored to keep the Measurement ID private
+- **SPA Tracking**: Works automatically with client-side routing (React Router)
+
+### Added
+October 18, 2025
+
+---
+
+**Last Updated**: 2025-10-18

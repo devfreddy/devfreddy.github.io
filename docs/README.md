@@ -2,8 +2,8 @@
 
 > Modern, performant, and accessible personal portfolio showcasing professional experience, technical skills, and creative projects.
 
-**Live Site**: https://devfreddy.github.io
-**Last Updated**: 2025-10-16
+**Live Site**: https://devfreddy.com (also accessible at https://devfreddy.github.io)
+**Last Updated**: 2025-10-18
 
 ---
 
@@ -105,6 +105,9 @@ Monitor: https://github.com/devfreddy/devfreddy.github.io/actions
 - Node.js 24.4.1 (via Volta)
 - GitHub Actions (CI/CD)
 
+**Analytics**
+- Google Analytics GA4 (configured via environment variables)
+
 ---
 
 ## Project Structure
@@ -168,6 +171,8 @@ See [COMMANDS.md](COMMANDS.md) for full list.
 - **GitHub Pages**: Free, reliable hosting
 - **GitHub Actions**: Automated CI/CD pipeline
 - **BrowserRouter**: Better URLs than HashRouter, requires 404.html redirect
+- **Custom Domain**: devfreddy.com configured via Namecheap DNS (points to GitHub Pages)
+  - Note: Site works without CNAME file in repo - GitHub Pages recognizes custom domain through DNS configuration alone
 
 ### Documentation
 - **Session-based**: Track work by date for continuity
@@ -232,4 +237,4 @@ MIT License - See LICENSE file for details.
 
 **Freddy** - [GitHub](https://github.com/devfreddy)
 
-**Portfolio**: https://devfreddy.github.io
+**Portfolio**: https://devfreddy.com

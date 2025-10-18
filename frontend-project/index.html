@@ -8,7 +8,16 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/logo-one_180x180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>devfreddy.com</title>
-    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_MEASUREMENT_ID%"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%VITE_GA_MEASUREMENT_ID%');
+    </script>
+
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
