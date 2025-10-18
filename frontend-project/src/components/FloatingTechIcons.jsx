@@ -1,16 +1,16 @@
-import { Box } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-import { 
-  FaReact, 
-  FaNodeJs, 
-  FaPython, 
-  FaAws, 
-  FaDocker, 
+import { Box, useBreakpointValue } from '@chakra-ui/react'
+import { motion, useReducedMotion } from 'framer-motion'
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaAws,
+  FaDocker,
   FaGitAlt,
 } from 'react-icons/fa'
-import { 
-  SiTypescript, 
-  SiKubernetes, 
+import {
+  SiTypescript,
+  SiKubernetes,
   SiMongodb,
   SiRedis,
   SiGraphql,
@@ -20,6 +20,8 @@ import {
 const MotionBox = motion.create(Box)
 
 const FloatingTechIcons = () => {
+  const shouldReduceMotion = useReducedMotion()
+  const isMobile = useBreakpointValue({ base: true, md: false })
   const icons = [
     { Icon: FaReact, color: '#61DAFB', delay: 0 },
     { Icon: SiTypescript, color: '#3178C6', delay: 0.5 },
@@ -50,40 +52,70 @@ const FloatingTechIcons = () => {
     { top: '30%', left: '50%' }
   ]
 
+  // On mobile, show fewer icons and reduce animations
+  const visibleIcons = isMobile ? icons.slice(0, 6) : icons
+  const iconSize = isMobile ? "30px" : "40px"
+
+  // Simplified animations for mobile or reduced motion preference
+  const getAnimateProps = () => {
+    if (shouldReduceMotion || isMobile) {
+      return {
+        opacity: 0.5,
+        scale: 1,
+        rotate: 0
+      }
+    }
+    return {
+      opacity: [0, 0.6, 0.4, 0.7, 0.5],
+      scale: [0, 1.2, 0.8, 1.1, 1],
+      rotate: [0, 180, 360],
+      y: [0, -20, 0, -15, 0]
+    }
+  }
+
+  const getTransitionProps = (delay) => {
+    if (shouldReduceMotion || isMobile) {
+      return {
+        duration: 1,
+        delay: delay
+      }
+    }
+    return {
+      duration: 8,
+      delay: delay,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut"
+    }
+  }
+
   return (
     <Box position="absolute" top="0" left="0" width="100%" height="100%" pointerEvents="none" zIndex="0">
-      {icons.map(({ Icon, color, delay }, index) => (
+      {visibleIcons.map(({ Icon, color, delay }, index) => (
         <MotionBox
           key={index}
           position="absolute"
           {...positions[index]}
           initial={{ opacity: 0, scale: 0, rotate: 0 }}
-          animate={{ 
-            opacity: [0, 0.6, 0.4, 0.7, 0.5],
-            scale: [0, 1.2, 0.8, 1.1, 1],
-            rotate: [0, 180, 360],
-            y: [0, -20, 0, -15, 0]
-          }}
-          transition={{
-            duration: 8,
-            delay: delay,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-          whileHover={{
-            scale: 1.5,
-            opacity: 0.9,
-            transition: { duration: 0.3 }
-          }}
-          style={{ pointerEvents: 'auto' }}
+          animate={getAnimateProps()}
+          transition={getTransitionProps(delay)}
+          whileHover={
+            shouldReduceMotion || isMobile
+              ? {}
+              : {
+                  scale: 1.5,
+                  opacity: 0.9,
+                  transition: { duration: 0.3 }
+                }
+          }
+          style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
         >
-          <Icon 
-            size="40px" 
+          <Icon
+            size={iconSize}
             color={color}
-            style={{ 
+            style={{
               filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))',
-              cursor: 'pointer'
+              cursor: isMobile ? 'default' : 'pointer'
             }}
           />
         </MotionBox>
