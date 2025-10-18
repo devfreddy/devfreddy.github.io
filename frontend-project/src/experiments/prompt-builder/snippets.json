@@ -1,0 +1,132 @@
+[
+  {
+    "id": "ts-strict-mode",
+    "title": "TypeScript Strict Mode",
+    "category": "coding-style",
+    "tags": ["typescript", "type-safety", "best-practices"],
+    "description": "Enforce strict TypeScript practices with comprehensive type checking",
+    "content": "## TypeScript Guidelines\n\n- Use strict mode (`strict: true` in tsconfig.json)\n- Avoid `any` types - use `unknown` when type is truly unknown\n- Prefer interfaces for object shapes, types for unions/intersections\n- Always define return types for functions\n- Use const assertions for literal types\n- Leverage utility types (Partial, Required, Pick, Omit, etc.)",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "react-performance",
+    "title": "React Performance Optimization",
+    "category": "coding-style",
+    "tags": ["react", "performance", "optimization"],
+    "description": "Guidelines for writing performant React components",
+    "content": "## React Performance Best Practices\n\n- Use `React.memo()` for expensive components that render with same props\n- Implement `useMemo()` for expensive calculations\n- Use `useCallback()` for functions passed to child components\n- Avoid inline object/array creation in JSX\n- Use virtual lists for long lists (react-window, react-virtualized)\n- Code-split with React.lazy() and Suspense\n- Avoid unnecessary re-renders with proper key props",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "git-commit-style",
+    "title": "Conventional Commit Messages",
+    "category": "development-workflow",
+    "tags": ["git", "commits", "standards"],
+    "description": "Follow conventional commit message format",
+    "content": "## Git Commit Message Format\n\nUse conventional commits format:\n```\ntype(scope): subject\n\nbody (optional)\n\nfooter (optional)\n```\n\n**Types:**\n- `feat`: New feature\n- `fix`: Bug fix\n- `docs`: Documentation changes\n- `style`: Code style changes (formatting, missing semicolons)\n- `refactor`: Code refactoring\n- `test`: Adding or updating tests\n- `chore`: Maintenance tasks\n\n**Example:**\n```\nfeat(auth): add OAuth2 authentication\n\nImplement OAuth2 flow with Google and GitHub providers.\nIncludes token refresh and secure storage.\n```",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "error-handling-comprehensive",
+    "title": "Comprehensive Error Handling",
+    "category": "coding-style",
+    "tags": ["error-handling", "robustness", "best-practices"],
+    "description": "Implement thorough error handling patterns",
+    "content": "## Error Handling Strategy\n\n- Always handle errors at appropriate levels\n- Use custom error classes for different error types\n- Include context in error messages (what failed, why, how to fix)\n- Log errors with sufficient detail for debugging\n- Never silently catch and ignore errors\n- Validate inputs early and fail fast\n- Provide user-friendly error messages for UI\n- Use error boundaries in React applications\n- Implement retry logic for transient failures",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "nextjs-project-setup",
+    "title": "Next.js Project Setup",
+    "category": "project-setup",
+    "tags": ["nextjs", "react", "typescript", "full-stack"],
+    "description": "Complete Next.js project initialization with best practices",
+    "content": "## Next.js Project Requirements\n\n**Setup:**\n- Use latest Next.js with App Router\n- TypeScript with strict mode\n- ESLint + Prettier configuration\n- Tailwind CSS for styling\n\n**Structure:**\n```\n/app         - App router pages\n/components  - Reusable React components\n/lib         - Utility functions and helpers\n/types       - TypeScript type definitions\n/public      - Static assets\n```\n\n**Features to include:**\n- SEO optimization (metadata, sitemap)\n- Loading states and error boundaries\n- API routes for backend logic\n- Environment variable configuration",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "fastapi-backend-setup",
+    "title": "FastAPI Backend Setup",
+    "category": "project-setup",
+    "tags": ["python", "fastapi", "backend", "api"],
+    "description": "Production-ready FastAPI backend structure",
+    "content": "## FastAPI Backend Requirements\n\n**Setup:**\n- Use FastAPI with Pydantic for validation\n- Python 3.11+ with type hints\n- Poetry or pip-tools for dependency management\n- Pytest for testing\n\n**Structure:**\n```\n/app\n  /api        - API endpoints\n  /core       - Configuration, security\n  /models     - Database models\n  /schemas    - Pydantic schemas\n  /services   - Business logic\n/tests        - Test files\n```\n\n**Features:**\n- Auto-generated OpenAPI docs\n- CORS middleware configuration\n- Authentication & authorization (JWT)\n- Database integration (SQLAlchemy)\n- Environment-based configuration\n- Logging and monitoring",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "security-code-review",
+    "title": "Security-Focused Code Review",
+    "category": "code-review",
+    "tags": ["security", "review", "vulnerabilities"],
+    "description": "Review code with security vulnerabilities in mind",
+    "content": "## Security Review Checklist\n\n**Authentication & Authorization:**\n- Verify proper authentication on all protected routes\n- Check for authorization before sensitive operations\n- Ensure passwords are hashed (never plain text)\n- Validate JWT tokens and session management\n\n**Input Validation:**\n- Sanitize all user inputs\n- Prevent SQL injection (use parameterized queries)\n- Prevent XSS attacks (escape output)\n- Validate file uploads (type, size, content)\n\n**Data Protection:**\n- Ensure sensitive data is encrypted at rest and in transit\n- No secrets in code or version control\n- Secure environment variable handling\n- Proper CORS configuration\n\n**API Security:**\n- Rate limiting on endpoints\n- HTTPS only\n- Secure headers (CSP, HSTS, etc.)\n- API versioning",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "performance-code-review",
+    "title": "Performance-Focused Code Review",
+    "category": "code-review",
+    "tags": ["performance", "review", "optimization"],
+    "description": "Review code for performance bottlenecks and optimizations",
+    "content": "## Performance Review Guidelines\n\n**Database Queries:**\n- Check for N+1 query problems\n- Ensure proper indexing\n- Use pagination for large result sets\n- Optimize JOIN operations\n\n**Caching:**\n- Identify cacheable data\n- Implement proper cache invalidation\n- Use appropriate cache levels (memory, Redis, CDN)\n\n**Frontend Performance:**\n- Minimize bundle size\n- Code splitting and lazy loading\n- Optimize images (format, size, lazy loading)\n- Reduce re-renders\n\n**General:**\n- Avoid unnecessary loops and nested iterations\n- Use efficient data structures\n- Profile before optimizing\n- Monitor memory usage",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "jest-testing-setup",
+    "title": "Jest Testing Configuration",
+    "category": "testing",
+    "tags": ["jest", "testing", "javascript", "typescript"],
+    "description": "Comprehensive Jest testing setup and patterns",
+    "content": "## Jest Testing Guidelines\n\n**Configuration:**\n- Use TypeScript with ts-jest\n- Configure coverage thresholds (80%+ recommended)\n- Set up test environment (jsdom for React)\n- Mock external dependencies\n\n**Testing Patterns:**\n- Follow AAA pattern (Arrange, Act, Assert)\n- Write descriptive test names: `it('should do X when Y')`\n- Test behavior, not implementation\n- Use test.each for parameterized tests\n\n**React Testing:**\n- Use @testing-library/react\n- Query by accessible roles/labels\n- Test user interactions\n- Mock API calls\n\n**Coverage:**\n- Aim for high coverage but focus on critical paths\n- Test edge cases and error scenarios\n- Don't just chase 100% coverage",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "api-documentation",
+    "title": "API Documentation Template",
+    "category": "documentation",
+    "tags": ["api", "documentation", "rest", "openapi"],
+    "description": "Comprehensive API documentation structure",
+    "content": "## API Documentation Requirements\n\n**For Each Endpoint Document:**\n\n1. **Endpoint Details:**\n   - HTTP method and path\n   - Brief description\n   - Authentication requirements\n\n2. **Request:**\n   - Path parameters\n   - Query parameters\n   - Request headers\n   - Request body schema with examples\n\n3. **Response:**\n   - Success response (200, 201, etc.) with schema\n   - Error responses (400, 401, 404, 500) with examples\n   - Response headers\n\n4. **Examples:**\n   - cURL example\n   - JavaScript/TypeScript example\n   - Response examples (success and error)\n\n5. **Notes:**\n   - Rate limiting\n   - Pagination details\n   - Deprecation warnings",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "readme-template",
+    "title": "Comprehensive README Structure",
+    "category": "documentation",
+    "tags": ["readme", "documentation", "markdown"],
+    "description": "Template for well-structured project README files",
+    "content": "## README Template\n\n**Required Sections:**\n\n1. **Project Title & Description**\n   - One-line description\n   - Key features\n   - Screenshots/demo (if applicable)\n\n2. **Installation**\n   - Prerequisites\n   - Step-by-step installation\n   - Configuration\n\n3. **Usage**\n   - Quick start guide\n   - Common use cases\n   - Code examples\n\n4. **Documentation**\n   - Link to full docs\n   - API reference\n   - Architecture overview\n\n5. **Development**\n   - Local setup\n   - Running tests\n   - Contributing guidelines\n\n6. **License**\n\n7. **Contact/Support**\n   - Issue tracker\n   - Discussion forum\n   - Maintainer contact",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "tdd-workflow",
+    "title": "Test-Driven Development Workflow",
+    "category": "testing",
+    "tags": ["tdd", "testing", "workflow"],
+    "description": "Follow TDD methodology for feature development",
+    "content": "## TDD Workflow Instructions\n\n**Red-Green-Refactor Cycle:**\n\n1. **Red - Write a Failing Test**\n   - Write test for new functionality first\n   - Test should fail (feature doesn't exist yet)\n   - Verify test actually runs and fails for right reason\n\n2. **Green - Make It Pass**\n   - Write minimal code to make test pass\n   - Don't worry about perfect code yet\n   - Run test to verify it passes\n\n3. **Refactor - Improve Code**\n   - Clean up implementation\n   - Remove duplication\n   - Improve naming and structure\n   - Ensure tests still pass\n\n**Benefits to Emphasize:**\n- Tests document expected behavior\n- Prevents over-engineering\n- Immediate feedback loop\n- Confidence in refactoring",
+    "author": "official",
+    "created": "2025-01-15"
+  },
+  {
+    "id": "accessibility-standards",
+    "title": "Web Accessibility Standards",
+    "category": "coding-style",
+    "tags": ["accessibility", "a11y", "wcag", "frontend"],
+    "description": "Ensure WCAG 2.1 AA compliance",
+    "content": "## Accessibility Requirements (WCAG 2.1 AA)\n\n**Semantic HTML:**\n- Use proper heading hierarchy (h1 -> h2 -> h3)\n- Use semantic elements (nav, main, article, section)\n- Proper form labels and fieldsets\n\n**Keyboard Navigation:**\n- All interactive elements keyboard accessible\n- Visible focus indicators\n- Logical tab order\n- Skip navigation links\n\n**Screen Reader Support:**\n- Meaningful alt text for images\n- ARIA labels when needed\n- ARIA live regions for dynamic content\n- Descriptive link text (avoid \"click here\")\n\n**Visual Accessibility:**\n- Color contrast ratio 4.5:1 (normal text) or 3:1 (large text)\n- Don't rely on color alone\n- Responsive text sizing\n- Reduced motion preferences\n\n**Testing:**\n- Test with keyboard only\n- Use screen reader (NVDA, JAWS, VoiceOver)\n- Automated tools (axe, Lighthouse)",
+    "author": "official",
+    "created": "2025-01-15"
+  }
+]

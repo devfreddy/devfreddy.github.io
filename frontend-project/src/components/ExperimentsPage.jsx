@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import matter from 'gray-matter'
 import { useColorMode } from './ui/color-mode'
 import GenerativeArt from './GenerativeArt'
+import PromptBuilder from './PromptBuilder'
 import './ExperimentsPage.css'
 
 // Import all markdown files
@@ -374,18 +375,17 @@ const ExperimentDetail = () => {
 
           {/* Experiment Content */}
           <Box className={`experiment-article ${colorMode === 'dark' ? 'dark-mode' : ''}`}>
-            {experiment.content.split('\n').map((line, index) => {
-              // Check if line contains a component placeholder
-              if (line.trim() === '<GenerativeArt />') {
-                return <Box key={index} my={8}><GenerativeArt /></Box>
-              }
-              return null
-            }).filter(Boolean).length > 0 ? (
+            {experiment.content.split('\n').some(line =>
+              line.trim() === '<GenerativeArt />' || line.trim() === '<PromptBuilder />'
+            ) ? (
               // Render with component replacement
               <>
-                {experiment.content.split(/(<GenerativeArt \/>)/g).map((part, index) => {
+                {experiment.content.split(/(<GenerativeArt \/>|<PromptBuilder \/>)/g).map((part, index) => {
                   if (part.trim() === '<GenerativeArt />') {
                     return <Box key={index} my={8}><GenerativeArt /></Box>
+                  }
+                  if (part.trim() === '<PromptBuilder />') {
+                    return <Box key={index} my={8}><PromptBuilder /></Box>
                   }
                   if (part.trim()) {
                     return (
