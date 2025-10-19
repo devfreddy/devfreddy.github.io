@@ -2,7 +2,7 @@ import { init, addSignalAttribute } from "@dash0/sdk-web";
 
 // devfreddycom
 init({
-  serviceName: "my-website",
+  serviceName: "devfreddy.com",
   endpoint: {
     // Replace this with the endpoint url identified during preparation
     url: "https://devfreddy.com",
