@@ -7,6 +7,7 @@ import './index.css'
 import App from './App.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
 import { Buffer } from 'buffer'
+import './instrumentation-client.js'
 
 // Polyfill Buffer for gray-matter
 window.Buffer = Buffer

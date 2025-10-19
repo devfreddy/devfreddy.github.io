@@ -9,6 +9,10 @@ import ExperienceSection from './components/ExperienceSection'
 import CocktailsPageBasic from './components/CocktailsPageBasic'
 import MusingsRouter from './components/MusingsPage'
 import ExperimentsRouter from './components/ExperimentsPage'
+import Dash0Test from './components/Dash0Test'
+
+// Import Dash0 tracking functions
+import { sendEvent } from '@dash0/sdk-web'
 
 const HomePage = ({ scrollToSection }) => (
   <>
@@ -27,6 +31,23 @@ function App() {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
+  // Track page views on route change
+  useEffect(() => {
+    // Track page view with Dash0
+    sendEvent('page_view', {
+      path: location.pathname,
+      search: location.search,
+      hash: location.hash,
+      timestamp: new Date().toISOString(),
+    })
+
+    // Track custom event for navigation
+    sendEvent('navigation', {
+      from: location.pathname,
+      timestamp: new Date().toISOString(),
+    })
+  }, [location.pathname, location.search, location.hash])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -37,6 +58,7 @@ function App() {
   return (
     <Box>
       <Navbar scrollToSection={scrollToSection} />
+      <Dash0Test />
       <Routes>
         <Route path="/" element={<HomePage scrollToSection={scrollToSection} />} />
         <Route path="/cocktails" element={<CocktailsPageBasic />} />

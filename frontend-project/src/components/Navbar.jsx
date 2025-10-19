@@ -3,12 +3,14 @@ import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 import { useEffect, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { useDash0Tracking } from '../hooks/useDash0Tracking'
 
 const Navbar = ({ scrollToSection }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const isHomePage = location.pathname === '/'
   const [isOpen, setIsOpen] = useState(false)
+  const { trackNavigation, trackButtonClick } = useDash0Tracking()
 
   // Handle hash navigation when landing on homepage
   useEffect(() => {
@@ -24,6 +26,13 @@ const Navbar = ({ scrollToSection }) => {
   }, [location])
 
   const handleSectionClick = (sectionId) => {
+    // Track navigation to section
+    trackNavigation(`#${sectionId}`, {
+      section: sectionId,
+      isHomePage,
+      source: 'navbar'
+    })
+
     if (isHomePage) {
       scrollToSection(sectionId)
     } else {
@@ -194,7 +203,13 @@ const Navbar = ({ scrollToSection }) => {
             />
             <IconButton
               aria-label={isOpen ? "Close menu" : "Open menu"}
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                trackButtonClick('mobile-menu-toggle', {
+                  isOpen: !isOpen,
+                  location: location.pathname
+                })
+                setIsOpen(!isOpen)
+              }}
               color={{ base: 'gray.800', _dark: 'gray.100' }}
               bg={{ base: 'gray.100', _dark: 'gray.600' }}
               _hover={{

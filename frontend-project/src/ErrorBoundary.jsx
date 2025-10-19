@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Heading, Text, Button, VStack } from '@chakra-ui/react'
+import { reportError, sendEvent } from '@dash0/sdk-web'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -16,7 +17,26 @@ class ErrorBoundary extends React.Component {
       error: error,
       errorInfo: errorInfo
     })
+    
+    // Log error to console
     console.error('Error caught by ErrorBoundary:', error, errorInfo)
+    
+    // Track error with Dash0
+    reportError({
+      message: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack,
+      errorBoundary: true,
+      timestamp: new Date().toISOString(),
+    })
+    
+    // Track custom event for error boundary
+    sendEvent('error_boundary_triggered', {
+      errorMessage: error.message,
+      errorType: error.name,
+      componentStack: errorInfo.componentStack,
+      timestamp: new Date().toISOString(),
+    })
   }
 
   render() {
