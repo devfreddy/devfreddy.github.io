@@ -18,7 +18,7 @@ const developmentConfig = {
   ...baseConfig,
   endpoint: {
     url: "https://ingress.us-west-2.aws.dash0.com",
-    authToken: "auth_Ro2pVbBZ47ZS2Sq48ieIRl9seWOl8P7B",
+    authToken: "auth_GlYKml93n2oALtbcQMB62nba6RzSW52H",
     dataset: "devfreddycom-dev"
   },
   // Enable debug logging in development
