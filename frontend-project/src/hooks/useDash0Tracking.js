@@ -17,7 +17,7 @@ export const useDash0Tracking = () => {
       action,
       element,
       ...properties,
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
     })
   }, [])
 
@@ -78,7 +78,7 @@ export const useDash0Tracking = () => {
    */
   const trackCustom = useCallback((eventName, properties = {}) => {
     sendEvent(eventName, {
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
       ...properties,
     })
   }, [])
@@ -93,7 +93,7 @@ export const useDash0Tracking = () => {
     sendEvent('performance', {
       metric: metricName,
       value,
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
       ...properties,
     })
   }, [])

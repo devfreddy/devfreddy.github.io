@@ -2,15 +2,20 @@ import { init, addSignalAttribute, sendEvent, reportError } from "@dash0/sdk-web
 import { dash0Config, isDev } from './config/dash0-config.js';
 
 // Initialize Dash0 for devfreddy.com with environment-specific configuration
-init(dash0Config);
+try {
+  init(dash0Config);
 
-// Log initialization in development
-if (isDev) {
-  console.log('Dash0 initialized with config:', {
-    serviceName: dash0Config.serviceName,
-    dataset: dash0Config.endpoint.dataset,
-    environment: import.meta.env.MODE,
-  });
+  // Log initialization in development
+  if (isDev) {
+    console.log('Dash0 initialized with config:', {
+      serviceName: dash0Config.serviceName,
+      dataset: dash0Config.endpoint.dataset,
+      environment: import.meta.env.MODE,
+      endpoint: dash0Config.endpoint.url,
+    });
+  }
+} catch (error) {
+  console.error('Failed to initialize Dash0:', error);
 }
 
 // Add custom attributes for better filtering
@@ -25,7 +30,7 @@ sendEvent('page_view', {
   search: window.location.search,
   hash: window.location.hash,
   referrer: document.referrer,
-  timestamp: new Date().toISOString(),
+  timestamp: Date.now(),
 });
 
 // Set up global error handler
@@ -59,7 +64,7 @@ if ('performance' in window) {
           domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
           loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
           totalTime: navigation.loadEventEnd - navigation.fetchStart,
-          timestamp: new Date().toISOString(),
+          timestamp: Date.now(),
         });
       }
     }, 0);

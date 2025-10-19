@@ -38,13 +38,13 @@ function App() {
       path: location.pathname,
       search: location.search,
       hash: location.hash,
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
     })
 
     // Track custom event for navigation
     sendEvent('navigation', {
       from: location.pathname,
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
     })
   }, [location.pathname, location.search, location.hash])
 
@@ -58,7 +58,7 @@ function App() {
   return (
     <Box>
       <Navbar scrollToSection={scrollToSection} />
-      <Dash0Test />
+      {/* <Dash0Test /> */}
       <Routes>
         <Route path="/" element={<HomePage scrollToSection={scrollToSection} />} />
         <Route path="/cocktails" element={<CocktailsPageBasic />} />

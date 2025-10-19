@@ -17,7 +17,7 @@ const baseConfig = {
 const developmentConfig = {
   ...baseConfig,
   endpoint: {
-    url: "https://devfreddy.com",
+    url: "https://ingress.us-west-2.aws.dash0.com",
     authToken: "auth_Ro2pVbBZ47ZS2Sq48ieIRl9seWOl8P7B",
     dataset: "devfreddycom-dev"
   },
@@ -29,7 +29,7 @@ const developmentConfig = {
 const productionConfig = {
   ...baseConfig,
   endpoint: {
-    url: "https://devfreddy.com",
+    url: "https://ingress.us-west-2.aws.dash0.com",
     authToken: "auth_Ro2pVbBZ47ZS2Sq48ieIRl9seWOl8P7B",
     dataset: "devfreddycom"
   },

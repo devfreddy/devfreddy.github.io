@@ -20,7 +20,7 @@ const Dash0Test = () => {
   const handleTestClick = () => {
     trackButtonClick('test-button', {
       testType: 'basic-click',
-      timestamp: new Date().toISOString()
+      timestamp: Date.now()
     })
     
     toaster.create({
