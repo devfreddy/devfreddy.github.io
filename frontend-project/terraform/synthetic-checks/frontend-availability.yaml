@@ -1,0 +1,52 @@
+kind: Dash0SyntheticCheck
+metadata:
+  name: frontend-availability-check
+  labels: {}
+spec:
+  enabled: true
+  notifications:
+    channels: []
+  plugin:
+    display:
+      name: Frontend Availability Check
+    kind: http
+    spec:
+      assertions:
+        criticalAssertions:
+          - kind: status_code
+            spec:
+              value: "200"
+              operator: is
+          - kind: timing
+            spec:
+              type: response
+              value: 5000ms
+              operator: lt
+        degradedAssertions:
+          - kind: timing
+            spec:
+              type: response
+              value: 2000ms
+              operator: lt
+      request:
+        method: get
+        url: https://example.com
+        queryParameters: []
+        headers: []
+        redirects: follow
+        tls:
+          allowInsecure: false
+        tracing:
+          addTracingHeaders: true
+  retries:
+    kind: fixed
+    spec:
+      attempts: 3
+      delay: 1s
+  schedule:
+    interval: 5m
+    locations:
+      - us-oregon
+      - de-frankfurt
+      - ap-northeast
+    strategy: all_locations

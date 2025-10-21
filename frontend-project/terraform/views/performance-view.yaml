@@ -1,0 +1,54 @@
+kind: Dash0View
+metadata:
+  name: performance-view
+  labels:
+    "dash0.com/dataset": "${dataset}"
+spec:
+  display:
+    name: Performance Metrics
+    folder: []
+  type: spans
+  permissions:
+    - actions:
+        - "views:read"
+        - "views:delete"
+      role: "admin"
+    - actions:
+        - "views:read"
+      role: "basic_member"
+  filter:
+    - key: service.name
+      operator: is
+      value: frontend-project
+  table:
+    columns:
+      - colSize: minmax(auto, 2fr)
+        key: dash0.span.name
+        label: Operation
+      - colSize: min-content
+        key: service.name
+        label: Service
+      - colSize: min-content
+        key: otel.span.start_time
+        label: Start Time
+      - colSize: 8.5rem
+        key: otel.span.duration
+        label: Duration
+      - colSize: 6rem
+        key: otel.parent.id
+        label: Trace ID
+      - colSize: 8rem
+        key: dash0.span.type
+        label: Type
+      - colSize: 7rem
+        key: otel.span.kind
+        label: Kind
+      - colSize: minmax(5rem, max-content)
+        key: http.method
+        label: HTTP Method
+      - colSize: minmax(5rem, max-content)
+        key: http.status_code
+        label: Status Code
+    sort:
+      - direction: descending
+        key: otel.span.duration

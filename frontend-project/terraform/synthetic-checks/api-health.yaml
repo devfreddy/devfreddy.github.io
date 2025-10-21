@@ -1,0 +1,51 @@
+kind: Dash0SyntheticCheck
+metadata:
+  name: api-health-check
+  labels: {}
+spec:
+  enabled: true
+  notifications:
+    channels: []
+  plugin:
+    display:
+      name: API Health Check
+    kind: http
+    spec:
+      assertions:
+        criticalAssertions:
+          - kind: status_code
+            spec:
+              value: "200"
+              operator: is
+          - kind: timing
+            spec:
+              type: response
+              value: 2000ms
+              operator: lt
+        degradedAssertions:
+          - kind: timing
+            spec:
+              type: response
+              value: 1000ms
+              operator: lt
+      request:
+        method: get
+        url: https://api.example.com/health
+        queryParameters: []
+        headers: []
+        redirects: follow
+        tls:
+          allowInsecure: false
+        tracing:
+          addTracingHeaders: true
+  retries:
+    kind: fixed
+    spec:
+      attempts: 3
+      delay: 1s
+  schedule:
+    interval: 5m
+    locations:
+      - us-oregon
+      - de-frankfurt
+    strategy: all_locations

@@ -1,0 +1,129 @@
+apiVersion: perses.dev/v1alpha1
+kind: PersesDashboard
+metadata:
+  name: frontend-project-dashboard
+  labels: {}
+spec:
+  duration: 30m
+  display:
+    description: Main observability dashboard for frontend-project
+    name: Frontend Project Dashboard
+  layouts:
+    - kind: Grid
+      spec:
+        items:
+          - content:
+              $ref: "#/spec/panels/request-rate"
+            height: 8
+            width: 8
+            x: 0
+            y: 0
+          - content:
+              $ref: "#/spec/panels/error-rate"
+            height: 8
+            width: 8
+            x: 8
+            y: 0
+          - content:
+              $ref: "#/spec/panels/response-time"
+            height: 8
+            width: 8
+            x: 16
+            y: 0
+  panels:
+    request-rate:
+      kind: Panel
+      spec:
+        display:
+          description: Rate of incoming requests
+          name: Request Rate
+        plugin:
+          kind: LineChart
+          spec:
+            legend:
+              calcs: []
+              displayMode: list
+              placement: bottom
+              values: []
+            thresholds:
+              mode: absolute
+              steps:
+                - color: green
+                  value: 0
+                - color: red
+                  value: 80
+            unit: req/s
+        queries:
+          - kind: TimeSeriesQuery
+            spec:
+              plugin:
+                kind: PrometheusTimeSeriesQuery
+                spec:
+                  query: sum(rate({dash0_operation_name != "", service_name = "frontend-project"}[5m]))
+                  seriesNameFormat: Request Rate
+
+    error-rate:
+      kind: Panel
+      spec:
+        display:
+          description: Percentage of errors in the last 5 minutes
+          name: Error Rate
+        plugin:
+          kind: LineChart
+          spec:
+            legend:
+              calcs: []
+              displayMode: list
+              placement: bottom
+              values: []
+            thresholds:
+              mode: absolute
+              steps:
+                - color: green
+                  value: 0
+                - color: yellow
+                  value: 5
+                - color: red
+                  value: 10
+            unit: percent
+        queries:
+          - kind: TimeSeriesQuery
+            spec:
+              plugin:
+                kind: PrometheusTimeSeriesQuery
+                spec:
+                  query: (sum(increase({service_name = "frontend-project", otel_span_status_code = "ERROR"}[5m]))) / (sum(increase({service_name = "frontend-project"}[5m])) > 0) * 100
+                  seriesNameFormat: Error Rate
+
+    response-time:
+      kind: Panel
+      spec:
+        display:
+          description: P99 response time in milliseconds
+          name: Response Time (P99)
+        plugin:
+          kind: LineChart
+          spec:
+            legend:
+              calcs: []
+              displayMode: list
+              placement: bottom
+              values: []
+            thresholds:
+              mode: absolute
+              steps:
+                - color: green
+                  value: 0
+                - color: yellow
+                  value: 1000
+                - color: red
+                  value: 2000
+            unit: ms
+        queries:
+          - kind: TimeSeriesQuery
+            spec:
+              plugin:
+                kind: PrometheusTimeSeriesQuery
+                spec:
+                  query: histogram_quantile(0.99, sum(rate({service_name = "frontend-project"}[5m])) by (le))
+                  seriesNameFormat: Response Time P99
