@@ -30,7 +30,7 @@ spec:
               operator: lt
       request:
         method: get
-        url: https://example.com
+        url: https://devfreddy.com
         queryParameters: []
         headers: []
         redirects: follow
