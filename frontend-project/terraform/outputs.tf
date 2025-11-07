@@ -14,8 +14,7 @@ output "check_rule_origins" {
 output "synthetic_check_origins" {
   description = "Map of synthetic check origin IDs"
   value = {
-    api_health             = try(dash0_synthetic_check.api_health.origin, null)
-    frontend_availability  = try(dash0_synthetic_check.frontend_availability.origin, null)
+    api_health = try(dash0_synthetic_check.api_health.origin, null)
   }
 }
 

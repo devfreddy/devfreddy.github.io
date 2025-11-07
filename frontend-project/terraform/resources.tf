@@ -75,12 +75,6 @@ resource "dash0_synthetic_check" "api_health" {
   synthetic_check_yaml = file("${path.module}/synthetic-checks/api-health.yaml")
 }
 
-# Synthetic check for frontend availability
-resource "dash0_synthetic_check" "frontend_availability" {
-  dataset              = var.dataset
-  synthetic_check_yaml = file("${path.module}/synthetic-checks/frontend-availability.yaml")
-}
-
 
 # ============================================================================
 # VIEWS - Custom groupings and perspectives

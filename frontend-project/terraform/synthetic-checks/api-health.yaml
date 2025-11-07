@@ -44,8 +44,7 @@ spec:
       attempts: 3
       delay: 1s
   schedule:
-    interval: 5m
+    interval: 1h
     locations:
-      - us-oregon
-      - de-frankfurt
+      - us-virginia
     strategy: all_locations
