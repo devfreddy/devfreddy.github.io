@@ -5,39 +5,18 @@ import { useEffect, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { useDash0Tracking } from '../hooks/useDash0Tracking'
 
-const Navbar = ({ scrollToSection }) => {
+const Navbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const isHomePage = location.pathname === '/'
   const [isOpen, setIsOpen] = useState(false)
   const { trackNavigation, trackButtonClick } = useDash0Tracking()
 
-  // Handle hash navigation when landing on homepage
-  useEffect(() => {
-    if (location.pathname === '/' && location.hash) {
-      const sectionId = location.hash.substring(1)
-      setTimeout(() => {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 100)
-    }
-  }, [location])
-
-  const handleSectionClick = (sectionId) => {
-    // Track navigation to section
-    trackNavigation(`#${sectionId}`, {
-      section: sectionId,
-      isHomePage,
+  const handleNavigation = (path) => {
+    trackNavigation(path, {
+      from: location.pathname,
       source: 'navbar'
     })
-
-    if (isHomePage) {
-      scrollToSection(sectionId)
-    } else {
-      navigate(`/#${sectionId}`)
-    }
+    navigate(path)
     setIsOpen(false)
   }
 
@@ -69,113 +48,46 @@ const Navbar = ({ scrollToSection }) => {
 
           {/* Desktop Menu */}
           <HStack spacing={8} display={{ base: 'none', md: 'flex' }}>
-            {isHomePage ? (
-              <>
-                <Link
-                  onClick={() => scrollToSection('home')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Home
-                </Link>
-                <Link
-                  onClick={() => scrollToSection('about')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  About
-                </Link>
-                <Link
-                  onClick={() => scrollToSection('experience')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Experience
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/musings"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Musings
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/experiments"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Experiments
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  as={RouterLink}
-                  to="/"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Home
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('about')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  About
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('experience')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Experience
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/musings"
-                  fontWeight="medium"
-                  color={location.pathname.startsWith('/musings') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Musings
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/experiments"
-                  fontWeight="medium"
-                  color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
-                  _hover={{ color: 'blue.500', textDecoration: 'none' }}
-                  transition="color 0.2s"
-                >
-                  Experiments
-                </Link>
-              </>
-            )}
+            <Link
+              as={RouterLink}
+              to="/"
+              fontWeight="medium"
+              color={location.pathname === '/' ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+              _hover={{ color: 'blue.500', textDecoration: 'none' }}
+              transition="color 0.2s"
+            >
+              Home
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/about"
+              fontWeight="medium"
+              color={location.pathname === '/about' ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+              _hover={{ color: 'blue.500', textDecoration: 'none' }}
+              transition="color 0.2s"
+            >
+              About
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/musings"
+              fontWeight="medium"
+              color={location.pathname.startsWith('/musings') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+              _hover={{ color: 'blue.500', textDecoration: 'none' }}
+              transition="color 0.2s"
+            >
+              Musings
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/experiments"
+              fontWeight="medium"
+              color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.600', _dark: 'gray.300' }}
+              _hover={{ color: 'blue.500', textDecoration: 'none' }}
+              transition="color 0.2s"
+            >
+              Experiments
+            </Link>
 
             <ColorModeButton
               color={{ base: 'gray.600', _dark: 'gray.700' }}
@@ -247,148 +159,62 @@ const Navbar = ({ scrollToSection }) => {
             mt={1}
             boxShadow="lg"
           >
-            {isHomePage ? (
-              <>
-                <Link
-                  onClick={() => handleSectionClick('home')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Home
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('about')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  About
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('experience')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Experience
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/musings"
-                  onClick={() => setIsOpen(false)}
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Musings
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/experiments"
-                  onClick={() => setIsOpen(false)}
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Experiments
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  as={RouterLink}
-                  to="/"
-                  onClick={() => setIsOpen(false)}
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Home
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('about')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  About
-                </Link>
-                <Link
-                  onClick={() => handleSectionClick('experience')}
-                  cursor="pointer"
-                  fontWeight="medium"
-                  color={{ base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Experience
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/musings"
-                  onClick={() => setIsOpen(false)}
-                  fontWeight="medium"
-                  color={location.pathname.startsWith('/musings') ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Musings
-                </Link>
-                <Link
-                  as={RouterLink}
-                  to="/experiments"
-                  onClick={() => setIsOpen(false)}
-                  fontWeight="medium"
-                  color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
-                  _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
-                  py={3}
-                  px={4}
-                  transition="all 0.2s"
-                  textAlign="right"
-                >
-                  Experiments
-                </Link>
-              </>
-            )}
+            <Link
+              as={RouterLink}
+              to="/"
+              onClick={() => setIsOpen(false)}
+              fontWeight="medium"
+              color={location.pathname === '/' ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
+              _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+              py={3}
+              px={4}
+              transition="all 0.2s"
+              textAlign="right"
+            >
+              Home
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/about"
+              onClick={() => setIsOpen(false)}
+              fontWeight="medium"
+              color={location.pathname === '/about' ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
+              _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+              py={3}
+              px={4}
+              transition="all 0.2s"
+              textAlign="right"
+            >
+              About
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/musings"
+              onClick={() => setIsOpen(false)}
+              fontWeight="medium"
+              color={location.pathname.startsWith('/musings') ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
+              _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+              py={3}
+              px={4}
+              transition="all 0.2s"
+              textAlign="right"
+            >
+              Musings
+            </Link>
+            <Link
+              as={RouterLink}
+              to="/experiments"
+              onClick={() => setIsOpen(false)}
+              fontWeight="medium"
+              color={location.pathname.startsWith('/experiments') ? 'blue.500' : { base: 'gray.700', _dark: 'gray.200' }}
+              _hover={{ bg: { base: 'gray.50', _dark: 'gray.700' }, color: 'blue.500', textDecoration: 'none' }}
+              py={3}
+              px={4}
+              transition="all 0.2s"
+              textAlign="right"
+            >
+              Experiments
+            </Link>
           </VStack>
         </Box>
       )}

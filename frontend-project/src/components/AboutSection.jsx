@@ -13,7 +13,7 @@ const AboutSection = () => {
   ]
 
   return (
-    <Box id="about" pt={12} pb={12} bg={{ base: 'white', _dark: 'gray.900' }}>
+    <Box id="about" pt={20} pb={12} bg={{ base: 'white', _dark: 'gray.900' }}>
       <Container maxW="1200px">
         <VStack spacing={12}>
           <VStack textAlign="center">
