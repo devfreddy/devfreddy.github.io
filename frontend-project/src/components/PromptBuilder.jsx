@@ -243,8 +243,7 @@ const PromptBuilder = () => {
               maxW="800px"
               mx="auto"
             >
-              Build custom Claude prompts by selecting snippets from our curated library.
-              Combine best practices, coding standards, and configuration templates into a single downloadable prompt.
+              Combine modular snippet templates into powerful, reusable prompts. Start with pre-built best practices or create your own custom snippets.
             </Text>
           </Box>
 

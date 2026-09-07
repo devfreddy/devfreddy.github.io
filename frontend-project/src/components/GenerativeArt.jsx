@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { Card, VStack, HStack, Button, Box, Text, NativeSelect, Field } from '@chakra-ui/react'
 import './GenerativeArt.css'
 
 const GenerativeArt = () => {
@@ -6,6 +7,7 @@ const GenerativeArt = () => {
   const [pattern, setPattern] = useState('circles')
   const [colorScheme, setColorScheme] = useState('vibrant')
   const [isDark, setIsDark] = useState(false)
+  const [colorMode, setColorMode] = useState('light')
 
   // Detect dark mode
   useEffect(() => {
@@ -14,6 +16,7 @@ const GenerativeArt = () => {
                         document.body.classList.contains('dark') ||
                         window.matchMedia('(prefers-color-scheme: dark)').matches
       setIsDark(isDarkMode)
+      setColorMode(isDarkMode ? 'dark' : 'light')
     }
 
     checkDarkMode()
@@ -32,7 +35,13 @@ const GenerativeArt = () => {
     sunset: ['#FF6B9D', '#C44569', '#FFA07A', '#F67280', '#355C7D'],
     ocean: ['#0077BE', '#00A8E8', '#00C9FF', '#66D9EF', '#0099CC'],
     forest: ['#2D5016', '#3A7D44', '#69995D', '#AECFA4', '#D4E7C5'],
-    monochrome: ['#000000', '#404040', '#808080', '#BFBFBF', '#FFFFFF']
+    monochrome: ['#000000', '#404040', '#808080', '#BFBFBF', '#FFFFFF'],
+    neon: ['#FF006E', '#FB5607', '#FFBE0B', '#8338EC', '#3A86FF'],
+    earth: ['#8B4513', '#D2691E', '#CD853F', '#DEB887', '#F4A460'],
+    berry: ['#6A0572', '#AB0E86', '#E91E8C', '#FF5C93', '#FF85B2'],
+    teal: ['#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51'],
+    midnight: ['#0F0C29', '#302B63', '#24243E', '#16213E', '#0F3460'],
+    coral: ['#FF6B9D', '#FFB347', '#FF7E5F', '#FF6B6B', '#FFE66D']
   }
 
   const getColors = () => colorSchemes[colorScheme] || colorSchemes.vibrant
@@ -333,63 +342,107 @@ const GenerativeArt = () => {
   }, [pattern, colorScheme, isDark])
 
   return (
-    <div className="generative-art-container">
-      <div className="generative-art-controls">
-        <h3 className="controls-title">Controls</h3>
+    <Box className="generative-art-container" w="100%" my={8}>
+      <Card.Root
+        bg={{ base: 'white', _dark: 'gray.800' }}
+        borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
+        mb={6}
+      >
+        <Card.Body>
+          <VStack align="stretch" spacing={4}>
+            <HStack gap={4} align="flex-end">
+              <Field.Root flex={1}>
+                <Field.Label fontSize="sm" fontWeight="medium" color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                  Pattern Type
+                </Field.Label>
+                <NativeSelect.Root>
+                  <NativeSelect.Field
+                    id="pattern-select"
+                    value={pattern}
+                    onChange={(e) => setPattern(e.target.value)}
+                    size="sm"
+                  >
+                    <option value="circles">Overlapping Circles</option>
+                    <option value="lines">Flowing Lines</option>
+                    <option value="grid">Geometric Grid</option>
+                    <option value="waves">Wave Patterns</option>
+                    <option value="spiral">Spiral</option>
+                    <option value="mondrian">Mondrian Style</option>
+                  </NativeSelect.Field>
+                  <NativeSelect.Indicator />
+                </NativeSelect.Root>
+              </Field.Root>
 
-        <div className="control-group">
-          <label htmlFor="pattern-select">Pattern Type</label>
-          <select
-            id="pattern-select"
-            value={pattern}
-            onChange={(e) => setPattern(e.target.value)}
-            className="control-select"
-          >
-            <option value="circles">Overlapping Circles</option>
-            <option value="lines">Flowing Lines</option>
-            <option value="grid">Geometric Grid</option>
-            <option value="waves">Wave Patterns</option>
-            <option value="spiral">Spiral</option>
-            <option value="mondrian">Mondrian Style</option>
-          </select>
-        </div>
+              <Field.Root flex={1}>
+                <Field.Label fontSize="sm" fontWeight="medium" color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                  Color Scheme
+                </Field.Label>
+                <NativeSelect.Root>
+                  <NativeSelect.Field
+                    id="color-select"
+                    value={colorScheme}
+                    onChange={(e) => setColorScheme(e.target.value)}
+                    size="sm"
+                  >
+                    <option value="vibrant">Vibrant</option>
+                    <option value="pastel">Pastel</option>
+                    <option value="sunset">Sunset</option>
+                    <option value="ocean">Ocean</option>
+                    <option value="forest">Forest</option>
+                    <option value="monochrome">Monochrome</option>
+                    <option value="neon">Neon</option>
+                    <option value="earth">Earth</option>
+                    <option value="berry">Berry</option>
+                    <option value="teal">Teal</option>
+                    <option value="midnight">Midnight</option>
+                    <option value="coral">Coral</option>
+                  </NativeSelect.Field>
+                  <NativeSelect.Indicator />
+                </NativeSelect.Root>
+              </Field.Root>
+            </HStack>
 
-        <div className="control-group">
-          <label htmlFor="color-select">Color Scheme</label>
-          <select
-            id="color-select"
-            value={colorScheme}
-            onChange={(e) => setColorScheme(e.target.value)}
-            className="control-select"
-          >
-            <option value="vibrant">Vibrant</option>
-            <option value="pastel">Pastel</option>
-            <option value="sunset">Sunset</option>
-            <option value="ocean">Ocean</option>
-            <option value="forest">Forest</option>
-            <option value="monochrome">Monochrome</option>
-          </select>
-        </div>
+            <HStack gap={3}>
+              <Button
+                onClick={generate}
+                size="sm"
+                bg="purple.600"
+                color="white"
+                _hover={{ bg: 'purple.700' }}
+                _active={{ bg: 'purple.800' }}
+                flex={1}
+              >
+                Regenerate
+              </Button>
+              <Button
+                onClick={downloadArt}
+                size="sm"
+                variant="outline"
+                colorScheme="purple"
+                flex={1}
+              >
+                Download PNG
+              </Button>
+            </HStack>
+          </VStack>
+        </Card.Body>
+      </Card.Root>
 
-        <div className="control-buttons">
-          <button onClick={generate} className="btn btn-primary">
-            Regenerate
-          </button>
-          <button onClick={downloadArt} className="btn btn-secondary">
-            Download PNG
-          </button>
-        </div>
-      </div>
-
-      <div className="canvas-wrapper">
+      <Box
+        borderWidth="1px"
+        borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
+        borderRadius="md"
+        overflow="hidden"
+        boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+      >
         <canvas
           ref={canvasRef}
           width={800}
           height={600}
           className="generative-canvas"
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

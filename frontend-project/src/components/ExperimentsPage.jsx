@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Box, Container, Heading, Text, VStack, Card, HStack, Badge } from '@chakra-ui/react'
 import { useParams, useNavigate, Routes, Route } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import matter from 'gray-matter'
 import { useColorMode } from './ui/color-mode'
-import GenerativeArt from './GenerativeArt'
-import PromptBuilder from './PromptBuilder'
+import ExperimentRenderer from './ExperimentRenderer'
 import './ExperimentsPage.css'
 
 // Import all markdown files
@@ -21,9 +18,15 @@ const ExperimentsPage = () => {
       const experimentsData = []
 
       for (const path in experiments) {
+        const slug = path.split('/').pop().replace('.md', '')
+
+        // Skip the welcome experiment
+        if (slug === 'welcome-to-experiments') {
+          continue
+        }
+
         const content = await experiments[path]()
         const { data, content: markdown } = matter(content)
-        const slug = path.split('/').pop().replace('.md', '')
 
         experimentsData.push({
           slug,
@@ -112,6 +115,62 @@ const ExperimentsPage = () => {
             >
               A playground for frontend ideas, prototypes, and creative explorations
             </Text>
+          </Box>
+
+          {/* Welcome Section */}
+          <Box
+            bg={{ base: 'gray.50', _dark: 'gray.800' }}
+            p={8}
+            borderRadius="lg"
+            borderWidth="1px"
+            borderColor={{ base: 'gray.200', _dark: 'gray.700' }}
+          >
+            <VStack align="start" spacing={6}>
+              <Box>
+                <Heading
+                  size="lg"
+                  mb={4}
+                  color={{ base: 'gray.800', _dark: 'gray.100' }}
+                  fontWeight="semibold"
+                >
+                  Welcome to the Experiments Section
+                </Heading>
+                <Text
+                  color={{ base: 'gray.700', _dark: 'gray.300' }}
+                  lineHeight="tall"
+                >
+                  This is a new playground for trying out different frontend ideas, techniques, and creative explorations. Think of this as a laboratory where concepts evolve from ideas into tangible, interactive experiences.
+                </Text>
+              </Box>
+
+              <Box>
+                <Heading
+                  size="sm"
+                  mb={3}
+                  color={{ base: 'gray.800', _dark: 'gray.100' }}
+                  fontWeight="semibold"
+                >
+                  What You'll Find Here
+                </Heading>
+                <VStack align="start" spacing={2} pl={4}>
+                  <Text color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                    <strong>Interactive Prototypes</strong> - Experimental UI components and interactions
+                  </Text>
+                  <Text color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                    <strong>Creative Coding</strong> - Visual experiments and generative art
+                  </Text>
+                  <Text color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                    <strong>New Technologies</strong> - Trying out cutting-edge web technologies and frameworks
+                  </Text>
+                  <Text color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                    <strong>Design Explorations</strong> - Testing new design patterns and user experiences
+                  </Text>
+                  <Text color={{ base: 'gray.700', _dark: 'gray.300' }}>
+                    <strong>Performance Tests</strong> - Optimizing and benchmarking various approaches
+                  </Text>
+                </VStack>
+              </Box>
+            </VStack>
           </Box>
 
           {/* Experiments Grid */}
@@ -316,23 +375,28 @@ const ExperimentDetail = () => {
   }
 
   return (
-    <Box pt={20} pb={16} bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh">
-      <Container maxW="820px">
-        <VStack spacing={12} align="stretch">
-          {/* Header Section */}
-          <Box>
-            <Text
-              fontSize="md"
-              color={{ base: 'blue.600', _dark: 'blue.400' }}
-              cursor="pointer"
-              onClick={() => navigate('/experiments')}
-              mb={8}
-              _hover={{ textDecoration: 'underline' }}
-              fontWeight="medium"
-            >
-              ← Back to all experiments
-            </Text>
+    <Box bg={{ base: 'white', _dark: 'gray.900' }} minH="100vh" w="100%">
+      {/* Fixed header */}
+      <Box position="sticky" top={0} bg={{ base: 'white', _dark: 'gray.900' }} borderBottomWidth="1px" borderColor={{ base: 'gray.200', _dark: 'gray.700' }} zIndex={10} pt={4} pb={4}>
+        <Box px={{ base: 4, md: 8 }}>
+          <Text
+            fontSize="md"
+            color={{ base: 'blue.600', _dark: 'blue.400' }}
+            cursor="pointer"
+            onClick={() => navigate('/experiments')}
+            _hover={{ textDecoration: 'underline' }}
+            fontWeight="medium"
+          >
+            ← Back to all experiments
+          </Text>
+        </Box>
+      </Box>
 
+      {/* Content area - layout determined by ExperimentRenderer based on frontmatter */}
+      <Box w="100%" py={12}>
+        <VStack spacing={12} align="stretch" px={{ base: 4, md: 8 }}>
+          {/* Header Section */}
+          <Container maxW="800px">
             <Heading
               size="3xl"
               mb={6}
@@ -371,41 +435,16 @@ const ExperimentDetail = () => {
                 </HStack>
               )}
             </HStack>
-          </Box>
+          </Container>
 
-          {/* Experiment Content */}
-          <Box className={`experiment-article ${colorMode === 'dark' ? 'dark-mode' : ''}`}>
-            {experiment.content.split('\n').some(line =>
-              line.trim() === '<GenerativeArt />' || line.trim() === '<PromptBuilder />'
-            ) ? (
-              // Render with component replacement
-              <>
-                {experiment.content.split(/(<GenerativeArt \/>|<PromptBuilder \/>)/g).map((part, index) => {
-                  if (part.trim() === '<GenerativeArt />') {
-                    return <Box key={index} my={8}><GenerativeArt /></Box>
-                  }
-                  if (part.trim() === '<PromptBuilder />') {
-                    return <Box key={index} my={8}><PromptBuilder /></Box>
-                  }
-                  if (part.trim()) {
-                    return (
-                      <ReactMarkdown key={index} remarkPlugins={[remarkGfm]}>
-                        {part}
-                      </ReactMarkdown>
-                    )
-                  }
-                  return null
-                })}
-              </>
-            ) : (
-              // No components, render normally
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {experiment.content}
-              </ReactMarkdown>
-            )}
-          </Box>
+          {/* Experiment Content - rendered with custom layout support */}
+          <ExperimentRenderer
+            content={experiment.content}
+            frontmatter={experiment.frontmatter}
+            colorMode={colorMode}
+          />
         </VStack>
-      </Container>
+      </Box>
     </Box>
   )
 }
