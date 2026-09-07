@@ -1,0 +1,73 @@
+.ac__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.ac__step {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr 3rem;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-dim);
+}
+
+.ac__n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ac__track {
+  height: 0.62rem;
+  background: color-mix(in srgb, var(--span-idle) 45%, transparent);
+}
+
+.ac__bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 140ms linear;
+}
+
+/* The re-sent prefix, drawn as the part of every bar you pay for again. */
+.ac__prefix {
+  display: block;
+  height: 100%;
+  background: var(--amber);
+}
+
+.ac__tok {
+  text-align: right;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.ac__key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.2rem;
+  margin: 1.1rem 0 0;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-dim);
+}
+
+.ac__swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: -0.8rem;
+}
+
+.ac__swatch--prefix {
+  background: var(--amber);
+}
+
+.ac__swatch--hist {
+  background: var(--accent);
+}

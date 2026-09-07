@@ -1,0 +1,63 @@
+.tl__chart {
+  position: relative;
+  padding-bottom: 1.4rem;
+}
+
+.tl__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: clamp(9rem, 22vw, 13rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.tl__bar {
+  flex: 1;
+  min-width: 0;
+  background: var(--accent);
+  transition: height 140ms linear;
+}
+
+/* Amber is data encoding only: these are the requests that blew past the
+   latency budget you'd have set from a single call's p99. */
+.tl__bar.is-hot {
+  background: var(--amber);
+}
+
+.tl__marker {
+  position: absolute;
+  top: 0;
+  bottom: 1.4rem;
+  width: 0;
+  border-left: 1px dashed var(--fg-dim);
+  pointer-events: none;
+}
+
+.tl__marker-label {
+  position: absolute;
+  top: 0;
+  left: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  white-space: nowrap;
+}
+
+.tl__axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 44 bars in a phone-width column: the gap costs more than it buys. */
+@media (max-width: 34rem) {
+  .tl__bars {
+    gap: 1px;
+  }
+}

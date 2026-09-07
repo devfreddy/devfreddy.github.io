@@ -1,0 +1,213 @@
+---
+import { employers, toMonths, nowMonths, formatRange, durationLabel } from '../data/career'
+
+// One shared time axis for every span, so bar width really is tenure.
+const axisStart = Math.min(...employers.flatMap((e) => e.roles.map((r) => toMonths(r.start))))
+const axisEnd = nowMonths()
+const axisSpan = axisEnd - axisStart
+
+const pct = (months: number) => ((months - axisStart) / axisSpan) * 100
+
+const rows = employers.map((employer) => {
+  const starts = employer.roles.map((r) => toMonths(r.start))
+  const ends = employer.roles.map((r) => (r.end ? toMonths(r.end) : axisEnd))
+  const start = Math.min(...starts)
+  const end = Math.max(...ends)
+  return {
+    ...employer,
+    left: pct(start),
+    width: ((end - start) / axisSpan) * 100,
+    duration: durationLabel(
+      employer.roles.reduce((a, r) => (toMonths(r.start) < toMonths(a.start) ? r : a)).start,
+      end === axisEnd ? null : employer.roles.find((r) => toMonths(r.end ?? '9999-12') === end)?.end ?? null
+    ),
+    roles: employer.roles.map((role) => ({
+      ...role,
+      left: pct(toMonths(role.start)),
+      width: (((role.end ? toMonths(role.end) : axisEnd) - toMonths(role.start)) / axisSpan) * 100,
+    })),
+  }
+})
+
+// Ticks every five years, only where they fall inside the axis.
+const firstTick = Math.ceil(Math.floor(axisStart / 12) / 5) * 5
+const ticks: number[] = []
+for (let y = firstTick; y * 12 <= axisEnd; y += 5) ticks.push(y)
+---
+
+<div class="ct">
+  <div class="ct__axis" aria-hidden="true">
+    <span class="ct__label"></span>
+    <span class="ct__track ct__track--axis">
+      {ticks.map((year) => <span class="ct__tick" style={`--at:${pct(year * 12)}%`}>{year}</span>)}
+    </span>
+    <span class="ct__meta"></span>
+  </div>
+
+  <ol class="ct__list">
+    {
+      rows.map((row) => (
+        <li class="ct__employer">
+          <div class="ct__row ct__row--parent">
+            <h3 class="ct__label ct__company">{row.company}</h3>
+            <span class="ct__track">
+              <span class="ct__bar ct__bar--parent" style={`--left:${row.left}%;--width:${row.width}%`} />
+            </span>
+            <span class="ct__meta">{row.duration}</span>
+          </div>
+
+          <ol class="ct__roles">
+            {row.roles.map((role) => (
+              <li class="ct__row">
+                <span class="ct__label ct__title">{role.title}</span>
+                <span class="ct__track">
+                  <span class="ct__bar" style={`--left:${role.left}%;--width:${role.width}%`} />
+                </span>
+                <span class="ct__meta ct__range">{formatRange(role.start, role.end)}</span>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .ct {
+    --label-col: clamp(8rem, 22vw, 15rem);
+    --meta-col: clamp(4.5rem, 12vw, 8.5rem);
+    margin-block: 2rem 3.5rem;
+  }
+
+  .ct__row,
+  .ct__axis {
+    display: grid;
+    grid-template-columns: var(--label-col) 1fr var(--meta-col);
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .ct__list,
+  .ct__roles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ct__employer + .ct__employer {
+    margin-top: 1.6rem;
+  }
+
+  .ct__row--parent {
+    padding-bottom: 0.35rem;
+  }
+
+  .ct__company {
+    font-size: var(--step-0);
+    font-stretch: 112%;
+    font-weight: 700;
+  }
+
+  .ct__title {
+    font-size: var(--step--1);
+    color: var(--fg-dim);
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--rule);
+  }
+
+  .ct__track {
+    position: relative;
+    height: 0.85rem;
+  }
+
+  .ct__track--axis {
+    height: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ct__tick {
+    position: absolute;
+    left: var(--at);
+    bottom: 0;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--fg-dim);
+    padding-inline: 0.25rem;
+    background: var(--bg);
+  }
+
+  .ct__bar {
+    position: absolute;
+    inset-block: 0.16rem;
+    left: var(--left);
+    width: var(--width);
+    min-width: 2px;
+    background: var(--span-idle);
+    transform-origin: left center;
+    animation: ct-in 500ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  }
+
+  .ct__bar--parent {
+    inset-block: 0;
+    background: var(--accent);
+  }
+
+  .ct__roles .ct__row:first-child .ct__bar {
+    animation-delay: 60ms;
+  }
+  .ct__roles .ct__row:last-child .ct__bar {
+    animation-delay: 120ms;
+  }
+
+  .ct__meta {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--fg-dim);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ct__row--parent .ct__meta {
+    color: var(--fg);
+  }
+
+  .ct__range {
+    font-size: 0.7rem;
+  }
+
+  @keyframes ct-in {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Below tablet the axis stops being readable, so the trace becomes a list. */
+  @media (max-width: 46rem) {
+    .ct__row,
+    .ct__axis {
+      grid-template-columns: 1fr auto;
+      gap: 0.3rem 0.75rem;
+    }
+    .ct__axis,
+    .ct__track {
+      display: none;
+    }
+    .ct__title {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .ct__roles .ct__row {
+      padding-left: 0.9rem;
+      border-left: 1px solid var(--rule);
+      padding-block: 0.15rem;
+    }
+    .ct__range {
+      font-size: var(--step--1);
+    }
+  }
+</style>

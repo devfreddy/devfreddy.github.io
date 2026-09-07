@@ -1,0 +1,105 @@
+---
+import { getCollection, render } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+
+export async function getStaticPaths() {
+  const experiments = await getCollection('experiments', ({ data }) => !data.draft)
+  return experiments.map((entry) => ({ params: { slug: entry.id }, props: { entry } }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+---
+
+<Base title={`${entry.data.title} — devfreddy`} description={entry.data.summary}>
+  <article class="exp shell">
+    <header class="exp__head">
+      <p class="eyebrow">
+        <a href="/experiments">Experiments</a> · {fmt(entry.data.date)} · {entry.data.status}
+      </p>
+      <h1>{entry.data.title}</h1>
+      <p class="lede dim">{entry.data.summary}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .exp {
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) 0;
+  }
+
+  .exp__head {
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp__head h1 {
+    font-size: var(--step-2);
+    margin-block: 0.5rem 1rem;
+  }
+
+  .lede {
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+</style>
+
+<style is:global>
+  .prose > * {
+    max-width: var(--measure);
+  }
+
+  .prose h2 {
+    font-size: var(--step-1);
+    margin-block: 2.5rem 0.8rem;
+  }
+
+  .prose h3 {
+    font-size: var(--step-0);
+    margin-block: 2rem 0.6rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: 1.2rem;
+    max-width: var(--measure);
+  }
+
+  .prose li {
+    margin-bottom: 0.4rem;
+  }
+
+  .prose pre {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--rule);
+    font-size: var(--step--1);
+  }
+
+  .prose :not(pre) > code {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    padding: 0.1em 0.35em;
+  }
+
+  .prose blockquote {
+    margin-inline: 0;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--accent);
+    color: var(--fg-dim);
+  }
+
+  /* Islands get the full column, since most of them are instruments. */
+  .prose .island {
+    max-width: 100%;
+    margin-block: 2.5rem;
+  }
+</style>

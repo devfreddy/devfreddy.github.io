@@ -1,0 +1,237 @@
+---
+import Base from '../layouts/Base.astro'
+import CareerTrace from '../components/CareerTrace.astro'
+import { employers, skills, education, formatRange, durationLabel } from '../data/career'
+
+const totalYears = durationLabel('2008-10', null)
+---
+
+<Base
+  title="About — Michael Frederick"
+  description="Michael Frederick: deployed architect at LangChain. AI engineering, observability, and 17 years of adjacent work."
+>
+  <article class="about shell">
+    <header class="about__head">
+      <p class="eyebrow">About</p>
+      <h1>Michael Frederick</h1>
+      <p class="lede">
+        I started in tech support, which is where I learned that everyone is an end user
+        trying to get something done. That stuck with me through database administration,
+        web development, and engineering leadership. The hardest problems usually turned
+        out not to be technical.
+      </p>
+      <p>
+        These days I'm on the professional services team at LangChain, working with customer
+        teams building agents and getting them solid enough to ship. Same job I've always had,
+        really. Helping people see what their system is doing so they can make it better. The
+        difference now is that the systems are a lot more interesting and the tooling is
+        finally keeping up. Outside work it's the garden, the volleyball court, golf, and
+        cocktails.
+      </p>
+      <p class="about__links">
+        <a href="https://www.linkedin.com/in/michaelfrederick">LinkedIn</a>
+        <a href="https://github.com/devfreddy">GitHub</a>
+      </p>
+    </header>
+
+    <section aria-labelledby="trace-h">
+      <div class="about__section-head">
+        <h2 id="trace-h">Work</h2>
+        <p class="eyebrow">{totalYears} · bar width is tenure</p>
+      </div>
+      <CareerTrace />
+    </section>
+
+    <section aria-labelledby="roles-h">
+      <h2 id="roles-h" class="sr-only">Role detail</h2>
+      <ol class="roles">
+        {
+          employers.flatMap((employer) =>
+            employer.roles.map((role) => (
+              <li class="role">
+                <div class="role__meta">
+                  <p class="role__company">{employer.company}</p>
+                  <p class="eyebrow">{formatRange(role.start, role.end)}</p>
+                  <p class="eyebrow">{role.location}</p>
+                </div>
+                <div class="role__body">
+                  <h3>{role.title}</h3>
+                  <p>{role.summary}</p>
+                  <ul class="role__highlights">
+                    {role.highlights.map((h) => (
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+                  <ul class="tags">
+                    {role.tech.map((t) => (
+                      <li>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          )
+        }
+      </ol>
+    </section>
+
+    <section aria-labelledby="skills-h">
+      <h2 id="skills-h">Tools</h2>
+      <ul class="skills">
+        {
+          skills.map((group) => (
+            <li>
+              <p class="eyebrow">{group.group}</p>
+              <p class="skills__items">{group.items.join(', ')}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section aria-labelledby="edu-h">
+      <h2 id="edu-h">Education</h2>
+      <p>
+        <strong>{education.degree}</strong>, {education.institution}
+        <br />
+        <span class="eyebrow">
+          {formatRange(education.start, education.end)} · {education.location}
+        </span>
+      </p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .about {
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) 0;
+  }
+
+  .about__head {
+    margin-bottom: clamp(3rem, 8vw, 5rem);
+  }
+
+  .about__head h1 {
+    font-size: var(--step-2);
+    margin-block: 0.4rem 1.4rem;
+  }
+
+  .lede {
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .about section + section {
+    margin-top: clamp(3rem, 8vw, 5rem);
+  }
+
+  .about__links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: var(--step--1);
+  }
+
+  .about__section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .roles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .role {
+    display: grid;
+    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+    gap: 0.5rem 2.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .role__company {
+    font-family: var(--font-display);
+    font-stretch: 112%;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+  }
+
+  .role__meta p {
+    margin: 0;
+  }
+
+  .role__body h3 {
+    font-size: var(--step-0);
+    margin-bottom: 0.5rem;
+  }
+
+  .role__highlights {
+    margin: 0 0 1rem;
+    padding-left: 1.1rem;
+    max-width: var(--measure);
+  }
+
+  .role__highlights li {
+    margin-bottom: 0.35rem;
+    color: var(--fg-dim);
+    font-size: var(--step--1);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tags li {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--fg-dim);
+    border: 1px solid var(--rule);
+    padding: 0.15rem 0.45rem;
+  }
+
+  .skills {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.4rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+
+  .skills p {
+    margin: 0;
+  }
+
+  .skills__items {
+    font-size: var(--step--1);
+    margin-top: 0.2rem !important;
+  }
+
+  @media (max-width: 46rem) {
+    .role {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+
+const experiments = (await getCollection('experiments', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+---
+
+<Base
+  title="Experiments — devfreddy"
+  description="Small working things: observability, GraphQL, and LLM tooling."
+>
+  <div class="page shell">
+    <header class="page__head">
+      <p class="eyebrow">Experiments</p>
+      <h1>Small things that run in the browser.</h1>
+      <p class="lede dim">
+        Working tools rather than writing about tools. Each one is a page you can use.
+      </p>
+    </header>
+
+    {
+      experiments.length === 0 ? (
+        <p class="empty">
+          Nothing here yet. The first experiment is in progress.
+        </p>
+      ) : (
+        <ul class="list">
+          {experiments.map((entry) => (
+            <li>
+              <a href={`/experiments/${entry.id}`}>
+                <div class="list__main">
+                  <h2>{entry.data.title}</h2>
+                  <p class="dim">{entry.data.summary}</p>
+                </div>
+                <div class="list__meta">
+                  <span class={`status status--${entry.data.status}`}>{entry.data.status}</span>
+                  <span class="eyebrow">{fmt(entry.data.date)}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) 0;
+  }
+
+  .page__head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .page__head h1 {
+    font-size: var(--step-2);
+    margin-block: 0.4rem 1rem;
+  }
+
+  .lede {
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .empty {
+    padding-block: 2rem;
+    border-top: 1px solid var(--rule);
+    color: var(--fg-dim);
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list li {
+    border-top: 1px solid var(--rule);
+  }
+
+  .list li:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .list a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem 2rem;
+    padding-block: 1.6rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .list h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.3rem;
+  }
+
+  .list a:hover h2 {
+    color: var(--accent);
+  }
+
+  .list p {
+    margin: 0;
+    font-size: var(--step--1);
+  }
+
+  .list__main {
+    flex: 1 1 22rem;
+  }
+
+  .list__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid currentColor;
+    color: var(--fg-dim);
+  }
+
+  .status--live {
+    color: var(--accent);
+  }
+
+  .status--building {
+    color: var(--amber);
+  }
+</style>

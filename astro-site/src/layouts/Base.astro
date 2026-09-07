@@ -1,0 +1,182 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description = 'Michael Frederick, deployed architect at LangChain. AI engineering, observability, and things that run in the browser.' } = Astro.props
+const path = Astro.url.pathname
+const isCurrent = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      // Set before first paint so the toggle never flashes the wrong theme.
+      const stored = localStorage.getItem('theme')
+      if (stored) document.documentElement.dataset.theme = stored
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="shell masthead__inner">
+        <a class="wordmark" href="/">
+          <span class="wordmark__name">devfreddy</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="/about" aria-current={isCurrent('/about') ? 'page' : undefined}>
+            About
+          </a>
+          <button class="theme" type="button" aria-label="Switch color theme" data-theme-toggle>
+            <span aria-hidden="true">◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <p class="dim">Michael Frederick · deployed architect</p>
+        <p class="footer__links">
+          <a href="/about">About</a>
+          <a href="https://github.com/devfreddy">GitHub</a>
+          <a href="https://www.linkedin.com/in/michaelfrederick">LinkedIn</a>
+        </p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+        const root = document.documentElement
+        const dark =
+          root.dataset.theme === 'dark' ||
+          (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches)
+        const next = dark ? 'light' : 'dark'
+        root.dataset.theme = next
+        localStorage.setItem('theme', next)
+      })
+    </script>
+
+    <style>
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+      .skip:focus {
+        left: var(--gutter);
+        top: 0.6rem;
+        z-index: 10;
+        background: var(--bg-raised);
+        padding: 0.5rem 0.9rem;
+        border: 1px solid var(--rule);
+      }
+
+      .masthead {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .masthead__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.1rem;
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-stretch: 125%;
+        font-weight: 700;
+        font-size: var(--step-0);
+        letter-spacing: -0.01em;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .wordmark:hover .wordmark__name {
+        color: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.9rem, 2vw, 1.6rem);
+      }
+
+      .nav a {
+        font-size: var(--step--1);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+
+      .nav a:hover,
+      .nav a[aria-current='page'] {
+        color: var(--accent) !important;
+      }
+
+      .nav a[aria-current='page'] {
+        text-decoration: underline;
+        text-underline-offset: 0.35em;
+      }
+
+      .theme {
+        background: none;
+        border: 0;
+        padding: 0.2rem;
+        color: var(--fg-dim);
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .theme:hover {
+        color: var(--accent);
+      }
+
+      .footer {
+        border-top: 1px solid var(--rule);
+        margin-top: 6rem;
+      }
+
+      .footer__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem 1.5rem;
+        padding-block: 2rem 3rem;
+        font-size: var(--step--1);
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+      .footer__links {
+        display: flex;
+        gap: 1.25rem;
+      }
+    </style>
+  </body>
+</html>

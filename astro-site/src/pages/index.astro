@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="devfreddy — Michael Frederick">
+  <section class="hero shell">
+    <h1>I'm Michael. I work on AI&nbsp;systems at LangChain.</h1>
+    <p class="lede">
+      Deployed architect on the professional services team. I work with customer
+      engineering teams building agents, mostly the LangSmith side of it: traces, evals,
+      the work between a promising demo and something you'd actually ship. It's a good
+      time to be doing this.
+    </p>
+    <p class="prior dim">
+      Before this I was at Apollo, on GraphQL federation, which is the problem of getting
+      a pile of separate APIs to behave like one. Before that, New Relic, one of the
+      companies that made watching your software run in production a normal thing to do.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 9vw, 6.5rem) 0;
+  }
+
+  .hero h1 {
+    max-width: 24ch;
+    margin-block: 0 1.5rem;
+  }
+
+  .lede {
+    max-width: 54ch;
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  /* The backstory is context, not the pitch, so it sits a step down. */
+  .prior {
+    max-width: 56ch;
+    margin-top: 1.6rem;
+  }
+</style>

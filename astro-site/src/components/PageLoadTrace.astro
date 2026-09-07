@@ -1,0 +1,207 @@
+---
+// The hero is a trace of the visitor's own request for this page, read from
+// the Performance API. Real spans, real durations — the page instruments
+// itself rather than illustrating the idea of instrumentation.
+//
+// Rows are rendered server-side so they carry Astro's scoped-style attribute;
+// the client only fills in numbers and widths, then reveals the rows that
+// actually happened. Injecting this markup from JS would lose the styles.
+const SPANS = ['redirect', 'dns', 'tcp', 'tls', 'request', 'response', 'dom', 'paint']
+---
+
+<figure class="trace" data-trace aria-labelledby="trace-caption">
+  <figcaption id="trace-caption" class="trace__caption">
+    <span class="eyebrow">Trace · this page load</span>
+    <span class="trace__total eyebrow" data-trace-total></span>
+  </figcaption>
+
+  <ol class="trace__spans">
+    {
+      SPANS.map((name) => (
+        <li class="trace__span" data-span={name} hidden>
+          <span class="trace__name">{name}</span>
+          <span class="trace__track">
+            <span class="trace__bar" />
+          </span>
+          <span class="trace__dur" />
+        </li>
+      ))
+    }
+    <li class="trace__empty dim" data-trace-status>Collecting timing…</li>
+  </ol>
+
+  <noscript>
+    <p class="dim trace__empty">
+      This trace is measured in your browser, so it needs JavaScript. Everything
+      else on the site is static HTML.
+    </p>
+  </noscript>
+</figure>
+
+<script is:inline>
+  ;(() => {
+    const root = document.querySelector('[data-trace]')
+    if (!root) return
+    const status = root.querySelector('[data-trace-status]')
+    const totalEl = root.querySelector('[data-trace-total]')
+    let done = false
+
+    const render = () => {
+      if (done) return
+      const nav = performance.getEntriesByType('navigation')[0]
+      // loadEventEnd is 0 until the load event has fully finished.
+      if (!nav || !nav.loadEventEnd) return
+
+      const fcp = performance
+        .getEntriesByType('paint')
+        .find((p) => p.name === 'first-contentful-paint')
+
+      // A warm connection reports zeros; only keep spans that really happened.
+      const candidates = [
+        ['redirect', nav.redirectStart, nav.redirectEnd],
+        ['dns', nav.domainLookupStart, nav.domainLookupEnd],
+        ['tcp', nav.connectStart, nav.secureConnectionStart || nav.connectEnd],
+        ['tls', nav.secureConnectionStart, nav.connectEnd],
+        ['request', nav.requestStart, nav.responseStart],
+        ['response', nav.responseStart, nav.responseEnd],
+        ['dom', nav.responseEnd, nav.domContentLoadedEventEnd],
+        ['paint', nav.domContentLoadedEventEnd, fcp ? fcp.startTime : 0],
+      ]
+
+      const spans = candidates
+        .filter(([, start, end]) => start > 0 && end > start && end - start >= 0.5)
+        .map(([name, start, end]) => ({ name, start, end, dur: end - start }))
+
+      done = true
+
+      if (!spans.length) {
+        status.textContent = 'Served from cache, with nothing slow enough to measure.'
+        return
+      }
+
+      const scale = Math.max(...spans.map((s) => s.end))
+      const slowest = Math.max(...spans.map((s) => s.dur))
+      const ms = (n) => (n < 10 ? n.toFixed(1) : Math.round(n)) + 'ms'
+
+      status.hidden = true
+      totalEl.textContent = ms(scale)
+
+      spans.forEach((s, i) => {
+        const row = root.querySelector(`[data-span="${s.name}"]`)
+        if (!row) return
+        const bar = row.querySelector('.trace__bar')
+        bar.style.setProperty('--left', (s.start / scale) * 100 + '%')
+        bar.style.setProperty('--width', Math.max((s.dur / scale) * 100, 0.7) + '%')
+        bar.style.setProperty('--delay', i * 55 + 'ms')
+        // Amber marks the span that dominated this load. Data encoding only.
+        if (s.dur === slowest && spans.length > 1) bar.classList.add('is-hot')
+        row.querySelector('.trace__dur').textContent = ms(s.dur)
+        row.hidden = false
+      })
+    }
+
+    // No requestAnimationFrame here: it never fires while the tab is in the
+    // background, which is exactly how a link opened in a new tab arrives.
+    if (document.readyState === 'complete') render()
+    addEventListener('load', render)
+    setTimeout(render, 1200)
+  })()
+</script>
+
+<style>
+  .trace {
+    margin: 0;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    padding: clamp(1rem, 2.5vw, 1.6rem);
+  }
+
+  .trace__caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .trace__total {
+    color: var(--fg);
+  }
+
+  .trace__spans {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .trace__empty {
+    font-size: var(--step--1);
+    margin: 0;
+  }
+
+  .trace__span {
+    display: grid;
+    grid-template-columns: 4.75rem 1fr 3.75rem;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+
+  .trace__span[hidden] {
+    display: none;
+  }
+
+  .trace__name {
+    color: var(--fg-dim);
+  }
+
+  .trace__track {
+    position: relative;
+    height: 0.7rem;
+    background: color-mix(in srgb, var(--span-idle) 45%, transparent);
+  }
+
+  .trace__bar {
+    position: absolute;
+    inset-block: 0;
+    left: var(--left, 0);
+    width: var(--width, 0);
+    background: var(--accent);
+    transform-origin: left center;
+    animation: span-in 420ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  .trace__bar.is-hot {
+    background: var(--amber);
+  }
+
+  .trace__dur {
+    text-align: right;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @keyframes span-in {
+    from {
+      transform: scaleX(0);
+      opacity: 0.4;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .trace__span {
+      grid-template-columns: 3.9rem 1fr 3.2rem;
+      gap: 0.5rem;
+    }
+  }
+</style>
